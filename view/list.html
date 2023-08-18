@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>청년정책 통합검색</h3>
+    </div>
+
+    <div><!--통합검색 시작 -->
+        <div>
+            <div>정책이름 및 내용&#09;&#62;</div>
+            <form action="/list.html" method="get">
+                <input  value placeholder="검색 내용 입력">
+                <input type="submit">
+            </form>
+        </div>
+
+        <div>
+            <div>연령&#09;&#62;</div>
+            <label>만</label><input type="text" value placeholder="나이 입력"><label>세</label>
+        </div>
+
+
+            <div>
+                <div>
+                    정책분야&#09;&#62;
+                    <span>(중복선택 가능)</span>    
+                </div>
+                <ul>
+                    <li>
+                        <label>전체</label><input type="checkbox" value ="전체">
+                    </li>
+
+                    <li>
+                        <label>공간</label><input type="checkbox" value ="공간">
+                    </li>
+
+                    <li>
+                        <label>교육</label><input type="checkbox" value ="교육">
+                    </li>
+
+                    <li>
+                        <label>금융</label><input type="checkbox" value ="금융">
+                    </li>
+
+                    <li>
+                        <label>사회참여</label><input type="checkbox" value ="사회참여">
+                    </li>
+
+                    <li>
+                        <label>생활지원</label><input type="checkbox" value ="생활지원">
+                    </li>
+
+                    <li>
+                        <label>신체건강</label><input type="checkbox" value ="신체건강">
+                    </li>
+
+                    <li>
+                        <label>일자리</label><input type="checkbox" value ="일자리">
+                    </li>
+                    
+                    <li>
+                        <label>주거</label><input type="checkbox" value ="주거"></li>
+                    <li>
+                        <label>진로</label><input type="checkbox" value ="진로">
+                    </li>
+                    
+                    <li>
+                        <label>창업</label><input type="checkbox" value ="창업">
+                    </li>
+                    
+                    <li>
+                        <label>문화·예술</label><input type="checkbox" value ="문화·예술">
+                    </li>
+                    
+                    <li>
+                        <label>커뮤니티</label><input type="checkbox" value ="커뮤니티">
+                    </li>
+                    
+                    <li>
+                        <label>대외활동</label><input type="checkbox" value ="대외활동">
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <div>지역&#09;&#62;
+                    <span>(중복선택 가능)</span>
+                </div>
+                <ul>
+                    <li>    
+                        <input type="checkbox" value ="중앙"><label>중앙</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="서울"><label>서울</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="부산"><label>부산</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="대구"><label>대구</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="인천"><label>인천</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="광주"><label>광주</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="대전"><label>대전</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="울산"><label>울산</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="경기"><label>경기</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="강원"><label>강원</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="충북"><label>충북</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="충남"><label>충남</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="전북"><label>전북</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="전남"><label>전남</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="경북"><label>경북</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="경남"><label>경남</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="제주"><label>제주</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" value ="세종"><label>세종</label>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!--------------------------------- 상세 검색 check 박스 ------------------------------>
+                <div>    
+                    <div>취업상태&#09;&#62;
+                        <span>(중복선택 가능)</span>
+                    </div>
+
+                    <div>
+                        <button type="button">취업 상태 선택
+                            <span>열기</span>
+                        </button>
+                        <ul>
+                            <li>
+                                <input type="checkbox"><label>전체</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>재직자</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>자영업자</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>미취업자</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>프리랜서</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>일용근로자</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>창업자</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>단기근로자</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>영농종사자</label>
+                            </li>
+                            <li>
+                                <input type="checkbox"><label>제한없음</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+
+                <div>
+                    <div>    
+                        <div>학력&#09;&#62;
+                            <span>(중복선택 가능)</span>
+                        </div>
+    
+                        <div>
+                            <button type="button">학력 선택
+                                <span>열기</span>
+                            </button>
+                            <ul>
+                                <li>
+                                    <input type="checkbox"><label>전체</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>고졸 미만</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>고교 재학</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>고졸 예정</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>고교 졸업</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>대학 재학</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>대졸 예정</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>대학 졸업</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>석·박사</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>제한없음</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>            
+
+
+
+                <div>
+                    <div>    
+                        <div>특이사항&#09;&#62;
+                            <span>(중복선택 가능)</span>
+                        </div>
+    
+                        <div>
+                            <button type="button">특이사항 선택
+                                <span>열기</span>
+                            </button>
+                            <ul>
+                                <li>
+                                    <input type="checkbox"><label>전체</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>저소득층</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>장애인</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>군인</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>농업인</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"><label>지역인재</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>            
+    </div><!-- 통합검색 끝  -->
+
+
+</body>
+</html>
