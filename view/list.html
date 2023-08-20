@@ -8,26 +8,51 @@
     <style>
 
         body {
-            font-family: 'Noto Sans KR',dotum,'돋움',arial,sans-serif;
+            font-family: 'Noto Sans KR',dotum,'돋움',arial,sans-serif            
+        }
+
+        .sub-title {
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 200px;
+            height: 30px;
         }
 
         .policy-search {
-            border: 3px;
+            border: 3px solid lightslategray;
             background-color: #D8D8D8;
         }
 
         .policy-name {
             display: flex;
+            margin : 5px 5px 5px 5px;
+
         }
 
-        .policy-name > div {
-            adding-left: 2.8%
-        }
 
         .policy-age {
             display: flex;
+            margin : 5px 5px 5px 5px;
         }
 
+       
+
+        .policy-area {
+            display: flex;
+            margin : 5px 5px 5px 5px;
+        }
+
+        .area-list > li{
+            display: inline-flex;
+            border : 1px solid;
+            justify-content: center;
+            align-items: center;
+            width: 75px;
+            height: 30px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+            background-color: white;
+        }
 
     </style>
 
@@ -38,84 +63,116 @@
     </div>
 
     <div class="policy-search"><!--통합검색 시작 -->
+        
+        <!--정책이름 및 내용--> 
         <div class="policy-name">
-            <div>정책이름 및 내용&#09;&#62;&#09;</div>
-            <input type="text" placeholder="검색 내용 입력">
+            <div class="sub-title">
+                정책이름 및 내용&#09;&#62;
+            </div>
+            <div class="policy-name-input">
+                <input type="text" maxlength="100" placeholder="검색 내용 입력" >
+            </div>
         </div>
 
+
+        <!--나이 입력--> 
         <div class="policy-age">
-            <div>연령&#09;&#62;</div>
-            <label>만</label><input type="text" value placeholder="나이 입력"><label>세</label>
+            <div class="sub-title">
+                연령&#09;&#62;
+            </div>
+            <div class="policy-age-input">
+                <label>만</label><input type="text" value placeholder="나이 입력"><label>세</label>
+            </div>
         </div>
 
+        
+        <!--정책 분야--> 
+        <div class="policy-area">
 
-            <div>
-                <div>
-                    정책분야&#09;&#62;
-                    <span>(중복선택 가능)</span>    
-                </div>
-                <div class="policy-area-search">
-                    <ul>
-                        <li>
-                            <label>전체</label><input type="checkbox" value ="전체">
-                        </li>
-
-                        <li>
-                            <label>공간</label><input type="checkbox" value ="공간">
-                        </li>
-
-                        <li>
-                            <label>교육</label><input type="checkbox" value ="교육">
-                        </li>
-
-                        <li>
-                            <label>금융</label><input type="checkbox" value ="금융">
-                        </li>
-
-                        <li>
-                            <label>사회참여</label><input type="checkbox" value ="사회참여">
-                        </li>
-
-                        <li>
-                            <label>생활지원</label><input type="checkbox" value ="생활지원">
-                        </li>
-
-                        <li>
-                            <label>신체건강</label><input type="checkbox" value ="신체건강">
-                        </li>
-
-                        <li>
-                            <label>일자리</label><input type="checkbox" value ="일자리">
-                        </li>
-                        
-                        <li>
-                            <label>주거</label><input type="checkbox" value ="주거"></li>
-                        <li>
-                            <label>진로</label><input type="checkbox" value ="진로">
-                        </li>
-                        
-                        <li>
-                            <label>창업</label><input type="checkbox" value ="창업">
-                        </li>
-                        
-                        <li>
-                            <label>문화·예술</label><input type="checkbox" value ="문화·예술">
-                        </li>
-                        
-                        <li>
-                            <label>커뮤니티</label><input type="checkbox" value ="커뮤니티">
-                        </li>
-                        
-                        <li>
-                            <label>대외활동</label><input type="checkbox" value ="대외활동">
-                        </li>
-                    </ul>
-                </div>    
+            <div class="sub-title">
+                정책분야&#09;&#62;
+                <div>(중복선택 가능)</div>    
             </div>
 
+            <div class="area-select-box">
+                <ul class="area-list">
+                    <li>
+                        <label>전체</label>
+                        <input type="checkbox" value ="전체" hidden>
+                    </li>
+
+                    <li>
+                        <label>공간</label>
+                        <input type="checkbox" value ="공간" hidden>
+                    </li>
+
+                    <li>
+                        <label>교육</label>
+                        <input type="checkbox" value ="교육" hidden>
+                    </li>
+
+                    <li>
+                        <label>금융</label>
+                        <input type="checkbox" value ="금융" hidden>
+                    </li>
+
+                    <li>
+                        <label>사회참여</label>
+                        <input type="checkbox" value ="사회참여" hidden>
+                    </li>
+
+                    <li>
+                        <label>생활지원</label>
+                        <input type="checkbox" value ="생활지원" hidden>
+                    </li>
+
+                    <li>
+                        <label>신체건강</label>
+                        <input type="checkbox" value ="신체건강" hidden>
+                    </li>
+
+                    <li>
+                        <label>일자리</label>
+                        <input type="checkbox" value ="일자리" hidden>
+                    </li>
+                    
+                    <li>
+                        <label>주거</label>
+                        <input type="checkbox" value ="주거" hidden>
+                    </li>
+                    
+                    <li>
+                        <label>진로</label>
+                        <input type="checkbox" value ="진로" hidden>
+                    </li>
+                    
+                    <li>
+                        <label>창업</label>
+                        <input type="checkbox" value ="창업" hidden>
+                    </li>
+                    
+                    <li>
+                        <label>문화·예술</label>
+                        <input type="checkbox" value ="문화·예술" hidden>
+                    </li>
+                    
+                    <li>
+                        <label>커뮤니티</label>
+                        <input type="checkbox" value ="커뮤니티" hidden>
+                    </li>
+                    
+                    <li>
+                        <label>대외활동</label>
+                        <input type="checkbox" value ="대외활동" hidden>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+
             <div>
-                <div>지역&#09;&#62;
-                    <span>(중복선택 가능)</span>
+                <div class="sub-title">
+                    지역&#09;&#62;
+                    <div>(중복선택 가능)</div>
                 </div>
                 <ul>
                     <li>    
@@ -195,14 +252,17 @@
 
             <!--------------------------------- 상세 검색 check 박스 ------------------------------>
                 <div>    
-                    <div>취업상태&#09;&#62;
+                    <div class="sub-title">
+                        취업상태&#09;&#62;
                         <span>(중복선택 가능)</span>
                     </div>
 
                     <div>
-                        <button type="button">취업 상태 선택
-                            <span>열기</span>
-                        </button>
+                        <div>
+                            <button type="button">취업 상태 선택
+                                <span>열기</span>
+                            </button>
+                        </div>
                         <ul>
                             <li>
                                 <input type="checkbox"><label>전체</label>
@@ -244,7 +304,8 @@
 
                 <div>
                     <div>    
-                        <div>학력&#09;&#62;
+                        <div class="sub-title">
+                            학력&#09;&#62;
                             <span>(중복선택 가능)</span>
                         </div>
     
@@ -292,7 +353,8 @@
 
                 <div>
                     <div>    
-                        <div>특이사항&#09;&#62;
+                        <div class="sub-title">
+                            특이사항&#09;&#62;
                             <span>(중복선택 가능)</span>
                         </div>
     
