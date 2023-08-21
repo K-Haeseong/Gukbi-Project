@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <style>
+        .title {
+            text-align: center;
+        }
+
+
+        .policy-search {
+            border: 1px solid lightslategray;
+            background-color: #D8D8D8;
+            padding: 30px;
+            width: 80%;
+            height: 600px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <div class="title">
+        <h1>청년정책 통합검색</h1>
+    </div>
+
+    <div>
+        <h3>청년정책 검색</h3>
+    </div>
+
+    <!--통합검색 시작 -->
+    <div class="policy-search">
+
+        <form class="row g-3" method="post">
+            <!--정책이름 및 내용-->
+            <div class="col-sm-7">
+                <label for="formGroupExampleInput" class="form-label">정책 이름 및 내용</label>
+                <input type="text" class="form-control" placeholder="키워드를 입력하세요">
+            </div>
+
+            <!--나이 입력-->
+            <div class="col-sm-7">
+                <label for="formGroupExampleInput2" class="form-label">연령</label>
+                <input type="text" class="form-control" placeholder="만 나이를 입력해주세요">
+            </div>
+
+
+            <!---->
+            <div class>
+                <span>정책분야 (중복선택 가능)</span>
+            </div>
+            <div>
+                    <input type="checkbox" id="btn-check-all" autocomplete="off" >
+                    <label class="btn btn-outline-primary" for="btn-check-all">전체 분야</label>
+                    <input type="checkbox" class="btn-check" id="area1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="area1">일자리</label>
+                    <input type="checkbox" class="btn-check" id="area2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="area2">주거</label>
+                    <input type="checkbox" class="btn-check" id="area3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="area3">교육</label>
+                    <input type="checkbox" class="btn-check" id="area4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="area4">복지/문화</label>
+                    <input type="checkbox" class="btn-check" id="area5" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="area5">참여/권리</label>
+                </div>
+            </div>
+
+
+
+            <div class>
+                <span>지역 (중복선택 가능)</span>
+            </div>
+            <div>
+                <input type="checkbox" id="btn-check-all" autocomplete="off" hidden>
+                <label class="btn btn-outline-primary" for="btn-check-all">지역 전체</label>
+                <input type="checkbox" class="btn-check" id="region-1" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-1">서울</label>
+                <input type="checkbox" class="btn-check" id="region-2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-2">부산</label>
+                <input type="checkbox" class="btn-check" id="region-3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-3">대구</label>
+                <input type="checkbox" class="btn-check" id="region-4" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-4">인천</label>
+                <input type="checkbox" class="btn-check" id="region-5" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-5">광주</label>
+                <input type="checkbox" class="btn-check" id="region-6" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-6">대전</label>
+                <input type="checkbox" class="btn-check" id="region-7" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-7">부산</label>
+                <input type="checkbox" class="btn-check" id="region-8" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-8">울산</label>
+                <input type="checkbox" class="btn-check" id="region-9" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-9">경기</label>
+                <input type="checkbox" class="btn-check" id="region-10" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-10">강원</label>
+                <input type="checkbox" class="btn-check" id="region-11" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-11">충북</label>
+                <input type="checkbox" class="btn-check" id="region-12" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-12">충남</label>
+                <input type="checkbox" class="btn-check" id="region-13" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-13">전북</label>
+                <input type="checkbox" class="btn-check" id="region-14" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-14">전남</label>
+                <input type="checkbox" class="btn-check" id="region-15" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-15">경북</label>
+                <input type="checkbox" class="btn-check" id="region-16" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-16">경남</label>
+                <input type="checkbox" class="btn-check" id="region-17" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-17">제주</label>
+                <input type="checkbox" class="btn-check" id="region-18" autocomplete="off">
+                <label class="btn btn-outline-primary" for="region-18">세종</label>
+            </div>
+
+
+
+        </form>
+        <img src="" alt="">
+
+
+
+
+
+    </div><!-- 상세조건 끝  -->
+    </div><!-- 통합검색 끝  -->
+
+
+    <script>
+
+        // 전체 분야 버튼 요소와 각 분야 버튼들을 가져옵니다.
+        const btnCheckAll = document.getElementById('btn-check-all');
+        const btnCheckboxes = document.querySelectorAll('.btn-check');
+
+
+        // 전체 분야 버튼의 변경 이벤트를 감지합니다.
+        btnCheckAll.addEventListener('change', function () {
+            // 만약 전체 분야 버튼이 선택되었다면
+            if (btnCheckAll.checked) {
+                // 각 분야 버튼들의 선택 상태를 해제합니다.
+                btnCheckboxes.forEach(function (checkbox) {
+                    checkbox.checked = false;
+                });
+            }
+        });
+
+
+
+        // 각 분야 버튼들의 변경 이벤트를 감지합니다.
+        btnCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                // 만약 하나의 분야 버튼이 선택되었다면
+                if (checkbox.checked) {
+                    // 전체 분야 버튼의 선택 상태를 해제합니다.
+                    btnCheckAll.checked = false;
+                }
+            });
+        });
+
+
+        
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+.checked{
+    background-color: aqua !important;
+}
+
+body {
+    font-family: 'Noto Sans KR', dotum, '돋움', arial, sans-serif
+}
+
+.title {
+    text-align: center;
+}
+
+.sub-title {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 200px;
+    height: 30px;
+}
+
+.all-selector{
+    display: inline-flex;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 30px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: white;
+}
+
+.policy-search {
+    border: 3px solid lightslategray;
+    background-color: #D8D8D8;
+}
+
+.policy-name {
+    display: flex;
+    margin: 5px 5px 5px 5px;
+}
+
+
+.policy-age {
+    display: flex;
+    margin: 5px 5px 5px 5px;
+}
+
+
+
+.policy-area {
+    display: flex;
+    margin: 5px 5px 5px 5px;
+}
+
+.area-list,
+.region-list {
+    width: 700px;
+    padding: 0px;
+}
+
+.area-list>li {
+    display: inline-flex;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 30px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: white;
+}
+
+
+.policy-region {
+    display: flex;
+    margin: 5px 5px 5px 5px;
+}
+
+.region-list>li {
+    display: inline-flex;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 30px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: white;
+}
+
+
+.detail-condition {
+    display: flex;
+}
+
+.detail-condition>div {
+    padding: 20px;
+    width: calc(100% / 3);
+}
+
+
+
+.display-none{
+    height: 300px !important;
+
+}
+
+.job-state-list{    
+    overflow: hidden;
+    height: 0px;
+    transition: height 0.8s;
+} 
+
+.flex{
+    display: flex;
+}
