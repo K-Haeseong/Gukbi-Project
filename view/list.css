@@ -13,9 +13,10 @@
     border: 1px solid #ccc;
     background-color: #f8f8f8;
     padding: 40px 40px;
-    height: 600px;
+    height: 800px;
     width: 1100px;
     margin: auto;
+    box-sizing: border-box;
 }
 
 
@@ -25,21 +26,29 @@
     text-align: center;
 }
 
-.sub-title {
+.sub-title-1 {
     font-size:28px; 
     font-weight: bold;
-    width: 400px;
-    margin-bottom: 20px;
+    width: 1100px;
+    margin: 0 auto 10px auto;
+}
+
+
+.sub-title-2 {
+    font-size:28px; 
+    font-weight: bold;
+    width: 1100px;
+    margin: auto;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #1351b8;
 }
     
 
 .search-title {
     width: 200px;
-    height: auto;
     font-size: 20px;
     font-weight: bold;
-    justify-content: center;
-    margin-bottom: 20px;
+    flex-shrink: 0;
 }
 
 .detail-title {
@@ -74,20 +83,17 @@
 .policy-area,
 .policy-region {
     display: flex;
-    height: 100px;
-    align-items: center;
+    margin-bottom: 50px;
 }
 
 .policy-name,
 .policy-age {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
-.area-list,
-.region-list {
-    width: 900px;
-    margin-bottom: 5px;
+.area-list {
+    max-width: 600px;
 }
 
 
@@ -114,17 +120,15 @@
     width: calc(100% / 3);
 }
 
-.display-hide {
-    height: auto !important;
-    width: auto
-}
-
 .job-state-list{  
     overflow: hidden;
-    height: 0px;
-    transition: height 0.5s;
+    height: 0;
+    transition: height 0.8s;
 }
 
+.display-hide {
+    height: 200px;
+}
 
 .job-state-list>div,
 .education-level-list>div,
@@ -173,9 +177,109 @@
 
 
 .button-wrap {
+    display: block;
+    margin: 20px;
+    text-align: center;
+}
+
+.reset-btn {
+    background-color: darkgray;
+    color: white;
+    border: none;
+    width: 150px;
+    height: 50px;
+    margin-right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.search-btn {
+    background-color: #1351b8;
+    color: white;
+    border: none;
+    width: 150px;
+    height: 50px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* 정책 검색결과 */
+
+.policy-summary {
+    margin: auto 0;
+}
+
+.policy-list-wrap {
+    width:1100px;
+    height:300px;
     display: flex;
-    width:100px;
     margin: auto;
+    padding: 30px 0;
+    border-bottom: 3px solid #ccc;;
+}
+
+.policy-img {
+    width: 300px;
+    margin-right: 30px;
+}
+
+.summary-title {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.summary-field {
+    border: 1px solid;
+    width: 20%;
+    height: 25px;
+    margin-right: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.summary-field-content {
+    width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.summary-list li{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+
+/* 페이징 */
+
+.paging {
+    width: 1100px;
+    height: 100px;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paging-btn{
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+    background-color: white;
+    border: #ccc solid 1px;
+    margin-right: 5px;
+    cursor: pointer;
 }
 
 
+.paging-btn:hover{
+    background-color: rgb(239, 239, 239);
+}
+
+
+/* 전첵 적용 */
+
+button{
+    cursor: pointer;
+}
