@@ -1,7 +1,3 @@
-.checked{
-    background-color: #1351b8 !important;
-    color: white;
-}
 
 
 .policy-search-wrap {
@@ -23,6 +19,7 @@
 .title {
     font-size: 36px;
     font-weight: bold;
+    font-family: 'BMDOHYEON';
     text-align: center;
 }
 
@@ -31,6 +28,7 @@
     font-weight: bold;
     width: 1100px;
     margin: 0 auto 10px auto;
+    font-family: 'BMDOHYEON';
 }
 
 
@@ -41,6 +39,7 @@
     margin: auto;
     padding-bottom: 10px;
     border-bottom: 3px solid #1351b8;
+    font-family: 'BMDOHYEON';
 }
     
 
@@ -64,9 +63,8 @@
 }
 
 
-
-.area-all-selector,
-.region-all-selector {
+.area-all-check,
+.region-all-check {
     display: flex;
     border: 1px solid;
     justify-content: center;
@@ -78,22 +76,35 @@
     background-color: white;
 }
 
+.policy-name {
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 60px;
+}
+
+
+.policy-age {
+    display: flex;
+    margin-bottom: 40px;
+    line-height: 60px;
+}
 
 
 .policy-area,
 .policy-region {
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
-.policy-name,
-.policy-age {
-    display: flex;
-    margin-bottom: 30px;
-}
 
-.area-list {
-    max-width: 600px;
+
+.area-list,
+.region-list {
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(86, 86, 86);
+    line-height: 15px;
+    max-width: 900px;
 }
 
 
@@ -108,6 +119,14 @@
     margin-top: 1px;
     margin-bottom: 1px;
     background-color: white;
+    border-color: #ccc;
+    cursor: pointer;
+}
+
+.area-all-check,
+.region-all-check {
+    cursor: pointer;
+    border-color: #ccc;
 }
 
 
@@ -126,7 +145,7 @@
     transition: height 0.8s;
 }
 
-.display-hide {
+.open-close {
     height: 200px;
 }
 
@@ -152,27 +171,37 @@
     justify-content: center;
     align-items: center;
     width: 150px;
-    height: 30px;
+    height: 32px;
     margin-top: 1px;
     margin-bottom: 1px;
     background-color: white;
+    border-color: #ccc;
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(86, 86, 86);
+    line-height: 15px;
 }
 
 
 .job-state-open > button,
 .education-level-open button,
 .special-area-open > button {
-    font-size: 14px;
+    font-size: 16px;
     width: 150px;
     height: 30px;
     margin: auto;
     border-color: black;
+    font-family: 'GmarketSansMedium'
 }
+
+/* 초기화 / 검색 버튼 */
 
 .job-state-open,
 .education-level-open,
 .special-area-open {
     padding-bottom: 10px;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 
@@ -186,21 +215,23 @@
     background-color: darkgray;
     color: white;
     border: none;
-    width: 150px;
+    width: 120px;
     height: 50px;
     margin-right: 10px;
-    font-size: 17px;
+    font-size: 22px;
     font-weight: bold;
+    font-family: 'LINESeedKR-Bd'
 }
 
 .search-btn {
     background-color: #1351b8;
     color: white;
     border: none;
-    width: 150px;
+    width: 120px;
     height: 50px;
-    font-size: 17px;
+    font-size: 22px;
     font-weight: bold;
+    font-family: 'LINESeedKR-Bd'
 }
 
 /* 정책 검색결과 */
@@ -215,7 +246,7 @@
     display: flex;
     margin: auto;
     padding: 30px 0;
-    border-bottom: 3px solid #ccc;;
+    border-bottom: 3px solid #ccc;
 }
 
 .policy-img {
@@ -225,24 +256,28 @@
 
 .summary-title {
     font-size: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    font-family: 'BMDOHYEON';
 }
 
 .summary-field {
-    border: 1px solid;
-    width: 20%;
-    height: 25px;
+    border-radius: 30px;
+    width: 15%;
+    height: 30px;
     margin-right: 15px;
     display: inline-flex;
     justify-content: center;
+    background-color: #ffdd83;
     align-items: center;
-    background-color: white;
+    font-family: 'GmarketSansMedium';
+    color: black;
 }
 
 .summary-field-content {
-    width: 60%;
+    width: 70%;
     white-space: nowrap;
     overflow: hidden;
+    font-family: 'LINESeedKR-Bd';
 }
 
 .summary-list li{
@@ -254,7 +289,6 @@
 /* 페이징 */
 
 .paging {
-    width: 1100px;
     height: 100px;
     margin:auto;
     display: flex;
@@ -278,8 +312,14 @@
 }
 
 
-/* 전첵 적용 */
+/* 전체 적용 */
 
 button{
     cursor: pointer;
 }
+
+.checked{
+    background-color: #1351b8 !important;
+    color: white !important;
+}
+
