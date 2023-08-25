@@ -18,7 +18,7 @@
 
 
     <!-------------------- 메인 시작------------------->
-    <main>
+    <main class="">
         <div class="title">
             정책 통합검색
         </div>
@@ -42,7 +42,7 @@
                             정책이름 및 내용
                         </div>
                         <div class="policy-name-input-wrap">
-                            <input type="text" class="policy-name-input" style="height: 30px;" size="50%" placeholder="검색 내용 입력하세요.">
+                            <input type="text" class="policy-name-input" placeholder="검색 내용 입력하세요.">
                         </div>
                     </div>
 
@@ -407,13 +407,13 @@
 
             <div class="policy-list-wrap">
                 <!-- 정책 이미지 -->
-                <a href="url"><img class="policy-img" src="/images/test-img.jpg"></a>
+                <a href="detail.html"><img class="policy-img" src="/images/test-img.jpg"></a>
 
                 <!-- 정책 목록 -->
                 <div class="policy-summary">
 
                     <div class="summary-title">
-                        <a href="url">정책이름</a>
+                        <a href="detail.html">정책이름</a>
                     </div>
 
                     <ul class="summary-list">
@@ -509,13 +509,7 @@
     <script>
         // ---------------------- 일반 검색 조건 ------------------------- 
 
-        /** 초기화 함수 */
-        function reset(List, Map) {
-            List.forEach(li => {
-                li.classList.remove("checked");
-            })
-            Map.clear();
-        };
+        
 
         // 정책분야 
         const areaChkMap = new Map();
@@ -594,21 +588,20 @@
 
 
         // -------------------- 상세 조건 검색 ---------------------------
+        // 취업상태
         const jobStateMap = new Map();
         const jobStatebtn = document.querySelector(".job-state-open > button")
-        const stateList = document.querySelector(".job-state-list")
-        const jobStateList = document.querySelectorAll(".job-state-list li + li")
+        const jobStateList = document.querySelector(".job-state-list")
+        const childStateList = document.querySelectorAll(".job-state-list li + li")
         const stateAllCheck = document.querySelector(".state-all-check");
 
-
-
-        // 취업상태
+        
         jobStatebtn.addEventListener("click", () => {
-            stateList.classList.toggle("open-close")
+            jobStateList.classList.toggle("open-close")
         })
 
 
-        jobStateList.forEach(li => {
+        childStateList.forEach(li => {
             li.addEventListener("click", () => {
                 li.classList.toggle("checked");
                 const input = li.querySelector("input");
@@ -622,12 +615,12 @@
 
         stateAllCheck.addEventListener("click", () => {
             if (jobStateMap.size === 8) {
-                jobStateList.forEach(li => {
+                childStateList.forEach(li => {
                     li.classList.remove("checked");
                 })
                 jobStateMap.clear();
             } else {
-                jobStateList.forEach(li => {
+                childStateList.forEach(li => {
                     li.classList.add("checked");
                     const input = li.querySelector('input');
                     jobStateMap.set(input.dataset.order, input.value);
@@ -635,17 +628,116 @@
             }
         })
 
-        
 
+
+        // 학력
+        const educationLevelMap = new Map();
+        const educationLevelBtn = document.querySelector(".education-level-open > button")
+        const educationlevelList = document.querySelector(".education-level-list")
+        const childLevelList = document.querySelectorAll(".education-level-list li + li")
+        const levelAllCheck = document.querySelector(".level-all-check");
+
+        
+        educationLevelBtn.addEventListener("click", () => {
+            educationlevelList.classList.toggle("open-close")
+        })
+
+
+        childLevelList.forEach(li => {
+            li.addEventListener("click", () => {
+                li.classList.toggle("checked");
+                const input = li.querySelector("input");
+                if (educationLevelMap.has(input.dataset.order)) {
+                    educationLevelMap.delete(input.dataset.order, input.value);
+                } else {
+                    educationLevelMap.set(input.dataset.order, input.value);
+                }
+            });
+        })
+
+        levelAllCheck.addEventListener("click", () => {
+            if (educationLevelMap.size === 9) {
+                childLevelList.forEach(li => {
+                    li.classList.remove("checked");
+                })
+                educationLevelMap.clear();
+            } else {
+                childLevelList.forEach(li => {
+                    li.classList.add("checked");
+                    const input = li.querySelector('input');
+                    educationLevelMap.set(input.dataset.order, input.value);
+                });
+            }
+        })
+
+
+
+        // 특정계층
+        const specialAreaMap = new Map();
+        const specialAreaBtn = document.querySelector(".special-area-open > button")
+        const specialAreaList = document.querySelector(".special-list")
+        const childAreaList = document.querySelectorAll(".special-list li + li")
+        const specialAreaAllCheck = document.querySelector(".special-all-check");
+
+        
+        specialAreaBtn.addEventListener("click", () => {
+            specialAreaList.classList.toggle("open-close")
+        })
+
+
+        childAreaList.forEach(li => {
+            li.addEventListener("click", () => {
+                li.classList.toggle("checked");
+                const input = li.querySelector("input");
+                if (specialAreaMap.has(input.dataset.order)) {
+                    specialAreaMap.delete(input.dataset.order, input.value);
+                } else {
+                    specialAreaMap.set(input.dataset.order, input.value);
+                }
+            });
+        })
+
+        specialAreaAllCheck.addEventListener("click", () => {
+            if (specialAreaMap.size === 5) {
+                childAreaList.forEach(li => {
+                    li.classList.remove("checked");
+                })
+                specialAreaMap.clear();
+            } else {
+                childAreaList.forEach(li => {
+                    li.classList.add("checked");
+                    const input = li.querySelector('input');
+                    specialAreaMap.set(input.dataset.order, input.value);
+                });
+            }
+        })
+
+
+        /** 초기화 함수 */
+        function reset(List, Map) {
+            List.forEach(li => {
+                li.classList.remove("checked");
+            })
+            Map.clear();
+        };
+
+        
+        // 초기화
         const resetBtn = document.querySelector(".reset-btn");
         resetBtn.addEventListener("click", () => {
             reset(areaList,areaChkMap);
             reset(regionList ,regionChkMap);
-            reset(jobStateList, jobStateMap);
+            reset(childStateList, jobStateMap);
+            reset(childLevelList, educationLevelMap);
+            reset(childAreaList, specialAreaMap);
+
 
             document.querySelector(".policy-age-input").value="";
             document.querySelector(".policy-name-input").value="";
             })
+
+
+        
 
 
 

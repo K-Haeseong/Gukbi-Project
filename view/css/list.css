@@ -58,6 +58,19 @@
     font-weight: bold;
 }
 
+
+.policy-name-input {
+    height: 30px;
+    width: 500px;
+}
+
+.policy-age-input {
+    height: 30px;
+    width: 200px;
+}
+
+
+
 .overlap {
     font-size: 16px;
 }
@@ -98,7 +111,14 @@
 
 
 
-.area-list,
+.area-list {
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(86, 86, 86);
+    line-height: 15px;
+    max-width: 500px;
+}
+
 .region-list {
     font-weight: 600;
     font-size: 15px;
@@ -139,11 +159,14 @@
     width: calc(100% / 3);
 }
 
-.job-state-list{  
+.job-state-list,
+.education-level-list,
+.special-list{  
     overflow: hidden;
     height: 0;
     transition: height 0.8s;
 }
+
 
 .open-close {
     height: 200px;
@@ -275,6 +298,9 @@
 
 .summary-field-content {
     width: 70%;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
     white-space: nowrap;
     overflow: hidden;
     font-family: 'LINESeedKR-Bd';
