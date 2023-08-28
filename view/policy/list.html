@@ -18,12 +18,12 @@
 
 
     <!-------------------- 메인 시작------------------->
-    <main class="">
+    <main class="search-main">
         <div class="title">
             정책 통합검색
         </div>
 
-        <button class="log-button">출력버튼</button>
+        
 
         <div class="policy-search-wrap"> <!---여기 안으로 청년정책 검색 넣었는데도 가운데랑 안 맞음--->
 
@@ -272,7 +272,7 @@
                                     <input type="checkbox" data-order="5" value="daily" hidden>
                                 </li>
                                 <li>
-                                    <label>창업자</label>
+                                    <label>(예비)창업자</label>
                                     <input type="checkbox" data-order="6" value="founder" hidden>
                                 </li>
                                 <li>
@@ -340,8 +340,8 @@
                                     <input type="checkbox" data-order="8" value="advanced" hidden>
                                 </li>
                                 <li>
-                                    <label>기타</label>
-                                    <input type="checkbox" data-order="9" value="other" hidden>
+                                    <label>제한없음</label>
+                                    <input type="checkbox" data-order="9" value="noLimit" hidden>
                                 </li>
                             </ul>
                         </div>
@@ -395,14 +395,30 @@
             <div class="button-wrap">
                 <button type="reset" class="reset-btn">초기화</button>
                 <button type="submit" class="search-btn">검색</button>
+                <button class="log-button">출력버튼</button>
             </div>
         </div>
 
         <!-- 정책 검색 결과 wrap -->
         <div class="policy-result-wrap">
 
-            <div class="sub-title-2">
-                정책 검색결과
+            <div class="policy-result-header">
+                <div class="sub-title-2">
+                    정책 검색결과
+                </div>
+                <div class="srchSortOrder-wrap">
+                    <input type="radio" id="sort1" name="srchSortOrder" value="1" checked>
+                    <label for="sort1">조회순</label>
+                    <input type="radio" id="sort2" name="srchSortOrder" value="2">
+                    <label for="sort2">최신순</label>
+                    <select class="page-category">
+                        <option value="6" selected="">6개</option>
+                        <option value="12">12개</option>
+                    </select>
+                    <button type="button" class="sortButton" onclick="">정렬</button>
+                </div>
+            </div>
+
             </div>
 
             <div class="policy-list-wrap">
@@ -737,27 +753,14 @@
             })
 
 
-        
 
-
-
-        
-
-    
-
-
-
-
-
-
-
-
-
-
-
-        // document.querySelector(".log-button").addEventListener("click", () => {
-        //     console.log(checkboxMap);
-        // });
+        document.querySelector(".log-button").addEventListener("click", () => {
+            console.log(areaChkMap);
+            console.log(regionChkMap);
+            console.log(jobStateMap);
+            console.log(educationLevelMap);
+            console.log(specialAreaMap);
+        });
 
 
     </script>

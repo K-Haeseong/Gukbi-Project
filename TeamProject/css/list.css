@@ -1,4 +1,6 @@
-
+.search-main {
+    padding: 70px 0px;
+}
 
 .policy-search-wrap {
     margin:auto;
@@ -358,14 +360,13 @@
 /* 페이징 */
 
 .paging {
-    height: 100px;
-    margin:auto;
+    margin: 40px auto 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.paging-btn{
+.paging-btn {
     width: 35px;
     height: 35px;
     font-size: 15px;

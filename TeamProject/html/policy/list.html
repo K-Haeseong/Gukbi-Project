@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+<div id="wrapper">
+    <!-------------------- 헤더 시작 ------------------->
+        <header id="header">
+            <div class="header-cont">
+                <div class="logo-box">
+                    <h1 class="main-logo">
+                        <a href="">
+                            <img class="logo" src="/img/lupy.jpeg" alt="Logo">
+                            <span>Guma</span>
+                        </a>
+                    </h1>
+                    <ul class="menu-list">
+                        <div class="menu">
+                            <a href="">
+                                <img src="/img/login_icon.png" alt="">
+                                <span>로그인</span>
+                            </a>
+                        </div>
+                    </ul>
+                </div>
+                <div class="nav-box">
+                    <ul class="nav-list" >
+                        <a href="">내 맞춤 정책</a>
+                        <a href="">정책 검색</a>
+                        <a href="">정책 등록</a>
+                        <a href="">고객센터</a>
+                        <a href="">사이트 소개</a>
+                    </ul>
+                    <div class="gradient-block"></div>
+                </div>
+            </div>
+        </header>
+    <!-------------------- 헤더 끝 --------------------->
+
+
+    <!-------------------- 메인 시작 ------------------->
+        <main class="search-main">
+            <div class="title">
+                정책 통합검색
+            </div>
+
+            
+
+            <div class="policy-search-wrap"> <!---여기 안으로 청년정책 검색 넣었는데도 가운데랑 안 맞음--->
+
+                <div class="sub-title-1">
+                    정책 검색
+                </div>
+
+                <!--통합검색 테두리 안 -->
+                <div class="policy-search-cont">
+
+                    <div class="simple-cont">
+                        <!--정책이름 및 내용-->
+                        <div class="policy-name">
+                            <div class="search-title">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
+                                정책이름 및 내용
+                            </div>
+                            <div class="policy-name-input-wrap">
+                                <input type="text" class="policy-name-input" placeholder="검색 내용 입력하세요.">
+                            </div>
+                        </div>
+
+
+                        <!--나이 입력-->
+                        <div class="policy-age">
+                            <div class="search-title">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
+                                연령
+                            </div>
+                            <div class="policy-age-input-wrap">
+                                <input type="text" class="policy-age-input" style="height: 30px;" size="25%" value placeholder="만 나이를 입력하세요.  예) 25">
+                            </div>
+                        </div>
+
+
+                        <!--정책 분야-->
+                        <div class="policy-area">
+
+                            <div class="search-title">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
+                                정책분야
+                                <div class="overlap">(중복선택 가능)</div>
+                            </div>
+
+                            <div class="area-select-box">
+                                <ul class="area-list">
+                                    <div class="area-all-check"> <!---여기만 div로 작성한 이유---->
+                                        전체
+                                    </div>
+                                    <li>
+                                        <label>공간</label>
+                                        <input type="checkbox" data-order="1" value="space" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>교육</label>
+                                        <input type="checkbox" data-order="2" value="education" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>금융</label>
+                                        <input type="checkbox" data-order="3" value="finance" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>생활지원</label>
+                                        <input type="checkbox" data-order="4" value="living" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>건강</label>
+                                        <input type="checkbox" data-order="5" value="health" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>일자리</label>
+                                        <input type="checkbox" data-order="6" value="job" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>주거</label>
+                                        <input type="checkbox" data-order="7" value="house" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>진로</label>
+                                        <input type="checkbox" data-order="8" value="career" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>창업</label>
+                                        <input type="checkbox" data-order="9" value="start-up" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>문화·예술</label>
+                                        <input type="checkbox" data-order="10 " value="culture" hidden>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="policy-region">
+                            <div class="search-title">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
+                                지역
+                                <div class="overlap">(중복선택 가능)</div>
+                            </div>
+
+                            <div class="region-select-box">
+                                <ul class="region-list">
+                                    <div class="region-all-check">
+                                        전체
+                                    </div>
+
+                                    <li>
+                                        <label>서울</label>
+                                        <input type="checkbox" data-order="1" value="Seoul" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>부산</label>
+                                        <input type="checkbox" data-order="2" value="Busan" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>대구</label>
+                                        <input type="checkbox" data-order="3" value="Daegu" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>인천</label>
+                                        <input type="checkbox" data-order="4" value="Incheon" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>광주</label>
+                                        <input type="checkbox" data-order="5" value="Gwangju" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>대전</label>
+                                        <input type="checkbox" data-order="6" value="Daejun" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>울산</label>
+                                        <input type="checkbox" data-order="7" value="Ulsan" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>경기</label>
+                                        <input type="checkbox" data-order="8" value="Gyungi" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>강원</label>
+                                        <input type="checkbox" data-order="9" value="Gangwon" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>충북</label>
+                                        <input type="checkbox" data-order="10" value="ChungBuk" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>충남</label>
+                                        <input type="checkbox" data-order="11" value="ChungNam" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>전북</label>
+                                        <input type="checkbox" data-order="12" value="JeanBuk" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>전남</label>
+                                        <input type="checkbox" data-order="13" value="JeanNam" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>경북</label>
+                                        <input type="checkbox" data-order="14" value="GyungBuk" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>경남</label>
+                                        <input type="checkbox" data-order="15" value="GyungNam" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>제주</label>
+                                        <input type="checkbox" data-order="16" value="Jeju" hidden>
+                                    </li>
+
+                                    <li>
+                                        <label>세종</label>
+                                        <input type="checkbox" data-order="17" value="Sejong" hidden>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--------------------------------- 상세 조건 check 박스 ------------------------------>
+                    <div class="detail-cont">
+
+                        <div class="detail-check">
+                            <div class="detail-title">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
+                                취업상태
+                                <span class="overlap">(중복선택 가능)</span>
+                            </div>
+
+                            <div>
+                                <div class="job-state-open">
+                                    <button type="button">취업 상태 선택
+                                        <!-- <span>열기</span> -->
+                                    </button>
+                                </div>
+                                <ul class="job-state-list">
+                                    <li class="state-all-check">
+                                        <div>
+                                            전체
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label>재직자</label>
+                                        <input type="checkbox" data-order="1" value="worker" hidden>
+                                    </li>
+                                    <li>
+                                        <label>자영업자</label>
+                                        <input type="checkbox" data-order="2" value="employer" hidden>
+                                    </li>
+                                    <li>
+                                        <label>미취업자</label>
+                                        <input type="checkbox" data-order="3" value="unemploy" hidden>
+                                    </li>
+                                    <li>
+                                        <label>프리랜서</label>
+                                        <input type="checkbox" data-order="4" value="freelancer" hidden>
+                                    </li>
+                                    <li>
+                                        <label>일용근로자</label>
+                                        <input type="checkbox" data-order="5" value="daily" hidden>
+                                    </li>
+                                    <li>
+                                        <label>(예비)창업자</label>
+                                        <input type="checkbox" data-order="6" value="founder" hidden>
+                                    </li>
+                                    <li>
+                                        <label>단기근로자</label>
+                                        <input type="checkbox" data-order="7" value="short" hidden>
+                                    </li>
+                                    <li>
+                                        <label>기타</label>
+                                        <input type="checkbox" data-order="8" value="space" hidden>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="detail-check">
+                            <div class="detail-title">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
+                                학력
+                                <span class="overlap">(중복선택 가능)</span>
+                            </div>
+
+                            <div>
+                                <div class="education-level-open">
+                                    <button type="button">학력 선택
+                                        <!-- <span>열기</span> -->
+                                    </button>
+                                </div>
+                                <ul class="education-level-list">
+                                    <li class="level-all-check">
+                                        전체
+                                    </li>
+                                    <li>
+                                        <label for="1">고졸 미만</label>
+                                        <input type="checkbox" id="1" data-order="1" value="preHS" hidden disabled="false">
+                                    </li>
+                                    <li>
+                                        <label>고교 재학</label>
+                                        <input type="checkbox" data-order="2" value="hsEnroll" hidden >
+                                    </li>
+                                    <li>
+                                        <label>고졸 예정</label>
+                                        <input type="checkbox" data-order="3" value="hsExp" hidden>
+                                    </li>
+                                    <li>
+                                        <label>고교 졸업</label>
+                                        <input type="checkbox" data-order="4" value="hsGrad" hidden >
+                                    </li>
+                                    <li>
+                                        <label>대학 재학</label>
+                                        <input type="checkbox" data-order="5" value="univEnroll" hidden>
+                                    </li>
+                                    <li>
+                                        <label>대졸 예정</label>
+                                        <input type="checkbox" data-order="6" value="univExp" hidden>
+                                    </li>
+                                    <li>
+                                        <label>대학 졸업</label>
+                                        <input type="checkbox" data-order="7" value="univGrad" hidden>
+                                    </li>
+                                    <li>
+                                        <label>석·박사</label>
+                                        <input type="checkbox" data-order="8" value="advanced" hidden>
+                                    </li>
+                                    <li class="no-Limit">
+                                        <label>제한없음</label>
+                                        <input type="checkbox" data-order="9" value="noLimit" hidden>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        <div class="detail-check">
+                            <div class="detail-title">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
+                                특정계층
+                                <span class="overlap">(중복선택 가능)</span>
+                            </div>
+
+                            <div>
+                                <div class="special-area-open">
+                                    <button type="button">특정계층 선택
+                                        <!-- <span>열기</span> -->
+                                    </button>
+                                </div>
+                                <ul class="special-list">
+                                    <li class="special-all-check">
+                                        전체
+                                    </li>
+                                    <li>
+                                        <label>저소득층</label>
+                                        <input type="checkbox" data-order="1" value="lowInc" hidden>
+                                    </li>
+                                    <li>
+                                        <label>장애인</label>
+                                        <input type="checkbox" data-order="2" value="disability" hidden>
+                                    </li>
+                                    <li>
+                                        <label>군인</label>
+                                        <input type="checkbox" data-order="3" value="military" hidden>
+                                    </li>
+                                    <li>
+                                        <label>농업인</label>
+                                        <input type="checkbox" data-order="4" value="farmer" hidden>
+                                    </li>
+                                    <li>
+                                        <label>지역인재</label>
+                                        <input type="checkbox" data-order="5" value="localTalent" hidden>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- 상세조건 끝  -->
+                </div><!-- 통합검색 테두리 안  -->
+
+                <div class="button-wrap">
+                    <button type="reset" class="reset-btn">초기화</button>
+                    <button type="submit" class="search-btn">검색</button>
+                </div>
+            </div>
+
+            <!-- 정책 검색 결과 wrap -->
+            <div class="policy-result-wrap">
+
+                <div class="policy-result-header">
+                    <div class="sub-title-2">
+                        정책 검색결과
+                    </div>
+                    <div class="srchSortOrder-wrap">
+                        <input type="radio" id="sort1" name="srchSortOrder" value="1" checked>
+                        <label for="sort1">조회순</label>
+                        <input type="radio" id="sort2" name="srchSortOrder" value="2">
+                        <label for="sort2">최신순</label>
+                        <select class="page-category">
+                            <option value="6" selected="">6개</option>
+                            <option value="12">12개</option>
+                        </select>
+                        <button type="button" class="sortButton" onclick="">정렬</button>
+                    </div>
+                </div>
+
+                </div>
+
+                <div class="policy-list-wrap">
+                    <!-- 정책 이미지 -->
+                    <a href="detail.html"><img class="policy-img" src="/images/test-img.jpg"></a>
+
+                    <!-- 정책 목록 -->
+                    <div class="policy-summary">
+
+                        <div class="summary-title">
+                            <a href="detail.html">정책이름</a>
+                        </div>
+
+                        <ul class="summary-list">
+                            <li>
+                                <div class="summary-field">정책분야</div>
+                                <div class="summary-field-content">주거</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">지원내용</div>
+                                <div class="summary-field-content">지ㅣㅏ정라ㅣ저ㅣㅏ러지ㅏㅓㅇ라ㅣㅓ지ㅏㅓ라ㅣ정리ㅏ
+                                    저아ㅣ러지ㅏ러자ㅣㅓ리ㅏ절asdsadasdsdsadadasa sdasdsads </div>
+                            </li>
+                            <li>
+                                <div class="summary-field">운영기간</div>
+                                <div class="summary-field-content">2023.01.01~2023.12.31</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">신청기간</div>
+                                <div class="summary-field-content">상시 모집</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">대상</div>
+                                <div class="summary-field-content">대상인원</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <div class="policy-list-wrap">
+                    <!-- 정책 이미지 -->
+                    <a href="detail.html"><img class="policy-img" src="/images/test-img.jpg"></a>
+
+                    <!-- 정책 목록 -->
+                    <div class="policy-summary">
+
+                        <div class="summary-title">
+                            <a href="detail.html">정책이름</a>
+                        </div>
+
+                        <ul class="summary-list">
+                            <li>
+                                <div class="summary-field">정책분야</div>
+                                <div class="summary-field-content">주거</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">지원내용</div>
+                                <div class="summary-field-content">지ㅣㅏ정라ㅣ저ㅣㅏ러지ㅏㅓㅇ라ㅣㅓ지ㅏㅓ라ㅣ정리ㅏ
+                                    저아ㅣ러지ㅏ러자ㅣㅓ리ㅏ절asdsadasdsdsadadasa sdasdsads </div>
+                            </li>
+                            <li>
+                                <div class="summary-field">운영기간</div>
+                                <div class="summary-field-content">2023.01.01~2023.12.31</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">신청기간</div>
+                                <div class="summary-field-content">상시 모집</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">대상</div>
+                                <div class="summary-field-content">대상인원</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="paging">
+                    <a href=""><button class="paging-btn">&#60;</button></a>
+                    <a href=""><button class="paging-btn">1</button></a>
+                    <a href=""><button class="paging-btn">2</button></a>
+                    <a href=""><button class="paging-btn">3</button></a>
+                    <a href=""><button class="paging-btn">4</button></a>
+                    <a href=""><button class="paging-btn">5</button></a>
+                    <a href=""><button class="paging-btn">&#62;</button></a>
+                </div>    
+
+
+                <button class="log-button">출력버튼</button>
+
+            </div> <!---------- 정책 검색 결과 wrap ------------>
+
+
+           
+
+        </main>
+    <!-------------------- 메인 끝 --------------------->    
+
+
+    <!-------------------- 풋터 시작 ------------------->
+        <footer>
+            <div id="footer">
+                <div class="footer-cont">
+                    <div>
+                        <span>이용약관</span>
+                        <span>개인정보처리방침</span>
+                        <span>FAQ</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <!-------------------- 풋터 끝 --------------------->
+</div>
+
+
+
+<script>
+// ---------------------- 일반 검색 조건 ------------------------- 
+
+    // 정책분야 
+    const areaChkMap = new Map();
+    const areaAllCheck = document.querySelector('.area-all-check');
+    const areaList = document.querySelectorAll(".area-list li");
+
+
+    // 선택 O -> Map 값 저장
+    // 선택 X -> Map 값 삭제
+    areaList.forEach(li => {
+        li.addEventListener("click", () => {
+            li.classList.toggle("checked");
+            const input = li.querySelector("input");
+            if (areaChkMap.has(input.dataset.order)) {
+                areaChkMap.delete(input.dataset.order, input.value);
+            } else {
+                areaChkMap.set(input.dataset.order, input.value);
+            }
+        });
+    })
+
+
+    // 다 선택 된 후 전체 선택 -> 체크 X
+    // 1개 이상 선택 된 후 선택 시 -> 다 체크 O
+    areaAllCheck.addEventListener("click", () => {
+        if (areaChkMap.size === 10) {
+            areaList.forEach(li => {
+                li.classList.remove("checked");
+            });
+            areaChkMap.clear();
+        } else {
+            areaList.forEach(li => {
+                li.classList.add("checked");
+                const input = li.querySelector("input");
+                areaChkMap.set(input.dataset.order, input.value);
+            });
+        }
+    })
+
+
+
+
+
+    // 지역
+    const regionChkMap = new Map();
+    const regionAllCheck = document.querySelector('.region-all-check');
+    const regionList = document.querySelectorAll(".region-list li");
+
+    regionList.forEach(li => {
+        li.addEventListener("click", () => {
+            li.classList.toggle("checked");
+            const input = li.querySelector("input");
+            if (regionChkMap.has(input.dataset.order)) {
+                regionChkMap.delete(input.dataset.order, input.value);
+            } else {
+                regionChkMap.set(input.dataset.order, input.value);
+            }
+        });
+    })
+
+
+    regionAllCheck.addEventListener("click", () => {
+        if (regionChkMap.size === 17) {
+            regionList.forEach(li => {
+                li.classList.remove("checked");
+            })
+            regionChkMap.clear();
+        } else {
+            regionList.forEach(li => {
+                li.classList.add("checked");
+                const input = li.querySelector('input');
+                regionChkMap.set(input.dataset.order, input.value);
+            });
+        }
+    })
+
+
+    // -------------------- 상세 조건 검색 ---------------------------
+
+    // 취업상태
+    const jobStateMap = new Map();
+    const jobStatebtn = document.querySelector(".job-state-open > button")
+    const jobStateList = document.querySelector(".job-state-list")
+    const childStateList = document.querySelectorAll(".job-state-list li + li")
+    const stateAllCheck = document.querySelector(".state-all-check");
+
+    
+    jobStatebtn.addEventListener("click", () => {
+        jobStateList.classList.toggle("open-close")
+    })
+
+
+    childStateList.forEach(li => {
+        li.addEventListener("click", () => {
+            li.classList.toggle("checked");
+            const input = li.querySelector("input");
+            if (jobStateMap.has(input.dataset.order)) {
+                jobStateMap.delete(input.dataset.order, input.value);
+            } else {
+                jobStateMap.set(input.dataset.order, input.value);
+            }
+        });
+    })
+
+    stateAllCheck.addEventListener("click", () => {
+        if (jobStateMap.size === 8) {
+            childStateList.forEach(li => {
+                li.classList.remove("checked");
+            })
+            jobStateMap.clear();
+        } else {
+            childStateList.forEach(li => {
+                li.classList.add("checked");
+                const input = li.querySelector('input');
+                jobStateMap.set(input.dataset.order, input.value);
+            });
+        }
+    })
+
+
+
+    // 학력
+    const educationLevelMap = new Map();
+    const educationLevelBtn = document.querySelector(".education-level-open > button")
+    const educationlevelList = document.querySelector(".education-level-list")
+    const childLevelList = document.querySelectorAll(".education-level-list li:not(:first-child):not(:last-child)")
+    const levelAllCheck = document.querySelector(".level-all-check");
+    const noLimit = document.querySelector(".no-Limit");
+
+    
+    educationLevelBtn.addEventListener("click", () => {
+        educationlevelList.classList.toggle("open-close")
+        document.querySelectorAll(".education-level-list li + li")
+    })
+
+
+    // childLevelList.forEach(li => {
+    //     li.addEventListener("click", () => {
+    //         li.classList.toggle("checked");
+    //         const input = li.querySelector("input");
+    //         if (educationLevelMap.has(input.dataset.order)) {
+    //             educationLevelMap.delete(input.dataset.order, input.value);
+    //         } else {
+    //             educationLevelMap.set(input.dataset.order, input.value);
+    //         }
+    //     });
+    // })
+    
+    // 복사본
+    childLevelList.forEach(li => {
+        li.addEventListener("click", () => {
+            li.classList.toggle("checked");
+            // 제한없음을 클릭 했을 경우
+            if(noLimit.classList.contains("checked")){
+                    li.classList.remove("checked");
+                    const input = li.querySelector("input");
+                    educationLevelMap.set(input.dataset.order, input.value);
+            } else {
+                //원본
+                const input = li.querySelector("input");
+                // if (educationLevelMap.has(input.dataset.order)) {
+                //     educationLevelMap.delete(input.dataset.order, input.value);
+                // } else {
+                //     educationLevelMap.set(input.dataset.order, input.value);
+                // }
+                educationLevelMap.set(input.dataset.order, input.value);
+            }
+        });
+    })
+
+
+    levelAllCheck.addEventListener("click", () => {
+        if(!noLimit.classList.contains("checked")){
+            if (educationLevelMap.size === 8) {
+            childLevelList.forEach(li => {
+                li.classList.remove("checked");
+            })
+            educationLevelMap.clear();
+            } else {
+                childLevelList.forEach(li => {
+                    li.classList.add("checked");
+                    const input = li.querySelector('input');
+                    educationLevelMap.set(input.dataset.order, input.value);
+                });
+            }
+        }
+    })
+
+
+    // 제한없음 버튼
+    noLimit.addEventListener("click", () => {
+        noLimit.classList.toggle("checked");
+        
+        // 제한없음을 클릭 했을 경우
+        if(noLimit.classList.contains("checked")){
+            childLevelList.forEach(li => {
+                li.classList.remove("checked");
+                const input = li.querySelector("input");
+                educationLevelMap.set(input.dataset.order, input.value);
+                li.querySelector("input").disabled = true;
+            })
+        } 
+        else {
+            educationLevelMap.clear();
+        }
+    })
+       
+
+
+
+
+    // 특정계층
+    const specialAreaMap = new Map();
+    const specialAreaBtn = document.querySelector(".special-area-open > button")
+    const specialAreaList = document.querySelector(".special-list")
+    const childAreaList = document.querySelectorAll(".special-list li + li")
+    const specialAreaAllCheck = document.querySelector(".special-all-check");
+
+    
+    specialAreaBtn.addEventListener("click", () => {
+        specialAreaList.classList.toggle("open-close")
+    })
+
+
+    childAreaList.forEach(li => {
+        li.addEventListener("click", () => {
+            li.classList.toggle("checked");
+            const input = li.querySelector("input");
+            if (specialAreaMap.has(input.dataset.order)) {
+                specialAreaMap.delete(input.dataset.order, input.value);
+            } else {
+                specialAreaMap.set(input.dataset.order, input.value);
+            }
+        });
+    })
+
+    specialAreaAllCheck.addEventListener("click", () => {
+        if (specialAreaMap.size === 5) {
+            childAreaList.forEach(li => {
+                li.classList.remove("checked");
+            })
+            specialAreaMap.clear();
+        } else {
+            childAreaList.forEach(li => {
+                li.classList.add("checked");
+                const input = li.querySelector('input');
+                specialAreaMap.set(input.dataset.order, input.value);
+            });
+        }
+    })
+
+
+    /** 초기화 함수 */
+    function reset(List, Map) {
+        List.forEach(li => {
+            li.classList.remove("checked");
+        })
+        Map.clear();
+    };
+
+    
+    // 초기화
+    const resetBtn = document.querySelector(".reset-btn");
+    resetBtn.addEventListener("click", () => {
+        reset(areaList,areaChkMap);
+        reset(regionList ,regionChkMap);
+        reset(childStateList, jobStateMap);
+        reset(childLevelList, educationLevelMap);
+        reset(childAreaList, specialAreaMap);
+
+        noLimit.classList.remove("checked");
+
+        document.querySelector(".policy-age-input").value="";
+        document.querySelector(".policy-name-input").value="";
+        })
+
+
+
+    document.querySelector(".log-button").addEventListener("click", () => {
+        console.log(areaChkMap);
+        console.log(regionChkMap);
+        console.log(jobStateMap);
+        console.log(educationLevelMap);
+        console.log(specialAreaMap);
+    });
+</script>
+
+</body>
+</html>
