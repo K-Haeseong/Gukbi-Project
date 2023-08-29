@@ -315,6 +315,10 @@
                                         <label>기타</label>
                                         <input type="checkbox" data-order="8" value="space" hidden>
                                     </li>
+                                    <li class="no-Limit">
+                                        <label>제한없음</label>
+                                        <input type="checkbox" data-order="9" value="noLimit" hidden>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -340,8 +344,8 @@
                                         전체
                                     </li>
                                     <li>
-                                        <label for="1">고졸 미만</label>
-                                        <input type="checkbox" id="1" data-order="1" value="preHS" hidden disabled="false">
+                                        <label >고졸 미만</label>
+                                        <input type="checkbox" data-order="1" value="preHS" hidden >
                                     </li>
                                     <li>
                                         <label>고교 재학</label>
@@ -417,6 +421,10 @@
                                     <li>
                                         <label>지역인재</label>
                                         <input type="checkbox" data-order="5" value="localTalent" hidden>
+                                    </li>
+                                    <li class="no-Limit">
+                                        <label>제한없음</label>
+                                        <input type="checkbox" data-order="6" value="noLimit" hidden>
                                     </li>
                                 </ul>
                             </div>
@@ -648,12 +656,23 @@
 
     // -------------------- 상세 조건 검색 ---------------------------
 
-    // 취업상태
+
+
+    // --------------------취업상태 상세조건--------------------------
+
     const jobStateMap = new Map();
     const jobStatebtn = document.querySelector(".job-state-open > button")
+
     const jobStateList = document.querySelector(".job-state-list")
-    const childStateList = document.querySelectorAll(".job-state-list li + li")
+
+    // (전체, 제한없음 제외) 8개 버튼
+    const childStateList = document.querySelectorAll(".job-state-list li:not(:first-child):not(:last-child)")
+
+    // 전체 버튼
     const stateAllCheck = document.querySelector(".state-all-check");
+
+    // 제한없음 버튼
+    const noJobStateLimit = document.querySelector(".job-state-list > .no-Limit");
 
     
     jobStatebtn.addEventListener("click", () => {
@@ -663,23 +682,47 @@
 
     childStateList.forEach(li => {
         li.addEventListener("click", () => {
+            if(noJobStateLimit.classList.contains("checked")){
+                noJobStateLimit.classList.remove("checked");
+                jobStateMap.clear();
+            }
             li.classList.toggle("checked");
             const input = li.querySelector("input");
-            if (jobStateMap.has(input.dataset.order)) {
-                jobStateMap.delete(input.dataset.order, input.value);
-            } else {
-                jobStateMap.set(input.dataset.order, input.value);
-            }
-        });
+            jobStateMap.set(input.dataset.order, input.value);
+        })
+    });
+
+
+
+
+
+    noJobStateLimit.addEventListener("click", () => {
+        if(noJobStateLimit.classList.contains("checked")) {
+            noJobStateLimit.classList.remove("checked")
+            jobStateMap.clear()
+        } else {
+            childStateList.forEach(target => {
+                target.classList.remove("checked");
+            })
+            jobStateMap.clear();
+
+            const input = noJobStateLimit.querySelector("input");
+            jobStateMap.set(input.dataset.order, input.value);
+            noJobStateLimit.classList.add("checked")
+        }
     })
 
+
+
     stateAllCheck.addEventListener("click", () => {
+        noJobStateLimit.classList.remove("checked")
         if (jobStateMap.size === 8) {
+            jobStateMap.clear();
             childStateList.forEach(li => {
                 li.classList.remove("checked");
             })
-            jobStateMap.clear();
         } else {
+            jobStateMap.clear();
             childStateList.forEach(li => {
                 li.classList.add("checked");
                 const input = li.querySelector('input');
@@ -690,104 +733,108 @@
 
 
 
-    // 학력
+
+
+    // --------------------학력 상세조건--------------------
     const educationLevelMap = new Map();
+    const educationLevelList = document.querySelector(".education-level-list")
+    
+    // 학력 선택 버튼
     const educationLevelBtn = document.querySelector(".education-level-open > button")
-    const educationlevelList = document.querySelector(".education-level-list")
-    const childLevelList = document.querySelectorAll(".education-level-list li:not(:first-child):not(:last-child)")
+    
+    // 전체 버튼
     const levelAllCheck = document.querySelector(".level-all-check");
-    const noLimit = document.querySelector(".no-Limit");
-
     
+    // (전체, 제한없음 제외) 8개 버튼
+    const childLevelList = document.querySelectorAll(".education-level-list li:not(:first-child):not(:last-child)") 
+   
+    // 제한없음 버튼
+    const noLimit = document.querySelector(".education-level-list > .no-Limit");
+
+
+
+    // 학력 선택 버튼 클릭
     educationLevelBtn.addEventListener("click", () => {
-        educationlevelList.classList.toggle("open-close")
-        document.querySelectorAll(".education-level-list li + li")
+        educationLevelList.classList.toggle("open-close")
     })
-
-
-    // childLevelList.forEach(li => {
-    //     li.addEventListener("click", () => {
-    //         li.classList.toggle("checked");
-    //         const input = li.querySelector("input");
-    //         if (educationLevelMap.has(input.dataset.order)) {
-    //             educationLevelMap.delete(input.dataset.order, input.value);
-    //         } else {
-    //             educationLevelMap.set(input.dataset.order, input.value);
-    //         }
-    //     });
-    // })
     
-    // 복사본
+
+    // (전체, 제한없음 제외)하나의 버튼을 클릭할 때, 제한없음 버튼이 클릭 여부로 조건 걸기
     childLevelList.forEach(li => {
         li.addEventListener("click", () => {
-            li.classList.toggle("checked");
-            // 제한없음을 클릭 했을 경우
+            // 하나의 버튼 클릭 할 때, 제한없음 클릭 되어 O -> 제한없음 체크 해제, 제한없음 값 제거
             if(noLimit.classList.contains("checked")){
-                    li.classList.remove("checked");
-                    const input = li.querySelector("input");
-                    educationLevelMap.set(input.dataset.order, input.value);
-            } else {
-                //원본
-                const input = li.querySelector("input");
-                // if (educationLevelMap.has(input.dataset.order)) {
-                //     educationLevelMap.delete(input.dataset.order, input.value);
-                // } else {
-                //     educationLevelMap.set(input.dataset.order, input.value);
-                // }
-                educationLevelMap.set(input.dataset.order, input.value);
+                noLimit.classList.remove("checked");
+                educationLevelMap.clear();
             }
+            // 해당 버튼 체크, 해당 값 추가 
+            li.classList.toggle("checked"); 
+            const input = li.querySelector("input");
+            educationLevelMap.set(input.dataset.order, input.value);
         });
+    });
+
+
+    noLimit.addEventListener("click", () => {
+        // 제한없음 체크 O -> 체크 해제, 값 지움
+        if(noLimit.classList.contains("checked")){
+            noLimit.classList.remove("checked");
+            educationLevelMap.clear();
+        } else {
+            // 제한없음 체크 X -> 체크 표시
+            childLevelList.forEach(target => {
+                target.classList.remove("checked");
+            });
+            // 이전에 체크 되어 있던 값들 제거
+            educationLevelMap.clear();
+
+            // 제한없음 체크 되어 있으므로, 제한없음 값 추가
+            const input = noLimit.querySelector("input");
+            educationLevelMap.set(input.dataset.order, input.value);
+            noLimit.classList.add("checked")
+        }
     })
 
 
     levelAllCheck.addEventListener("click", () => {
-        if(!noLimit.classList.contains("checked")){
-            if (educationLevelMap.size === 8) {
+        // 제한없음 표시 되어 O -> 제한 없음 표시 제거
+        noLimit.classList.remove("checked");
+        if (educationLevelMap.size === 8) {
+            educationLevelMap.clear();
             childLevelList.forEach(li => {
                 li.classList.remove("checked");
             })
+        } else { 
             educationLevelMap.clear();
-            } else {
-                childLevelList.forEach(li => {
-                    li.classList.add("checked");
-                    const input = li.querySelector('input');
-                    educationLevelMap.set(input.dataset.order, input.value);
-                });
-            }
+            childLevelList.forEach(li => {
+                li.classList.add("checked");
+                const input = li.querySelector('input');
+                educationLevelMap.set(input.dataset.order, input.value);
+            });
         }
     })
 
+
+
+
+    // --------------------특정계층 상세조건--------------------
+    const specialAreaMap = new Map();
+    const specialAreaList = document.querySelector(".special-list")
+
+    // 특정계층 선택 버튼
+    const specialAreaBtn = document.querySelector(".special-area-open > button")
+    
+    // (전체, 제한없음 제외) 8개 버튼
+    const childAreaList = document.querySelectorAll(".special-list li:not(:first-child):not(:last-child)")
+    
+    // 전체 버튼
+    const specialAreaAllCheck = document.querySelector(".special-all-check")
 
     // 제한없음 버튼
-    noLimit.addEventListener("click", () => {
-        noLimit.classList.toggle("checked");
-        
-        // 제한없음을 클릭 했을 경우
-        if(noLimit.classList.contains("checked")){
-            childLevelList.forEach(li => {
-                li.classList.remove("checked");
-                const input = li.querySelector("input");
-                educationLevelMap.set(input.dataset.order, input.value);
-                li.querySelector("input").disabled = true;
-            })
-        } 
-        else {
-            educationLevelMap.clear();
-        }
-    })
-       
+    const noSpecialAreaLimit = document.querySelector(".special-list > .no-Limit");
 
-
-
-
-    // 특정계층
-    const specialAreaMap = new Map();
-    const specialAreaBtn = document.querySelector(".special-area-open > button")
-    const specialAreaList = document.querySelector(".special-list")
-    const childAreaList = document.querySelectorAll(".special-list li + li")
-    const specialAreaAllCheck = document.querySelector(".special-all-check");
-
-    
+   
+   
     specialAreaBtn.addEventListener("click", () => {
         specialAreaList.classList.toggle("open-close")
     })
@@ -795,23 +842,47 @@
 
     childAreaList.forEach(li => {
         li.addEventListener("click", () => {
+            if(noSpecialAreaLimit.classList.contains("checked")){
+                noSpecialAreaLimit.classList.remove("checked");
+                specialAreaMap.clear();
+            }
             li.classList.toggle("checked");
             const input = li.querySelector("input");
-            if (specialAreaMap.has(input.dataset.order)) {
-                specialAreaMap.delete(input.dataset.order, input.value);
-            } else {
-                specialAreaMap.set(input.dataset.order, input.value);
-            }
-        });
+            specialAreaMap.set(input.dataset.order, input.value);
+        })
+    });
+
+
+
+
+
+    noSpecialAreaLimit.addEventListener("click", () => {
+        if(noSpecialAreaLimit.classList.contains("checked")) {
+            noSpecialAreaLimit.classList.remove("checked")
+            specialAreaMap.clear()
+        } else {
+            childAreaList.forEach(target => {
+                target.classList.remove("checked");
+            })
+            specialAreaMap.clear();
+
+            const input = noSpecialAreaLimit.querySelector("input");
+            specialAreaMap.set(input.dataset.order, input.value);
+            noSpecialAreaLimit.classList.add("checked")
+        }
     })
 
+
+
     specialAreaAllCheck.addEventListener("click", () => {
+        noSpecialAreaLimit.classList.remove("checked")
         if (specialAreaMap.size === 5) {
+            specialAreaMap.clear();
             childAreaList.forEach(li => {
                 li.classList.remove("checked");
             })
-            specialAreaMap.clear();
         } else {
+            specialAreaMap.clear();
             childAreaList.forEach(li => {
                 li.classList.add("checked");
                 const input = li.querySelector('input');
@@ -819,6 +890,8 @@
             });
         }
     })
+
+
 
 
     /** 초기화 함수 */
@@ -830,7 +903,7 @@
     };
 
     
-    // 초기화
+    // 초기화 버튼
     const resetBtn = document.querySelector(".reset-btn");
     resetBtn.addEventListener("click", () => {
         reset(areaList,areaChkMap);
@@ -839,12 +912,13 @@
         reset(childLevelList, educationLevelMap);
         reset(childAreaList, specialAreaMap);
 
+        // educationLevelMap의 값을 지웠으므로
+        // 제한없음 버튼이 클릭 되어 있으면 체크 표시 해제만 시켜 주면 된다.
         noLimit.classList.remove("checked");
 
         document.querySelector(".policy-age-input").value="";
         document.querySelector(".policy-name-input").value="";
         })
-
 
 
     document.querySelector(".log-button").addEventListener("click", () => {
@@ -854,6 +928,52 @@
         console.log(educationLevelMap);
         console.log(specialAreaMap);
     });
+
+
+
+
+    document.querySelector(".search-btn").addEventListener("click", sendData);
+
+        function sendData() {
+            // 데이터 객체 생성
+            const dataToSend = {
+                area: areaChkMap,
+                region: regionChkMap,
+                jobState: regionChkMap,
+                educationLevel: regionChkMap,
+                specialArea: specialAreaMap
+            };
+            // location.href = "";
+
+            // fetch를 사용하여 서버로 데이터 전송
+            fetch("", {
+                method: "GET",
+                // headers: {
+                //     "Content-Type": "application/json"  // 전송할 데이터의 형식 설정 (JSON)
+                // },
+                // body: JSON.stringify(dataToSend)  // 데이터 객체를 JSON 문자열로 변환하여 전송
+            })
+            console.log(dataTosend);
+            
+            // .then(response => response.json())  // 서버로부터의 JSON 응답 처리
+            // .then(data => {
+            //     // 서버로부터 받은 데이터 처리
+            //     console.log("서버 응답 데이터:", data);
+            // })
+            // .catch(error => {
+            //     console.error("에러 발생:", error);
+            // });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
 </script>
 
 </body>
