@@ -1,0 +1,395 @@
+.search-main {
+    padding: 70px 0px;
+}
+
+.policy-search-wrap {
+    margin:auto;
+}
+
+
+.policy-search-cont {
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    padding: 40px 40px;
+    height: 800px;
+    width: 1100px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'BMDOHYEON';
+    text-align: center;
+}
+
+.sub-title-1 {
+    font-size:28px; 
+    font-weight: bold;
+    width: 1100px;
+    margin: 0 auto 10px auto;
+    font-family: 'BMDOHYEON';
+}
+
+
+.sub-title-2 {
+    font-size:28px; 
+    font-weight: bold;
+    width: 1100px;
+    margin: auto;
+    padding-bottom: 10px;
+    font-family: 'BMDOHYEON';
+}
+
+.srchSortOrder-wrap {
+    width: 1100px;
+    margin: auto;
+    padding-bottom: 10px;
+    text-align: right;
+    border-bottom: 3px solid #1351b8;
+}
+.srchSortOrder-wrap > input[type="radio"] {
+    margin-right: 5px;
+}
+
+.srchSortOrder-wrap label {
+    font-size: 18px;
+    font-weight: 800;
+    color: #666;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.page-category {
+    width: 80px;
+    height: 34px;
+    font-size: 18px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+}
+
+.sortButton{
+    width: 80px;
+    height: 34px;
+    font-size: 18px;
+    margin-left: 5px;
+    background-color: #1351b8;
+    color: #fff;
+    border:none;
+}
+    
+
+.search-title {
+    width: 200px;
+    font-size: 20px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.detail-title {
+    justify-content: center;
+    width: 250px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.policy-name-input {
+    height: 30px;
+    width: 500px;
+}
+
+.policy-age-input {
+    height: 30px;
+    width: 200px;
+}
+
+
+
+.overlap {
+    font-size: 16px;
+}
+
+
+.area-all-check,
+.region-all-check {
+    display: flex;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 30px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: white;
+}
+
+.policy-name {
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 60px;
+}
+
+
+.policy-age {
+    display: flex;
+    margin-bottom: 40px;
+    line-height: 60px;
+}
+
+
+.policy-area,
+.policy-region {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+
+
+.area-list {
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(86, 86, 86);
+    line-height: 15px;
+    max-width: 500px;
+}
+
+.region-list {
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(86, 86, 86);
+    line-height: 15px;
+    max-width: 900px;
+}
+
+
+.area-list>li,
+.region-list>li {
+    display: inline-flex;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 30px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: white;
+    border-color: #ccc;
+    cursor: pointer;
+}
+
+.area-all-check,
+.region-all-check {
+    cursor: pointer;
+    border-color: #ccc;
+}
+
+
+.detail-cont {
+    display: flex;
+    padding-top: 20px;
+}
+
+.detail-cont>div {
+    width: calc(100% / 3);
+}
+
+.job-state-list,
+.education-level-list,
+.special-list{  
+    overflow: hidden;
+    height: 0;
+    transition: height 0.8s;
+}
+
+
+.open-close {
+    height: 200px;
+}
+
+.job-state-list>div,
+.education-level-list>div,
+.special-list>div {
+    display: flex;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 30px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: white;
+}
+
+.job-state-list>li,
+.education-level-list>li,
+.special-list>li {
+    display: inline-flex;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 32px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: white;
+    border-color: #ccc;
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(86, 86, 86);
+    line-height: 15px;
+}
+
+
+.job-state-open > button,
+.education-level-open button,
+.special-area-open > button {
+    font-size: 16px;
+    width: 150px;
+    height: 30px;
+    margin: auto;
+    border-color: black;
+    font-family: 'GmarketSansMedium'
+}
+
+/* 초기화 / 검색 버튼 */
+
+.job-state-open,
+.education-level-open,
+.special-area-open {
+    padding-bottom: 10px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+
+.button-wrap {
+    display: block;
+    margin: 20px;
+    text-align: center;
+}
+
+.reset-btn {
+    background-color: darkgray;
+    color: white;
+    border: none;
+    width: 120px;
+    height: 50px;
+    margin-right: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'LINESeedKR-Bd'
+}
+
+.search-btn {
+    background-color: #1351b8;
+    color: white;
+    border: none;
+    width: 120px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'LINESeedKR-Bd'
+}
+
+/* 정책 검색결과 */
+
+.policy-summary {
+    padding: 5px;
+}
+
+.policy-list-wrap {
+    width:1100px;
+    height:300px;
+    display: flex;
+    margin: auto;
+    padding: 30px 0;
+    border-bottom: 3px solid #ccc;
+}
+
+.policy-img {
+    width: 300px;
+    margin-right: 30px;
+}
+
+.summary-title {
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-family: 'BMDOHYEON';
+}
+
+
+.summary-list li{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+
+
+.summary-field {
+    border-radius: 30px;
+    width: 15%;
+    height: 30px;
+    margin-right: 15px;
+    display: inline-flex;
+    justify-content: center;
+    background-color: #ffdd83;
+    align-items: center;
+    font-family: 'GmarketSansMedium';
+    color: black;
+}
+
+.summary-field-content {
+    width: 70%;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'LINESeedKR-Bd';
+}
+
+
+
+/* 페이징 */
+
+.paging {
+    margin: 40px auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paging-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+    background-color: white;
+    border: #ccc solid 1px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+
+.paging-btn:hover{
+    background-color: rgb(239, 239, 239);
+}
+
+
+/* 전체 적용 */
+
+button{
+    cursor: pointer;
+}
+
+.checked{
+    background-color: #1351b8 !important;
+    color: white !important;
+}
+

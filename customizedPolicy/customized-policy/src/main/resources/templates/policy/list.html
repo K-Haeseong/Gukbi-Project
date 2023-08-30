@@ -461,13 +461,13 @@
 
                 <div class="policy-list-wrap">
                     <!-- 정책 이미지 -->
-                    <a href="detail.html"><img class="policy-img" src="/images/test-img.jpg"></a>
+                    <a href="detail"><img class="policy-img" src="/images/test-img.jpg"></a>
 
                     <!-- 정책 목록 -->
                     <div class="policy-summary">
 
                         <div class="summary-title">
-                            <a href="detail.html">정책이름</a>
+                            <a href="detail">정책이름</a>
                         </div>
 
                         <ul class="summary-list">
@@ -500,13 +500,13 @@
 
                 <div class="policy-list-wrap">
                     <!-- 정책 이미지 -->
-                    <a href="detail.html"><img class="policy-img" src="/images/test-img.jpg"></a>
+                    <a href="detail"><img class="policy-img" src="/images/test-img.jpg"></a>
 
                     <!-- 정책 목록 -->
                     <div class="policy-summary">
 
                         <div class="summary-title">
-                            <a href="detail.html">정책이름</a>
+                            <a href="detail">정책이름</a>
                         </div>
 
                         <ul class="summary-list">
@@ -546,7 +546,6 @@
                 </div>    
 
 
-                <button class="log-button">출력버튼</button>
 
             </div> <!---------- 정책 검색 결과 wrap ------------>
 
@@ -575,13 +574,12 @@
 
 
 <script>
-// ---------------------- 일반 검색 조건 ------------------------- 
+// ---------------------- 일반 검색 조건 -------------------------
 
     // 정책이름 및 내용
     const policyNameInput = document.querySelector(".policy-name-input");
     // 나이 입력
     const policyAgeInput = document.querySelector(".policy-age-input")
-
 
     // 정책분야 
     const areaChkMap = new Map();
@@ -926,23 +924,11 @@
         })
 
 
-    document.querySelector(".log-button").addEventListener("click", () => {
-        console.log(areaChkMap);
-        console.log(regionChkMap);
-        console.log(jobStateMap);
-        console.log(educationLevelMap);
-        console.log(specialAreaMap);
-    });
-
-
-
-
     document.querySelector(".search-btn").addEventListener("click", sendData);
 
         function sendData() {
             // 데이터 객체 생성
-
-            const areaList = [];
+                       const areaList = [];
             areaChkMap.forEach((value, key) => (
                 areaList.push(value)
             ));
@@ -961,7 +947,7 @@
             educationLevelMap.forEach((value, key) => (
                 areaList.push(value)
             ));
-            
+
             const specialAreaList = [];
             specialAreaMap.forEach((value, key) => (
                 areaList.push(value)
@@ -976,17 +962,16 @@
                 educationLevel: educationLevelList,
                 specialArea: specialAreaList
             };
-            // location.href = "";
 
             // fetch를 사용하여 서버로 데이터 전송
-            fetch("", {
-                method: "GET",
-                // headers: {
-                //     "Content-Type": "application/json"  // 전송할 데이터의 형식 설정 (JSON)
-                // },
-                // body: JSON.stringify(dataToSend)  // 데이터 객체를 JSON 문자열로 변환하여 전송
+            fetch("/policy/list", {
+                method: "POST",
+                headers: {
+                     "Content-Type": "application/json"  // 전송할 데이터의 형식 설정 (JSON)
+                },
+                body: JSON.stringify(dataToSend)  // 데이터 객체를 JSON 문자열로 변환하여 전송
             })
-            console.log(dataTosend);
+            console.log(dataToSend);
             
             // .then(response => response.json())  // 서버로부터의 JSON 응답 처리
             // .then(data => {
