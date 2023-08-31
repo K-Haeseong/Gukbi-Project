@@ -3,7 +3,9 @@ package com.uliieumi.customized.policy.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 @Getter
@@ -11,8 +13,10 @@ import java.util.List;
 @ToString
 public class PolicySearchForm {
 
+    @Length(max = 10)
     private String name;
 
+    @PositiveOrZero
     private Integer age;
 
     private List<String> area;

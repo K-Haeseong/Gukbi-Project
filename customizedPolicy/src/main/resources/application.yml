@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/uliieumi?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: test
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.uliieumi.customized.policy.domain
+  configuration:
+    map-underscore-to-camel-case: true
+  logging.level.hello.itemservice.repository.mybatis: trace
+

@@ -302,7 +302,7 @@
     padding: 5px;
 }
 
-.policy-list-wrap {
+.policy-list > li{
     width:1100px;
     height:300px;
     display: flex;
