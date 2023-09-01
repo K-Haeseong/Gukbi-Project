@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PolicyService {
 
-    List<Policy> searchPolicy(PolicySearchForm form);
+    List<Policy> searchPolicy(PolicySearchForm form, int size, int page);
 }

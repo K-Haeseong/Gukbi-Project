@@ -1,16 +1,15 @@
 package com.uliieumi.customized.policy.controller;
 
-import com.uliieumi.customized.policy.domain.Policy;
 import com.uliieumi.customized.policy.dto.ErrorResult;
 import com.uliieumi.customized.policy.dto.PolicyDto;
 import com.uliieumi.customized.policy.dto.PolicySearchForm;
-import com.uliieumi.customized.policy.service.PolicySearchService;
 import com.uliieumi.customized.policy.service.PolicyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,15 +27,23 @@ public class ListController {
     private final PolicyService policyService;
 
     @GetMapping("list")
-    public String list() {
-        return "policy/list.html";
+    public String list(Model model) {
+        List<PolicyDto> results = policyService.searchPolicy(new PolicySearchForm(),1,1).stream()
+                .map(policy -> new PolicyDto(policy))
+                .collect(Collectors.toList());
+
+        model.addAttribute("policies", results);
+
+        return "policy/list";
     }
 
 
     @PostMapping("list")
     @ResponseBody
     public ResponseEntity<Object> specificList(@RequestBody @Validated PolicySearchForm form,
-                                       BindingResult bindingResult) {
+                                       BindingResult bindingResult, @RequestParam int size, @RequestParam int page) {
+
+        log.info("size,page = {} {}",size, page);
 
         if(bindingResult.hasErrors()) {
             ArrayList<ErrorResult> errorResults = new ArrayList<>();
@@ -44,17 +51,16 @@ public class ListController {
             return new ResponseEntity<>(errorResults, HttpStatus.BAD_REQUEST);
         }
 
-        List<PolicyDto> results = policyService.searchPolicy(form).stream()
+        List<PolicyDto> results = policyService.searchPolicy(form,size,page).stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
-
 
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
-    @GetMapping("detail")
-    public String detail() {
-        return "policy/detail.html";
+    @GetMapping("detail/{id}")
+    public String detail(@PathVariable("id") Long id) {
+        return "policy/detail";
     }
 
 }

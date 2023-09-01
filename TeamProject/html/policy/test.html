@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -439,7 +439,7 @@
             </div>
 
             <!-- 정책 검색 결과 wrap -->
-            <div class="policy-result-wrap">
+            <li class="policy-result-wrap">
 
                 <div class="policy-result-header">
                     <div class="sub-title-2">
@@ -460,38 +460,74 @@
 
 
                 <ul class="policy-list">
-                    <li th:each="policy : ${policies}">
+                    <li>
                         <!-- 정책 이미지 -->
-                        <a th:href="|/policy/detail/${policy.id}|"><img class="policy-img" src="/images/test-img.jpg"></a>
+                        <a href="detail"><img class="policy-img" src="/images/test-img.jpg"></a>
 
                         <!-- 정책 목록 -->
                         <div class="policy-summary">
 
                             <div class="summary-title">
-                                <a th:href="|/policy/detail/${policy.id}|" th:text="${policy.name}">정책이름</a>
+                                <a href="detail">정책이름</a>
                             </div>
 
                             <ul class="summary-list">
                                 <li>
                                     <div class="summary-field">정책분야</div>
-                                    <div class="summary-field-content" th:text="${policy.area}">주거</div>
+                                    <div class="summary-field-content">주거</div>
                                 </li>
                                 <li>
                                     <div class="summary-field">지원내용</div>
-                                    <div class="summary-field-content" th:text="${policy.content}">지ㅣㅏ정라ㅣ저ㅣㅏ러지ㅏㅓㅇ라ㅣㅓ지ㅏㅓ라ㅣ정리ㅏ
+                                    <div class="summary-field-content">지ㅣㅏ정라ㅣ저ㅣㅏ러지ㅏㅓㅇ라ㅣㅓ지ㅏㅓ라ㅣ정리ㅏ
                                         저아ㅣ러지ㅏ러자ㅣㅓ리ㅏ절asdsadasdsdsadadasa sdasdsads </div>
                                 </li>
                                 <li>
                                     <div class="summary-field">운영기간</div>
-                                    <div class="summary-field-content" th:text="${policy.period}">2023.01.01~2023.12.31</div>
+                                    <div class="summary-field-content">2023.01.01~2023.12.31</div>
                                 </li>
                                 <li>
                                     <div class="summary-field">신청기간</div>
-                                    <div class="summary-field-content" th:text="${policy.state}">상시 모집</div>
+                                    <div class="summary-field-content">상시 모집</div>
                                 </li>
                                 <li>
                                     <div class="summary-field">대상</div>
-                                    <div class="summary-field-content" th:text="${policy.count}">대상인원</div>
+                                    <div class="summary-field-content">대상인원</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 정책 이미지 -->
+                        <a href="detail"><img class="policy-img" src="/images/test-img.jpg"></a>
+
+                        <!-- 정책 목록 -->
+                        <div class="policy-summary">
+
+                            <div class="summary-title">
+                                <a href="detail">정책이름</a>
+                            </div>
+
+                            <ul class="summary-list">
+                                <li>
+                                    <div class="summary-field">정책분야</div>
+                                    <div class="summary-field-content">주거</div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">지원내용</div>
+                                    <div class="summary-field-content">지ㅣㅏ정라ㅣ저ㅣㅏ러지ㅏㅓㅇ라ㅣㅓ지ㅏㅓ라ㅣ정리ㅏ
+                                        저아ㅣ러지ㅏ러자ㅣㅓ리ㅏ절asdsadasdsdsadadasa sdasdsads </div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">운영기간</div>
+                                    <div class="summary-field-content">2023.01.01~2023.12.31</div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">신청기간</div>
+                                    <div class="summary-field-content">상시 모집</div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">대상</div>
+                                    <div class="summary-field-content">대상인원</div>
                                 </li>
                             </ul>
                         </div>
@@ -502,13 +538,22 @@
 
 
                 <div class="paging">
-                    <button class="paging-btn">&#60;</button>
-                    <button class="paging-btn" onclick="sendData(1)">1</button>
-                    <button class="paging-btn" onclick="sendData(2)">2</button>
-                    <button class="paging-btn" onclick="sendData(3)">3</button>
-                    <button class="paging-btn">&#62;</button>
+                    <a href=""><button class="paging-btn">&#60;</button></a>
+                    <a href=""><button class="paging-btn">1</button></a>
+                    <a href=""><button class="paging-btn">2</button></a>
+                    <a href=""><button class="paging-btn">3</button></a>
+                    <a href=""><button class="paging-btn">4</button></a>
+                    <a href=""><button class="paging-btn">5</button></a>
+                    <a href=""><button class="paging-btn">&#62;</button></a>
                 </div>    
-            </div><!-------------------- 정책 결과 wrap --------------------->
+
+
+
+            </div> <!---------- 정책 검색 결과 wrap ------------>
+
+
+           
+
         </main>
     <!-------------------- 메인 끝 --------------------->    
 
@@ -532,8 +577,6 @@
 
     <script>
     // ---------------------- 일반 검색 조건 -------------------------
-
-
 
     // 정책이름 및 내용
     const policyNameInput = document.querySelector(".policy-name-input");
@@ -883,13 +926,9 @@
         })
 
 
-    document.querySelector(".search-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
+    document.querySelector(".search-btn").addEventListener("click", sendData);
 
-        function sendData(page) {
-
-            const sizeSelector = document.querySelector('.page-category');
-            const size = sizeSelector.options[sizeSelector.selectedIndex].value;
-
+        function sendData() {
             // 데이터 객체 생성
                        const areaList = [];
             areaChkMap.forEach((value, key) => (
@@ -927,7 +966,7 @@
             };
 
             // fetch를 사용하여 서버로 데이터 전송
-            fetch(`/policy/list?size=${size}&page=${page}`, {
+            fetch("/policy/list", {
                 method: "POST",
                 headers: {
                      "Content-Type": "application/json"  // 전송할 데이터의 형식 설정 (JSON)
@@ -958,13 +997,13 @@
             policies.forEach(policy => {
                 const newPolicyTag =
                     `<!-- 정책 이미지 -->
-                    <a href="/policy/detail/${policy.id}"><img class="policy-img" src="/images/test-img.jpg"></a>
+                    <a href="detail"><img class="policy-img" src="/images/test-img.jpg"></a>
 
                     <!-- 정책 목록 -->
                     <div class="policy-summary">
 
                         <div class="summary-title">
-                            <a href="/policy/detail/${policy.id}">${policy.name}</a>
+                            <a href="detail.html">${policy.name}</a>
                         </div>
 
                         <ul class="summary-list">

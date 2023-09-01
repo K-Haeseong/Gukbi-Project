@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.uliieumi.customized.policy.repository.mybatis.PolicyMapper">
-    <select id="findAll" resultType="Policy">
-        select * from policy
+    <select id="findAll" resultType="Policy" parameterType="java.util.Map">
+        SELECT * FROM policy LIMIT #{size} OFFSET #{offset}
     </select>
 </mapper>

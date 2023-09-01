@@ -14,7 +14,8 @@ public class PolicySearchService implements PolicyService{
 
     private final PolicyRepository policyRepository;
     @Override
-    public List<Policy> searchPolicy(PolicySearchForm form) {
-        return policyRepository.findAll(form);
+    public List<Policy> searchPolicy(PolicySearchForm form, int size, int page) {
+        int offset = size*(page-1);
+        return policyRepository.findAll(form, size, offset);
     }
 }

@@ -15,7 +15,7 @@ public class MyBatisPolicyRepository implements PolicyRepository {
     private final PolicyMapper policyMapper;
 
     @Override
-    public List<Policy> findAll(PolicySearchForm form) {
+    public List<Policy> findAll(PolicySearchForm form, int size, int offset) {
         return policyMapper.findAll(form);
     }
 }

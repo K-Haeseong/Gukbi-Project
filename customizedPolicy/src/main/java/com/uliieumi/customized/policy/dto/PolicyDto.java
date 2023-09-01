@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class PolicyDto {
 
+    private Long id;
     private String name;
     private String area;
     private String content;
@@ -18,6 +19,7 @@ public class PolicyDto {
 
 
     public PolicyDto(Policy policy) {
+        this.id = policy.getId();
         this.name = policy.getName();
         this.area = policy.getCategory();
         this.content = policy.getJobState();

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PolicyRepository {
 
-    List<Policy> findAll(PolicySearchForm form);
+    List<Policy> findAll(PolicySearchForm form, int size, int offset);
 }

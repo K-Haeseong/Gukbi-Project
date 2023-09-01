@@ -301,6 +301,7 @@
 
 .policy-summary {
     padding: 5px;
+    flex-grow: 1;
 }
 
 .policy-list > li {
