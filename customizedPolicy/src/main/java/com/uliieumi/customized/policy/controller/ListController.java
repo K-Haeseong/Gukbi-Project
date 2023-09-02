@@ -28,7 +28,7 @@ public class ListController {
 
     @GetMapping("list")
     public String list(Model model) {
-        List<PolicyDto> results = policyService.searchPolicy(new PolicySearchForm(),1,1).stream()
+        List<PolicyDto> results = policyService.searchPolicy(new PolicySearchForm(),6,1).stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 

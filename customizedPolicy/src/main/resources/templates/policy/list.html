@@ -454,7 +454,7 @@
                             <option value="6" selected="">6개</option>
                             <option value="12">12개</option>
                         </select>
-                        <button type="button" class="sortButton" onclick="">정렬</button>
+                        <button type="button" class="sort-btn" onclick="">정렬</button>
                     </div>
                 </div>
 
@@ -499,13 +499,9 @@
                 </ul>
 
 
-
-
                 <div class="paging">
                     <button class="paging-btn">&#60;</button>
-                    <button class="paging-btn" onclick="sendData(1)">1</button>
-                    <button class="paging-btn" onclick="sendData(2)">2</button>
-                    <button class="paging-btn" onclick="sendData(3)">3</button>
+                    <button th:each="num : ${#numbers.sequence(1, 5)}" class="paging-btn" onclick="sendData(num)" th:text="${num}">1</button>
                     <button class="paging-btn">&#62;</button>
                 </div>    
             </div><!-------------------- 정책 결과 wrap --------------------->
@@ -855,7 +851,7 @@
 
 
 
-
+    // -------------------- 초기화 --------------------
     /** 초기화 함수 */
     function reset(List, Map) {
         List.forEach(li => {
@@ -883,7 +879,11 @@
         })
 
 
+     // --------------------Fetch 사용--------------------
     document.querySelector(".search-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
+    document.querySelector(".sort-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
+
+
 
         function sendData(page) {
 
@@ -926,6 +926,7 @@
                 specialArea: specialAreaList
             };
 
+
             // fetch를 사용하여 서버로 데이터 전송
             fetch(`/policy/list?size=${size}&page=${page}`, {
                 method: "POST",
@@ -951,7 +952,10 @@
         }
     </script>
 
-    <script>
+
+
+    <script>'
+    // ------------------- 페이지 생성 --------------------
         function createNewPolicyList(policies) {
             const policyList = document.querySelector(".policy-list");
             policyList.innerText = "";

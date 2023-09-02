@@ -6,7 +6,9 @@ import com.uliieumi.customized.policy.repository.PolicyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -16,6 +18,6 @@ public class MyBatisPolicyRepository implements PolicyRepository {
 
     @Override
     public List<Policy> findAll(PolicySearchForm form, int size, int offset) {
-        return policyMapper.findAll(form);
+        return policyMapper.findAll(form, size, offset);
     }
 }
