@@ -6,8 +6,4 @@
     <select id="findAll" resultType="Policy" >
         SELECT * FROM policy LIMIT #{size} OFFSET #{offset}
     </select>
-
-<!--    <select id="" resultType="">-->
-<!--        SELECT COUNT(*) FROM policy-->
-<!--    </select>-->
 </mapper>

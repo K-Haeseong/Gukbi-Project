@@ -500,10 +500,16 @@
 
 
                 <div class="paging">
-                    <button class="paging-btn">&#60;</button>
-                    <button th:each="num : ${#numbers.sequence(1, 5)}" class="paging-btn" onclick="sendData(num)" th:text="${num}">1</button>
-                    <button class="paging-btn">&#62;</button>
-                </div>    
+                    <button class="prev-btn">&#60;</button>
+                    <button class="paging-btn"
+                                th:with= "page = ${param.page == null ? 1 : param.page},
+                                          startNum = ${page - (page - 1) % 5}"
+                                th:each="num : ${#numbers.sequence(0, 4)}"
+                                th:onclick="'sendData(' + ${ startNum + num } + ')'"
+                                th:text="${startNum + num}">
+                    </button>
+                    <button class="next-btn">&#62;</button>
+                </div>
             </div><!-------------------- 정책 결과 wrap --------------------->
         </main>
     <!-------------------- 메인 끝 --------------------->    
@@ -880,10 +886,10 @@
 
 
      // --------------------Fetch 사용--------------------
+    const pagingSelector = document.querySelector(".paging-btn");
+    const page = pagingSelector.textContent;
     document.querySelector(".search-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
     document.querySelector(".sort-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
-
-
 
         function sendData(page) {
 
@@ -891,7 +897,7 @@
             const size = sizeSelector.options[sizeSelector.selectedIndex].value;
 
             // 데이터 객체 생성
-                       const areaList = [];
+           const areaList = [];
             areaChkMap.forEach((value, key) => (
                 areaList.push(value)
             ));
@@ -947,6 +953,7 @@
                 createNewPolicyList(data)
              })
             .catch(error => {
+                console.error("여기서 에러 발생");
                 console.error("에러 발생:", error.message);
             });
         }
@@ -954,7 +961,7 @@
 
 
 
-    <script>'
+    <script>
     // ------------------- 페이지 생성 --------------------
         function createNewPolicyList(policies) {
             const policyList = document.querySelector(".policy-list");

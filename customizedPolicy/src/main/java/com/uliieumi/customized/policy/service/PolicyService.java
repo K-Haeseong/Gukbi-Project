@@ -9,5 +9,4 @@ public interface PolicyService {
 
     List<Policy> searchPolicy(PolicySearchForm form, int size, int page);
 
-//    List<Policy> pagingList(PolicySearchForm form, int size);
 }
