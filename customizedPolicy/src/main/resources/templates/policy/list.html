@@ -503,7 +503,7 @@
                     <button class="prev-btn">&#60;</button>
                     <button class="paging-btn"
                                 th:with= "page = ${param.page == null ? 1 : param.page},
-                                          startNum = ${page - (page - 1) % 5}"
+                                          startNum = ${page-(page-1)%5}"
                                 th:each="num : ${#numbers.sequence(0, 4)}"
                                 th:onclick="'sendData(' + ${ startNum + num } + ')'"
                                 th:text="${startNum + num}">
@@ -886,8 +886,8 @@
 
 
      // --------------------Fetch 사용--------------------
-    const pagingSelector = document.querySelector(".paging-btn");
-    const page = pagingSelector.textContent;
+    //const pagingSelector = document.querySelector(".paging-btn");
+    //const page = pagingSelector.textContent;
     document.querySelector(".search-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
     document.querySelector(".sort-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
 
@@ -950,7 +950,7 @@
             .then(data => {
                 // 서버로부터 받은 데이터
                 console.log("서버 응답 데이터:", data);
-                createNewPolicyList(data)
+                createNewPolicyList(data.policyDTO)
              })
             .catch(error => {
                 console.error("여기서 에러 발생");
@@ -962,7 +962,7 @@
 
 
     <script>
-    // ------------------- 페이지 생성 --------------------
+    // ------------------- 페이지 생성 -------------------
         function createNewPolicyList(policies) {
             const policyList = document.querySelector(".policy-list");
             policyList.innerText = "";

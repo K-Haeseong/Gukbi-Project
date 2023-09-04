@@ -1,8 +1,6 @@
 package com.uliieumi.customized.policy.controller;
 
-import com.uliieumi.customized.policy.dto.ErrorResult;
-import com.uliieumi.customized.policy.dto.PolicyDto;
-import com.uliieumi.customized.policy.dto.PolicySearchForm;
+import com.uliieumi.customized.policy.dto.*;
 import com.uliieumi.customized.policy.service.PolicyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,11 +26,12 @@ public class ListController {
 
     @GetMapping("list")
     public String list(Model model) {
-        List<PolicyDto> results = policyService.searchPolicy(new PolicySearchForm(),6,1).stream()
+        List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6,1)
+                .stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        model.addAttribute("policies", results);
+        model.addAttribute("policies", policies);
 
         return "policy/list";
     }
@@ -40,8 +39,8 @@ public class ListController {
 
     @PostMapping("list")
     @ResponseBody
-    public ResponseEntity<Object> specificList(@RequestBody @Validated PolicySearchForm form,
-                                       BindingResult bindingResult, @RequestParam int size, @RequestParam int page) {
+    public ResponseEntity<Object> specificList(@RequestBody @Validated PolicySearchForm form, BindingResult bindingResult,
+                                               @RequestParam int size, @RequestParam int page) {
 
         log.info("size,page = {} {}",size, page);
 
@@ -51,11 +50,15 @@ public class ListController {
             return new ResponseEntity<>(errorResults, HttpStatus.BAD_REQUEST);
         }
 
-        List<PolicyDto> results = policyService.searchPolicy(form,size,page).stream()
+        List<PolicyDto> policies = policyService.searchPolicy(form,size,page).stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        return new ResponseEntity<>(results, HttpStatus.OK);
+        PageDTO paging= policyService.pagingParam(form,size,page);
+
+        PolicyPageDTO policyPageDTO = new PolicyPageDTO(policies, paging);
+
+        return new ResponseEntity<>(policyPageDTO, HttpStatus.OK);
     }
 
     @GetMapping("detail/{id}")

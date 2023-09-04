@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface PolicyMapper {
 
-    List<Policy> findAll(PolicySearchForm form, @Param("size") int size, @Param("offset")int offset);
+    List<Policy> findAll(PolicySearchForm form, @Param("size") int size, @Param("startPostNum")int startPostNum);
 
-
+    int boardCount(PolicySearchForm form);
 }
