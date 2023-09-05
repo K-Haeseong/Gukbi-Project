@@ -42,7 +42,7 @@ public class PolicySearchService implements PolicyService{
         int startPage = page-(page-1) % pageSize;
 
         // 현재 페이지의 마지막 페이지 번호
-        int endPage =  startPage + (pageSize-1);
+        int endPage =  maxPage <  startPage + (pageSize-1) ? maxPage : startPage + (pageSize-1);
 
         PageDTO pageDTO = new PageDTO();
         pageDTO.setPage(page);

@@ -499,17 +499,16 @@
                 </ul>
 
 
-                <div class="paging">
+                <div class="paging-wrap">
                     <button class="prev-btn">&#60;</button>
                     <button class="paging-btn"
-                                th:with= "page = ${param.page == null ? 1 : param.page},
-                                          startNum = ${page-(page-1)%5}"
-                                th:each="num : ${#numbers.sequence(0, 4)}"
-                                th:onclick="'sendData(' + ${ startNum + num } + ')'"
-                                th:text="${startNum + num}">
+                            th:each="num : ${#numbers.sequence((paging.startPage)-1, (paging.endPage)-1)}"
+                            th:onclick="|sendData(${(paging.startPage) + num})|"
+                            th:text="${(paging.startPage) + num}">
                     </button>
-                    <button class="next-btn">&#62;</button>
+                    <button class="next-btn" th:onclick="|sendData(${(paging.endPage)+1})|">&#62;</button>
                 </div>
+
             </div><!-------------------- 정책 결과 wrap --------------------->
         </main>
     <!-------------------- 메인 끝 --------------------->    
@@ -616,14 +615,11 @@
             });
         }
     })
-
-
     // -------------------- 상세 조건 검색 ---------------------------
 
 
 
     // --------------------취업상태 상세조건--------------------------
-
     const jobStateMap = new Map();
     const jobStatebtn = document.querySelector(".job-state-open > button")
 
@@ -797,8 +793,8 @@
     // 제한없음 버튼
     const noSpecialAreaLimit = document.querySelector(".special-list > .no-Limit");
 
-   
-   
+
+
     specialAreaBtn.addEventListener("click", () => {
         specialAreaList.classList.toggle("open-close")
     })
@@ -886,10 +882,9 @@
 
 
      // --------------------Fetch 사용--------------------
-    //const pagingSelector = document.querySelector(".paging-btn");
-    //const page = pagingSelector.textContent;
     document.querySelector(".search-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
     document.querySelector(".sort-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
+
 
         function sendData(page) {
 
@@ -950,7 +945,8 @@
             .then(data => {
                 // 서버로부터 받은 데이터
                 console.log("서버 응답 데이터:", data);
-                createNewPolicyList(data.policyDTO)
+                createNewPolicyList(data.policyDTO);
+                createPagingButton(data.pageDTO);
              })
             .catch(error => {
                 console.error("여기서 에러 발생");
@@ -962,7 +958,7 @@
 
 
     <script>
-    // ------------------- 페이지 생성 -------------------
+    // ------------------- 정책 리스트 생성 -------------------
         function createNewPolicyList(policies) {
             const policyList = document.querySelector(".policy-list");
             policyList.innerText = "";
@@ -1006,8 +1002,26 @@
                     li.innerHTML = newPolicyTag;
             });
         }
-    </script>
+        
 
+        // ------------------- 페이지 버튼 리스트 생성 -------------------
+       function createPagingButton(data) {
+            const pagingButtonList = document.querySelector(".paging-wrap");
+            pagingButtonList.innerText = "";
+            // newPolicyTage -> 이전 버튼 + 페이지 버튼 + 다음 버튼을 담는다.
+            let newPolicyTag = `<button class="prev-btn" onclick="sendData(${data.startPage === 1 ? 1 : data.startPage-1})">&#60;</button>`
+            for (let i = data.startPage; i <= data.endPage; i++) {
+                let checked = "" ;
+                if(data.page == i) {
+                    checked = "checked"
+                }
+                newPolicyTag += `<button class="paging-btn ${checked}" onclick="sendData(${i})">${i}</button>`;
+
+            }
+            newPolicyTag += `<button class="next-btn" onclick="sendData(${data.endPage == data.maxPage ? data.maxPage : data.endPage+1})">&#62;</button>`
+            pagingButtonList.innerHTML = newPolicyTag;
+        }
+    </script>
 
 </body>
 </html>

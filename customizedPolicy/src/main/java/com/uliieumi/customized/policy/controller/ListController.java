@@ -31,8 +31,10 @@ public class ListController {
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        model.addAttribute("policies", policies);
+        PageDTO paging = policyService.pagingParam(new PolicySearchForm(), 6,1);
 
+        model.addAttribute("paging", paging);
+        model.addAttribute("policies", policies);
         return "policy/list";
     }
 

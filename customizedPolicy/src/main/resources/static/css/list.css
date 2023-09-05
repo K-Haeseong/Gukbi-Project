@@ -360,14 +360,14 @@
 
 /* 페이징 */
 
-.paging {
+.paging-wrap {
     margin: 40px auto 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.paging button {
+.paging-wrap button {
     width: 35px;
     height: 35px;
     font-size: 15px;
