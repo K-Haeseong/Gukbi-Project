@@ -1,8 +1,8 @@
-package com.uliieumi.customized.policy.repository.mybatis;
+package com.uliieumi.customized.policy.domain.repository.mybatis;
 
-import com.uliieumi.customized.policy.domain.Policy;
-import com.uliieumi.customized.policy.dto.PolicySearchForm;
-import com.uliieumi.customized.policy.repository.PolicyRepository;
+import com.uliieumi.customized.policy.domain.entity.Policy;
+import com.uliieumi.customized.policy.domain.repository.PolicyRepository;
+import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

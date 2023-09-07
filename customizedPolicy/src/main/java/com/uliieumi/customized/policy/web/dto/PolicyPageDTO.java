@@ -1,6 +1,5 @@
-package com.uliieumi.customized.policy.dto;
+package com.uliieumi.customized.policy.web.dto;
 
-import com.uliieumi.customized.policy.domain.Policy;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

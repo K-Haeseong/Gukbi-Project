@@ -1,4 +1,4 @@
-package com.uliieumi.customized.policy.dto;
+package com.uliieumi.customized.policy.web.dto;
 
 import lombok.Builder;
 import lombok.Data;

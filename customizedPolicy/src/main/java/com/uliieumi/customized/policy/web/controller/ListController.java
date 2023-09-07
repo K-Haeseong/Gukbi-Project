@@ -1,7 +1,8 @@
-package com.uliieumi.customized.policy.controller;
+package com.uliieumi.customized.policy.web.controller;
 
-import com.uliieumi.customized.policy.dto.*;
-import com.uliieumi.customized.policy.service.PolicyService;
+
+import com.uliieumi.customized.policy.domain.service.PolicyService;
+import com.uliieumi.customized.policy.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

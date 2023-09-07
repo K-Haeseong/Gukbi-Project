@@ -1,5 +1,6 @@
-package com.uliieumi.customized.policy.domain;
+package com.uliieumi.customized.policy.domain.entity;
 
+import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -8,25 +9,9 @@ import java.time.LocalDate;
 @Getter
 public class Policy {
 
-//    private Long id;
-//
-//    private String name;
-//
-//    private Integer age;
-//
-//    private String category;
-//
-//    private String educationLevel;
-//
-//    private String jobState;
-//
-//    private String region;
-//
-//    private String specificClass;
-
     private Long id;//아이디
 
-    private String Title; //제목
+    private String name; //제목
 
     private String filePath;//파일경로
 
@@ -38,7 +23,7 @@ public class Policy {
 
     private LocalDate publishedDateTime;// 오픈시간
 
-    private LocalDate closedDateTime;  //  마감시간
+    private LocalDate closedDateTime;  //마감시간
 
     private Integer recruitsNumber;//모집인원
 
@@ -48,7 +33,7 @@ public class Policy {
 
     private String region;//지역
 
-    private String category;//정책분야
+    private PolicyCategory category;//정책분야
 
     private String jobState;//취업상태
 
@@ -58,7 +43,12 @@ public class Policy {
 
     private String proposal;//신청방법
 
-    private String content;//에디터컨텐츠
+    private Integer hit;//조회수
 
+    private String deadline;//신청기간
+
+    private String createdDate; //게시물 등록 날짜
+
+    private String content;//에디터컨텐츠
 
 }

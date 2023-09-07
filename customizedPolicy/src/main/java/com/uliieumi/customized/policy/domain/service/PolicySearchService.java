@@ -1,9 +1,9 @@
-package com.uliieumi.customized.policy.service;
+package com.uliieumi.customized.policy.domain.service;
 
-import com.uliieumi.customized.policy.domain.Policy;
-import com.uliieumi.customized.policy.dto.PageDTO;
-import com.uliieumi.customized.policy.dto.PolicySearchForm;
-import com.uliieumi.customized.policy.repository.PolicyRepository;
+import com.uliieumi.customized.policy.domain.entity.Policy;
+import com.uliieumi.customized.policy.domain.repository.PolicyRepository;
+import com.uliieumi.customized.policy.web.dto.PageDTO;
+import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

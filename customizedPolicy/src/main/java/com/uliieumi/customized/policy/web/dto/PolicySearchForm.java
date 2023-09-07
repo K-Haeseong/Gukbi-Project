@@ -1,4 +1,4 @@
-package com.uliieumi.customized.policy.dto;
+package com.uliieumi.customized.policy.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +27,6 @@ public class PolicySearchForm {
 
     private List<String> region;
 
-    private List<String> specialArea;
+    private List<String> specificClass;
 
 }
