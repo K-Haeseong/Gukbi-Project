@@ -14,25 +14,25 @@ public class PolicyDto {
 
     private String name; //제목
 
-    private String filePath;//파일경로
+    private String filePath; //파일경로
 
-    private String thumbnail;//썸네일
+    private String thumbnail; //썸네일
 
-    //private String posterImage;//관련 포스터이미지
+    //private String posterImage; //관련 포스터이미지
 
-    private String shortDescription;//짧은소개
+    private String shortDescription; //짧은소개
 
-    private LocalDate publishedDateTime;// 오픈시간
+    private LocalDate publishedDateTime; //오픈시간
 
-    private LocalDate closedDateTime;  //마감시간
+    private LocalDate closedDateTime; //마감시간
 
-    private Integer recruitsNumber;//모집인원
+    private Integer recruitsNumber; //모집인원
 
-    private String region;//지역
+    private String region; //지역
 
-    private String category;//정책분야
+    private String category; //정책분야
 
-    private String deadline;//신청기간
+    private String deadline; //신청기간
 
 
     public PolicyDto(Policy policy) {

@@ -3,6 +3,7 @@ package com.uliieumi.customized.policy.web.controller;
 
 import com.uliieumi.customized.policy.domain.service.PolicyService;
 import com.uliieumi.customized.policy.web.dto.*;
+import com.uliieumi.customized.policy.web.dto.ErrorResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -52,6 +53,8 @@ public class ListController {
             bindingResult.getAllErrors().forEach(error -> errorResults.add(new ErrorResult(error.getDefaultMessage(), error.getCode())));
             return new ResponseEntity<>(errorResults, HttpStatus.BAD_REQUEST);
         }
+
+        // 여기서 분기 해줘야 함 (1. form 내 아무조건이 X 때 검색버튼 누름, 2. 조건이 담겨서 넘어 올 때 )
 
         List<PolicyDto> policies = policyService.searchPolicy(form,size,page).stream()
                 .map(policy -> new PolicyDto(policy))

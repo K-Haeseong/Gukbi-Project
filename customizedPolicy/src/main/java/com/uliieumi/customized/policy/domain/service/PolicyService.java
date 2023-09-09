@@ -11,5 +11,4 @@ public interface PolicyService {
     List<Policy> searchPolicy(PolicySearchForm form, int size, int page);
 
     PageDTO pagingParam(PolicySearchForm form, int size, int page);
-
 }

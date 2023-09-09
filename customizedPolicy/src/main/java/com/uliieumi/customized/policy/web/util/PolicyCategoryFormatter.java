@@ -11,13 +11,13 @@ public class PolicyCategoryFormatter implements Formatter<PolicyCategory> {
 
 
     // 넘어온 값을 파싱해서 PolicyCategory로 변환
-//    @Override
-//    public PolicyCategory parse(String text, Locale locale) throws ParseException {
-//        return Arrays.stream(PolicyCategory.values())
-//                .filter(data -> data.text.equals(text))
-//                .findFirst()
-//                .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 parameter"));
-//    }
+    @Override
+    public PolicyCategory parse(String text, Locale locale) throws ParseException {
+        return Arrays.stream(PolicyCategory.values())
+                .filter(data -> data.text.equals(text))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 parameter"));
+    }
 
     @Override
     public String print(PolicyCategory object, Locale locale) {
