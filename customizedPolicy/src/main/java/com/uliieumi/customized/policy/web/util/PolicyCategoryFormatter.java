@@ -2,11 +2,15 @@ package com.uliieumi.customized.policy.web.util;
 
 import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.Converter;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Locale;
 
+//@Converter
+@Component
 public class PolicyCategoryFormatter implements Formatter<PolicyCategory> {
 
 
