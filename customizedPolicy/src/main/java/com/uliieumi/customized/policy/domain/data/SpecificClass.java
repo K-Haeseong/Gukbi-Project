@@ -7,7 +7,7 @@ public enum SpecificClass {
     DISABILITY("disability", "장애인"),
     MILITARY("military", "군인"),
     FARMER("farmer", "농업인"),
-    localtalent("localTalent", "지역인재"),
+    LOCALTALENT("localTalent", "지역인재"),
     NOLIMIT("noLimit", "제한없음");
 
 

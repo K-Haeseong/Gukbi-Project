@@ -1,6 +1,6 @@
 package com.uliieumi.customized.policy.domain.entity;
 
-import com.uliieumi.customized.policy.domain.data.PolicyCategory;
+import com.uliieumi.customized.policy.domain.data.*;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -31,15 +31,15 @@ public class Policy {
 
     private Integer maxAge;//최대연령
 
-    private String region;//지역
+    private PolicyRegion region;//지역
 
     private PolicyCategory category;//정책분야
 
-    private String jobState;//취업상태
+    private JobState jobState;//취업상태
 
-    private String educationLevel;//학력
+    private EducationLevel educationLevel;//학력
 
-    private String specificClass;//특정계층
+    private SpecificClass specificClass;//특정계층
 
     private String proposal;//신청방법
 
