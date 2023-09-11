@@ -1,11 +1,14 @@
 package com.uliieumi.customized.policy.web.dto;
 
 
-import com.uliieumi.customized.policy.domain.data.PolicyCategory;
+import com.uliieumi.customized.policy.domain.data.PolicyRegion;
 import com.uliieumi.customized.policy.domain.entity.Policy;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class PolicyDto {
@@ -16,10 +19,6 @@ public class PolicyDto {
 
     private String filePath; //파일경로
 
-    private String thumbnail; //썸네일
-
-    //private String posterImage; //관련 포스터이미지
-
     private String shortDescription; //짧은소개
 
     private LocalDate publishedDateTime; //오픈시간
@@ -28,7 +27,7 @@ public class PolicyDto {
 
     private Integer recruitsNumber; //모집인원
 
-    private String region; //지역
+    private List<String> region; //지역
 
     private String category; //정책분야
 
@@ -39,13 +38,16 @@ public class PolicyDto {
         this.id = policy.getId();
         this.name = policy.getName();
         this.filePath = policy.getFilePath();
-        this.thumbnail = policy.getThumbnail();
         this.shortDescription = policy.getShortDescription();
         this.publishedDateTime = policy.getPublishedDateTime();
         this.closedDateTime = policy.getClosedDateTime();
         this.recruitsNumber = policy.getRecruitsNumber();
-        this.region = policy.getRegion();
-        this.category = policy.getCategory().name;
+        String[] regions = policy.getRegion().split(",");
+        this.region = Arrays.stream(regions).map((region) ->
+                        PolicyRegion.findByName(region)
+                        .text
+        ).collect(Collectors.toList());
+        this.category = policy.getCategory().text;
         this.deadline = policy.getDeadline();
     }
 }

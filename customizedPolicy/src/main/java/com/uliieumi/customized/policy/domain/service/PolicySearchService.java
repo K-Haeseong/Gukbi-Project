@@ -15,12 +15,18 @@ public class PolicySearchService implements PolicyService{
 
     private final PolicyRepository policyRepository;
     @Override
-    public List<Policy> searchPolicy(PolicySearchForm form, int size, int page) {
+    public List<Policy> searchAllPolicy(PolicySearchForm form, int size, int page) {
 //        offset  0~5   6~11   12~17
 //        page     1      2      3
 //        size     6 or 12
         int startPostNum = size*(page-1);
         return policyRepository.findAll(form, size, startPostNum);
+    }
+
+    @Override
+    public List<Policy> searchPolicy(PolicySearchForm form, int size, int page) {
+        int startPostNum = size*(page-1);
+        return policyRepository.findByCondition(form, size, startPostNum);
     }
 
     @Override

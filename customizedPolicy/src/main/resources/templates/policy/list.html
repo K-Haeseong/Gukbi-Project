@@ -462,7 +462,7 @@
                 <ul class="policy-list">
                     <li th:each="policy : ${policies}">
                         <!-- 정책 이미지 -->
-                        <a th:href="|/policy/detail/${policy.id}|"><img class="policy-img" src="/images/test-img.jpg"></a>
+                        <a th:href="|/policy/detail/${policy.id}|"><img class="policy-img" th:src="${policy.filePath}"></a>
 
                         <!-- 정책 목록 -->
                         <div class="policy-summary">
@@ -477,9 +477,12 @@
                                     <div class="summary-field-content" th:text="${policy.category}">주거</div>
                                 </li>
                                 <li>
+                                    <div class="summary-field">지역</div>
+                                    <div class="summary-field-content" th:text="${policy.region}">지역</div>
+                                </li>
+                                <li>
                                     <div class="summary-field">지원내용</div>
-                                    <div class="summary-field-content" th:text="${policy.shortDescription}">지ㅣㅏ정라ㅣ저ㅣㅏ러지ㅏㅓㅇ라ㅣㅓ지ㅏㅓ라ㅣ정리ㅏ
-                                        저아ㅣ러지ㅏ러자ㅣㅓ리ㅏ절asdsadasdsdsadadasa sdasdsads </div>
+                                    <div class="summary-field-content" th:text="${policy.shortDescription}">지원내용</div>
                                 </li>
                                 <li>
                                     <div class="summary-field">운영기간</div>
@@ -965,7 +968,7 @@
             policies.forEach(policy => {
                 const newPolicyTag =
                     `<!-- 정책 이미지 -->
-                    <a href="/policy/detail/${policy.id}"><img class="policy-img" src="/images/test-img.jpg"></a>
+                    <a href="/policy/detail/${policy.id}"><img class="policy-img" src="${policy.filePath}"></a>
 
                     <!-- 정책 목록 -->
                     <div class="policy-summary">
@@ -978,6 +981,10 @@
                             <li>
                                 <div class="summary-field">정책분야</div>
                                 <div class="summary-field-content">${policy.category}</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">지역</div>
+                                <div class="summary-field-content">${policy.region}</div>
                             </li>
                             <li>
                                 <div class="summary-field">지원내용</div>

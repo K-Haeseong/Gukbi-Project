@@ -11,12 +11,12 @@ public enum SpecificClass {
     NOLIMIT("noLimit", "제한없음");
 
 
+    public String param;
     public String text;
-    public String name;
 
 
-    SpecificClass(String value, String name) {
-        this.text = value;
-        this.name = name;
+    SpecificClass(String param, String text) {
+        this.param = param;
+        this.text = text;
     }
 }

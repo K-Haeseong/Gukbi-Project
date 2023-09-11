@@ -1,6 +1,5 @@
 package com.uliieumi.customized.policy.web.util;
 
-import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import com.uliieumi.customized.policy.domain.data.PolicyRegion;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
@@ -18,13 +17,13 @@ public class PolicyRegionFormatter implements Formatter<PolicyRegion> {
     @Override
     public PolicyRegion parse(String text, Locale locale) throws ParseException {
         return Arrays.stream(PolicyRegion.values())
-                .filter(data -> data.text.equals(text))
+                .filter(data -> data.param.equals(text))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 parameter"));
     }
 
     @Override
     public String print(PolicyRegion object, Locale locale) {
-        return object.name;
+        return object.text;
     }
 }

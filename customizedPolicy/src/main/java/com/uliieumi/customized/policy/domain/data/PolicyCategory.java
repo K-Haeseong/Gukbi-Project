@@ -15,12 +15,12 @@ public enum PolicyCategory {
     CULTURE("culture", "문화·예술");
 
 
+    public String param;
     public String text;
-    public String name;
 
 
-    PolicyCategory(String value, String name) {
-        this.text = value;
-        this.name = name;
+    PolicyCategory(String param, String text) {
+        this.param = param;
+        this.text = text;
     }
 }

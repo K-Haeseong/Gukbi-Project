@@ -1,7 +1,6 @@
 package com.uliieumi.customized.policy.web.util;
 
 import com.uliieumi.customized.policy.domain.data.EducationLevel;
-import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
 
@@ -18,13 +17,13 @@ public class EducationLevelFormatter implements Formatter<EducationLevel> {
     @Override
     public EducationLevel parse(String text, Locale locale) throws ParseException {
         return Arrays.stream(EducationLevel.values())
-                .filter(data -> data.text.equals(text))
+                .filter(data -> data.param.equals(text))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 parameter"));
     }
 
     @Override
     public String print(EducationLevel object, Locale locale) {
-        return object.name;
+        return object.text;
     }
 }

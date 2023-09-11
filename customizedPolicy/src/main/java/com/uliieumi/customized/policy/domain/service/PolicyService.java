@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface PolicyService {
 
+    List<Policy> searchAllPolicy(PolicySearchForm form, int size, int page);
+
     List<Policy> searchPolicy(PolicySearchForm form, int size, int page);
 
     PageDTO pagingParam(PolicySearchForm form, int size, int page);

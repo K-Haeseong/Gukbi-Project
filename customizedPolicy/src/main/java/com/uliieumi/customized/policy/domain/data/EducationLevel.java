@@ -14,12 +14,12 @@ public enum EducationLevel {
     NOLIMIT("noLimit", "제한없음");
 
 
+    public String param;
     public String text;
-    public String name;
 
 
-    EducationLevel(String value, String name) {
-        this.text = value;
-        this.name = name;
+    EducationLevel(String param, String text) {
+        this.param = param;
+        this.text = text;
     }
 }

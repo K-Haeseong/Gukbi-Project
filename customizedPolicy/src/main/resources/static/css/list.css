@@ -305,7 +305,7 @@
 
 .policy-list > li{
     width:1100px;
-    height:300px;
+    height:320px;
     display: flex;
     margin: auto;
     padding: 30px 0;
@@ -314,6 +314,7 @@
 
 .policy-img {
     width: 300px;
+    height: 320px;
     margin-right: 30px;
 }
 

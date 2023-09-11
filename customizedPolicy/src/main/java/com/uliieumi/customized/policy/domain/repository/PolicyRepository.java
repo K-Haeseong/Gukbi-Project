@@ -9,5 +9,7 @@ public interface PolicyRepository {
 
     List<Policy> findAll(PolicySearchForm form, int size, int startPostNum);
 
+    List<Policy> findByCondition(PolicySearchForm form, int size, int startPostNum);
+
     int boardCount(PolicySearchForm form);
 }

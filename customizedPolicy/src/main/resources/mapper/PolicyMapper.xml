@@ -7,6 +7,48 @@
         SELECT * FROM policy LIMIT #{size} OFFSET #{startPostNum}
     </select>
 
+
+    <select id="findByCondition" resultType="Policy" >
+        SELECT * FROM policy WHERE
+        <if test="form.area != null and form.area.size() > 0">
+            category IN
+            <foreach collection="form.area" item="area" open="(" separator="," close=")">
+                #{area}
+            </foreach>
+        </if>
+
+        <if test="form.region != null and form.region.size() > 0">
+            AND region IN
+            <foreach collection="form.region" item="region" open="(" separator="," close=")">
+                #{region}
+            </foreach>
+        </if>
+
+        <if test="form.jobState != null and form.jobState.size() > 0">
+            AND jobState IN
+            <foreach collection="form.jobState" item="jobState" open="(" separator="," close=")">
+                #{jobState}
+            </foreach>
+        </if>
+
+
+        <if test="form.educationLevel != null and form.educationLevel.size() > 0">
+            AND educationLevel IN
+            <foreach collection="form.educationLevel" item="educationLevel" open="(" separator="," close=")">
+                #{educationLevel}
+            </foreach>
+        </if>
+
+        <if test="form.specificClass != null and form.specificClass.size() > 0">
+            AND specificClass IN
+            <foreach collection="form.specificClass" item="specificClass" open="(" separator="," close=")">
+                #{specificClass}
+            </foreach>
+        </if>
+
+        LIMIT #{size} OFFSET #{startPostNum}
+    </select>
+
     <select id="boardCount" resultType="Integer">
         select count(id) from policy;
     </select>

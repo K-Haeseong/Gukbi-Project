@@ -4,7 +4,6 @@ import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Converter;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Locale;
@@ -18,13 +17,13 @@ public class PolicyCategoryFormatter implements Formatter<PolicyCategory> {
     @Override
     public PolicyCategory parse(String text, Locale locale) throws ParseException {
         return Arrays.stream(PolicyCategory.values())
-                .filter(data -> data.text.equals(text))
+                .filter(data -> data.param.equals(text))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("올바르지 않은 parameter"));
     }
 
     @Override
     public String print(PolicyCategory object, Locale locale) {
-        return object.name;
+        return object.text;
     }
 }

@@ -28,7 +28,7 @@ public class ListController {
 
     @GetMapping("list")
     public String list(Model model) {
-        List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6,1)
+        List<PolicyDto> policies = policyService.searchAllPolicy(new PolicySearchForm(), 6,1)
                 .stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
@@ -54,11 +54,11 @@ public class ListController {
             return new ResponseEntity<>(errorResults, HttpStatus.BAD_REQUEST);
         }
 
-        // 여기서 분기 해줘야 함 (1. form 내 아무조건이 X 때 검색버튼 누름, 2. 조건이 담겨서 넘어 올 때 )
 
         List<PolicyDto> policies = policyService.searchPolicy(form,size,page).stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
+
 
         PageDTO paging= policyService.pagingParam(form,size,page);
 
@@ -69,6 +69,9 @@ public class ListController {
 
     @GetMapping("detail/{id}")
     public String detail(@PathVariable("id") Long id) {
+
+
+
         return "policy/detail";
     }
 
