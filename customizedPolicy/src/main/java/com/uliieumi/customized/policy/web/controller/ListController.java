@@ -28,12 +28,12 @@ public class ListController {
 
     @GetMapping("list")
     public String list(Model model) {
-        List<PolicyDto> policies = policyService.searchAllPolicy(new PolicySearchForm(), 6,1)
+        List<PolicyDto> policies = policyService.searchAllPolicy(new PolicySearchForm(), 6,1, true)
                 .stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        PageDTO paging = policyService.pagingParam(new PolicySearchForm(), 6,1);
+        PageDTO paging = policyService.pagingBasicParam(new PolicySearchForm(), 6,1, true);
 
         model.addAttribute("paging", paging);
         model.addAttribute("policies", policies);
@@ -44,9 +44,9 @@ public class ListController {
     @PostMapping("list")
     @ResponseBody
     public ResponseEntity<Object> specificList(@RequestBody @Validated PolicySearchForm form, BindingResult bindingResult,
-                                               @RequestParam int size, @RequestParam int page) {
+                                               @RequestParam int size, @RequestParam int page, @RequestParam boolean sort) {
 
-        log.info("size,page = {} {}",size, page);
+        log.info("size,page = {} {} {}", form, size, page);
 
         if(bindingResult.hasErrors()) {
             ArrayList<ErrorResult> errorResults = new ArrayList<>();
@@ -55,12 +55,21 @@ public class ListController {
         }
 
 
-        List<PolicyDto> policies = policyService.searchPolicy(form,size,page).stream()
+        List<PolicyDto> policies;
+        PageDTO paging;
+        if(form==null) {
+            policies = policyService.searchAllPolicy(form,size,page,sort).stream()
+                    .map(policy -> new PolicyDto(policy))
+                    .collect(Collectors.toList());
+
+            paging= policyService.pagingBasicParam(form,size,page,sort);
+        }
+
+        policies = policyService.searchPolicy(form,size,page,sort).stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-
-        PageDTO paging= policyService.pagingParam(form,size,page);
+        paging= policyService.pagingSearchParam(form,size,page,sort);
 
         PolicyPageDTO policyPageDTO = new PolicyPageDTO(policies, paging);
 

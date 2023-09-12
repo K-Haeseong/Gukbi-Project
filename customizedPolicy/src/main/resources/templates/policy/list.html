@@ -71,7 +71,7 @@
                         <div class="policy-name">
                             <div class="search-title">
                                 <i class="fa-solid fa-magnifying-glass" style="color: #1351b8;"></i>
-                                정책이름 및 내용
+                                정책이름
                             </div>
                             <div class="policy-name-input-wrap">
                                 <input type="text" class="policy-name-input" placeholder="검색 내용 입력하세요.">
@@ -446,10 +446,10 @@
                         정책 검색결과
                     </div>
                     <div class="srchSortOrder-wrap">
-                        <input type="radio" id="sort1" name="srchSortOrder" value="1" checked>
-                        <label for="sort1">조회순</label>
-                        <input type="radio" id="sort2" name="srchSortOrder" value="2">
-                        <label for="sort2">최신순</label>
+                        <input type="radio" id="sort1" name="srchSort" class="srchSortOrder" value="true" checked>
+                        <label for="sort1">최신순</label>
+                        <input type="radio" id="sort2" name="srchSort" class="srchSortOrder" value="false">
+                        <label for="sort2">조회순</label>
                         <select class="page-category">
                             <option value="6" selected="">6개</option>
                             <option value="12">12개</option>
@@ -478,7 +478,12 @@
                                 </li>
                                 <li>
                                     <div class="summary-field">지역</div>
-                                    <div class="summary-field-content" th:text="${policy.region}">지역</div>
+                                    <div class="summary-field-content">
+                                        <span th:each="region, iterStat : ${policy.region}">
+                                            <span th:text="|${region}|"></span>
+                                            <span th:if="${!iterStat.last}">,&#32;</span>
+                                        </span>
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="summary-field">지원내용</div>
@@ -894,6 +899,15 @@
             const sizeSelector = document.querySelector('.page-category');
             const size = sizeSelector.options[sizeSelector.selectedIndex].value;
 
+            const radioButtons = document.querySelectorAll('.srchSortOrder'); // 라디오 버튼 요소들을 가져옴
+            let sort = ''; // 선택한 값을 저장할 변수
+
+            radioButtons.forEach(function(radioButton) {
+              if (radioButton.checked) {
+                sort = radioButton.value; // 체크된 라디오 버튼의 값을 변수에 할당
+              }
+            });
+
             // 데이터 객체 생성
            const areaList = [];
             areaChkMap.forEach((value, key) => (
@@ -902,22 +916,22 @@
 
             const regionList = [];
             regionChkMap.forEach((value, key) => (
-                areaList.push(value)
+                regionList.push(value)
             ));
 
             const jobStateList = [];
             jobStateMap.forEach((value, key) => (
-                areaList.push(value)
+                jobStateList.push(value)
             ));
 
             const educationLevelList = [];
             educationLevelMap.forEach((value, key) => (
-                areaList.push(value)
+                educationLevelList.push(value)
             ));
 
             const specialAreaList = [];
             specialAreaMap.forEach((value, key) => (
-                areaList.push(value)
+                specialAreaList.push(value)
             ));
 
             const dataToSend = {
@@ -932,7 +946,7 @@
 
 
             // fetch를 사용하여 서버로 데이터 전송
-            fetch(`/policy/list?size=${size}&page=${page}`, {
+            fetch(`/policy/list?size=${size}&page=${page}&sort=${sort}`, {
                 method: "POST",
                 headers: {
                      "Content-Type": "application/json"  // 전송할 데이터의 형식 설정 (JSON)
@@ -1010,7 +1024,7 @@
             });
         }
 
-        
+
 
         // ------------------- 페이지 버튼 리스트 생성 -------------------
        function createPagingButton(data) {

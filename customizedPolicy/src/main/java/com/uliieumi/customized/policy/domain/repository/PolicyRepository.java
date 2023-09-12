@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface PolicyRepository {
 
-    List<Policy> findAll(PolicySearchForm form, int size, int startPostNum);
+    List<Policy> findAll(PolicySearchForm form, int size, int startPostNum, boolean sort);
 
-    List<Policy> findByCondition(PolicySearchForm form, int size, int startPostNum);
+    List<Policy> findByCondition(PolicySearchForm form, int size, int startPostNum, boolean sort);
 
-    int boardCount(PolicySearchForm form);
+    int BasicBoardCount(PolicySearchForm form);
+
+    int SearchBoardCount(PolicySearchForm form, int size, int startPostNum);
 }

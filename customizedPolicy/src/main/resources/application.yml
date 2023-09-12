@@ -1,8 +1,9 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/uliieumi?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/uliieumi?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: test
+
 
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
@@ -14,6 +15,32 @@ mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.uliieumi.customized.policy.domain
   configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
-  logging.level.hello.itemservice.repository.mybatis: trace
+  logging.level.hello.itemservice.repository.mybatis: debug
+
+
+# log4jdbc, Mybatis Console Log
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari: INFO
+    javax:
+      sql:
+        DataSource: OFF
+    jdbc:
+      audit: OFF
+      resultset: OFF
+      resultsettable: INFO  #SQL 결과 데이터 Table을 로그로 남긴다.
+      sqlonly: OFF     #SQL만 로그로 남긴다.
+      sqltiming: INFO    #SQL과 소요시간을 표기한다.
+      connection : OFF  # 커넥션 확인가능
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
 

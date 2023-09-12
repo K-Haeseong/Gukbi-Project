@@ -3,7 +3,7 @@ package com.uliieumi.customized.policy.domain.data;
 
 public enum PolicyCategory {
 
-    SPACE("space", "주거"),
+    SPACE("space", "공간"),
     EDUCATION("education", "교육"),
     FINANCE("finance", "금융"),
     LIVING("living", "생활지원"),

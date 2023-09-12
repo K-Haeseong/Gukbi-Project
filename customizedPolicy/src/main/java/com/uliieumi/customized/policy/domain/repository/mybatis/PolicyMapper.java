@@ -10,9 +10,11 @@ import java.util.List;
 @Mapper
 public interface PolicyMapper {
 
-    List<Policy> findAll(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum);
+    List<Policy> findAll(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum, @Param("sort")boolean sort);
 
-    List<Policy> findByCondition(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum);
+    List<Policy> findByCondition(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum, @Param("sort")boolean sort);
 
-    int boardCount(PolicySearchForm form);
+    int BasicBoardCount(PolicySearchForm form);
+
+    int SearchBoardCount(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum);
 }

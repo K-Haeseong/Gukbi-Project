@@ -15,18 +15,24 @@ public class MyBatisPolicyRepository implements PolicyRepository {
     private final PolicyMapper policyMapper;
 
     @Override
-    public List<Policy> findAll(PolicySearchForm form, int size, int startPostNum) {
-        return policyMapper.findAll(form, size, startPostNum);
+    public List<Policy> findAll(PolicySearchForm form, int size, int startPostNum, boolean sort) {
+        return policyMapper.findAll(form, size, startPostNum, sort);
     }
 
     @Override
-    public List<Policy> findByCondition(PolicySearchForm form, int size, int startPostNum) {
-        return policyMapper.findByCondition(form, size, startPostNum);
+    public List<Policy> findByCondition(PolicySearchForm form, int size, int startPostNum, boolean sort) {
+        return policyMapper.findByCondition(form, size, startPostNum, sort);
     }
 
     @Override
-    public int boardCount(PolicySearchForm form) {
-
-        return policyMapper.boardCount(form);
+    public int BasicBoardCount(PolicySearchForm form) {
+        return policyMapper.BasicBoardCount(form);
     }
+
+    @Override
+    public int SearchBoardCount(PolicySearchForm form, int size, int startPostNum) {
+        return policyMapper.SearchBoardCount(form, size, startPostNum);
+    }
+
+
 }
