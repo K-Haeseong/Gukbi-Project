@@ -11,7 +11,9 @@ public interface PolicyRepository {
 
     List<Policy> findByCondition(PolicySearchForm form, int size, int startPostNum, boolean sort);
 
-    int BasicBoardCount(PolicySearchForm form);
+    int basicBoardCount(PolicySearchForm form);
 
-    int SearchBoardCount(PolicySearchForm form, int size, int startPostNum);
+    int searchBoardCount(PolicySearchForm form, int size, int startPostNum);
+
+    Policy findById(Long id);
 }

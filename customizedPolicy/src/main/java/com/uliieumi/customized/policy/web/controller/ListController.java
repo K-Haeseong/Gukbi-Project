@@ -1,6 +1,7 @@
 package com.uliieumi.customized.policy.web.controller;
 
 
+import com.uliieumi.customized.policy.domain.entity.Policy;
 import com.uliieumi.customized.policy.domain.service.PolicyService;
 import com.uliieumi.customized.policy.web.dto.*;
 import com.uliieumi.customized.policy.web.dto.ErrorResult;
@@ -77,9 +78,10 @@ public class ListController {
     }
 
     @GetMapping("detail/{id}")
-    public String detail(@PathVariable("id") Long id) {
+    public String detail(@PathVariable("id") Long id, Model model) {
 
-
+        DetailPolicyDto foundPolicy = policyService.findPolicyById(id);
+        model.addAttribute("foundPolicy", foundPolicy);
 
         return "policy/detail";
     }

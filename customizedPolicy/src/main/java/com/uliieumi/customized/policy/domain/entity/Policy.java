@@ -13,7 +13,7 @@ public class Policy {
 
     private String name; //제목
 
-    private String filePath;//파일경로
+    private String filePath;//이미지파일경로
 
     private String thumbnail; // 포스터 이미지
 

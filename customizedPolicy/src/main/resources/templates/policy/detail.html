@@ -66,31 +66,45 @@
                 <!-- 정책 목록 -->
                 <div class="policy-summary">
 
-                    <div class="summary-title">
+                    <div class="summary-title"
+                        th:text="${foundPolicy.name}">
                         청년 주거 길잡이 2기 참여자 모집
                     </div>
 
                     <ul class="summary-list">
                         <li>
                             <div class="summary-field">정책분야</div>
-                            <div class="summary-field-content">주거</div>
+                            <div class="summary-field-content"
+                                 th:text="${foundPolicy.category}">주거</div>
+                        </li>
+                        <li>
+                            <div class="summary-field">지역</div>
+                            <div class="summary-field-content">
+                                        <span th:each="region, iterStat : ${foundPolicy.region}">
+                                            <span th:text="|${region}|"></span>
+                                            <span th:if="${!iterStat.last}">,&#32;</span>
+                                        </span>
+                            </div>
                         </li>
                         <li>
                             <div class="summary-field">지원내용</div>
-                            <div class="summary-field-content">지ㅣㅏ정라ㅣ저ㅣㅏ러지ㅏㅓㅇ라ㅣㅓ지ㅏㅓ라ㅣ정리ㅏ
-                                저아ㅣ러지ㅏ러자ㅣㅓ리ㅏ절asdsadasdsdsadadasa sdasdsads </div>
+                            <div class="summary-field-content"
+                                 th:text="${foundPolicy.shortDescription}">지원 내용 적어주세요</div>
                         </li>
                         <li>
                             <div class="summary-field">운영기간</div>
-                            <div class="summary-field-content">2023.01.01~2023.12.31</div>
+                            <div class="summary-field-content"
+                                 th:text="|${foundPolicy.publishedDateTime}~${foundPolicy.closedDateTime}|">2023.01.01~2023.12.31</div>
                         </li>
                         <li>
                             <div class="summary-field">신청기간</div>
-                            <div class="summary-field-content">상시 모집</div>
+                            <div class="summary-field-content"
+                                 th:text="${foundPolicy.deadline}">상시 모집</div>
                         </li>
                         <li>
-                            <div class="summary-field">대상</div>
-                            <div class="summary-field-content">대상인원</div>
+                            <div class="summary-field">모집인원</div>
+                            <div class="summary-field-content"
+                                 th:text="${foundPolicy.recruitsNumber}">00명</div>
                         </li>
                     </ul>
 
@@ -101,63 +115,15 @@
             <div class="policy-box">
 
                 <div class="policy-img-wrap">
-                    <img class="policy-img" src="/images/test-img.jpg">
+                    <img class="policy-img" src="/images/test-img.jpg"
+                         th:src="${foundPolicy.filePath}">
                 </div>
 
 
                 <div class="policy-content-wrap">
-                    <div class="policy-content">
-                    
+                    <div class="policy-content" th:utext="${foundPolicy.content}">
                         <p>
                             읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                        </p>
-                        <br><br><br><br>
-                        <p>
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                        </p>
-
-                        <br><br><br><br>
-                        <p>읍면동 주민센터 방문 접수
                             1.지원신청(주민센터)
                             - 가구원 중 청년이 신청
                             2.대상자 결정(시군구)

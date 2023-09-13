@@ -435,6 +435,7 @@
                 <div class="button-wrap">
                     <button type="reset" class="reset-btn">초기화</button>
                     <button type="submit" class="search-btn">검색</button>
+                    <button type="button" class="setting-btn" onclick="/member/settings">내 정보 설정</button>
                 </div>
             </div>
 
@@ -654,9 +655,14 @@
                 noJobStateLimit.classList.remove("checked");
                 jobStateMap.clear();
             }
+
             li.classList.toggle("checked");
             const input = li.querySelector("input");
-            jobStateMap.set(input.dataset.order, input.value);
+            if (jobStateMap.has(input.dataset.order)) {
+                jobStateMap.delete(input.dataset.order, input.value);
+            } else {
+                jobStateMap.set(input.dataset.order, input.value);
+            }
         })
     });
 
@@ -736,9 +742,13 @@
                 educationLevelMap.clear();
             }
             // 해당 버튼 체크, 해당 값 추가 
-            li.classList.toggle("checked"); 
+            li.classList.toggle("checked");
             const input = li.querySelector("input");
-            educationLevelMap.set(input.dataset.order, input.value);
+            if (educationLevelMap.has(input.dataset.order)) {
+                educationLevelMap.delete(input.dataset.order, input.value);
+            } else {
+                educationLevelMap.set(input.dataset.order, input.value);
+            }
         });
     });
 
@@ -814,9 +824,13 @@
                 noSpecialAreaLimit.classList.remove("checked");
                 specialAreaMap.clear();
             }
-            li.classList.toggle("checked");
+           li.classList.toggle("checked");
             const input = li.querySelector("input");
-            specialAreaMap.set(input.dataset.order, input.value);
+            if (specialAreaMap.has(input.dataset.order)) {
+                specialAreaMap.delete(input.dataset.order, input.value);
+            } else {
+                specialAreaMap.set(input.dataset.order, input.value);
+            }
         })
     });
 

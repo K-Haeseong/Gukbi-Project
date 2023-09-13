@@ -1,6 +1,7 @@
 package com.uliieumi.customized.policy.domain.service;
 
 import com.uliieumi.customized.policy.domain.entity.Policy;
+import com.uliieumi.customized.policy.web.dto.DetailPolicyDto;
 import com.uliieumi.customized.policy.web.dto.PageDTO;
 import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
 
@@ -15,4 +16,6 @@ public interface PolicyService {
     PageDTO pagingBasicParam(PolicySearchForm form, int size, int page, boolean sort);
 
     PageDTO pagingSearchParam(PolicySearchForm form, int size, int page, boolean sort);
+
+    DetailPolicyDto findPolicyById(Long id);
 }

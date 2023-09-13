@@ -25,13 +25,18 @@ public class MyBatisPolicyRepository implements PolicyRepository {
     }
 
     @Override
-    public int BasicBoardCount(PolicySearchForm form) {
-        return policyMapper.BasicBoardCount(form);
+    public int basicBoardCount(PolicySearchForm form) {
+        return policyMapper.basicBoardCount(form);
     }
 
     @Override
-    public int SearchBoardCount(PolicySearchForm form, int size, int startPostNum) {
-        return policyMapper.SearchBoardCount(form, size, startPostNum);
+    public int searchBoardCount(PolicySearchForm form, int size, int startPostNum) {
+        return policyMapper.searchBoardCount(form, size, startPostNum);
+    }
+
+    @Override
+    public Policy findById(Long id) {
+        return policyMapper.findById(id);
     }
 
 

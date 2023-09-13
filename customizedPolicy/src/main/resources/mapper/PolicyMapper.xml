@@ -74,14 +74,20 @@
     </select>
 
 
+    <select id="findById" resultType="Policy" >
+        SELECT * FROM policy
+        where id = #{id}
+    </select>
+
+
 
 
     <!-- 페이징 관련  -->
-    <select id="BasicBoardCount" resultType="Integer">
+    <select id="basicBoardCount" resultType="Integer">
         select count(id) from policy;
     </select>
 
-    <select id="SearchBoardCount" resultType="Integer">
+    <select id="searchBoardCount" resultType="Integer">
         SELECT count(id)
         FROM policy
         WHERE 1=1

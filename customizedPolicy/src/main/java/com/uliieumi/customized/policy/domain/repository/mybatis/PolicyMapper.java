@@ -14,7 +14,9 @@ public interface PolicyMapper {
 
     List<Policy> findByCondition(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum, @Param("sort")boolean sort);
 
-    int BasicBoardCount(PolicySearchForm form);
+    int basicBoardCount(@Param("form") PolicySearchForm form);
 
-    int SearchBoardCount(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum);
+    int searchBoardCount(@Param("form")PolicySearchForm form, @Param("size")int size, @Param("startPostNum")int startPostNum);
+
+    Policy findById(@Param("id") Long id);
 }

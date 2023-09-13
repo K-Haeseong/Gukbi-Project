@@ -297,6 +297,18 @@
     font-family: 'LINESeedKR-Bd'
 }
 
+.setting-btn {
+    background-color: white;
+    color: #1351b8;
+    border: solid 4px;
+    border-color: #1351b8;
+    width: 140px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'LINESeedKR-Bd'
+}
+
 /* 정책 검색결과 */
 
 .policy-summary {

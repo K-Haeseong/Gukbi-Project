@@ -2,6 +2,7 @@ package com.uliieumi.customized.policy.domain.service;
 
 import com.uliieumi.customized.policy.domain.entity.Policy;
 import com.uliieumi.customized.policy.domain.repository.PolicyRepository;
+import com.uliieumi.customized.policy.web.dto.DetailPolicyDto;
 import com.uliieumi.customized.policy.web.dto.PageDTO;
 import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class PolicySearchService implements PolicyService{
     public PageDTO pagingBasicParam(PolicySearchForm form, int size, int page, boolean sort) {
 
         // 조회된 게시글 수
-        int boardCount = policyRepository.BasicBoardCount(form);
+        int boardCount = policyRepository.basicBoardCount(form);
 
         int remainder = boardCount % size;
         int pageCount = boardCount / size;
@@ -61,7 +62,7 @@ public class PolicySearchService implements PolicyService{
     @Override
     public PageDTO pagingSearchParam(PolicySearchForm form, int size, int page, boolean sort) {
 
-        int boardCount = policyRepository.SearchBoardCount(form, size, page);
+        int boardCount = policyRepository.searchBoardCount(form, size, page);
 
         int remainder = boardCount % size;
         int pageCount = boardCount / size;
@@ -84,5 +85,12 @@ public class PolicySearchService implements PolicyService{
         pageDTO.setStartPage(startPage);
         pageDTO.setEndPage(endPage);
         return pageDTO;
+    }
+
+    @Override
+    public DetailPolicyDto findPolicyById(Long id) {
+        Policy foundPolicy = policyRepository.findById(id);
+
+        return new DetailPolicyDto(foundPolicy);
     }
 }
