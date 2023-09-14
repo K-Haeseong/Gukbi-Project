@@ -55,9 +55,7 @@
         <div class="detail-cont">
         
             <div class="information-wrap">
-                <div class="information-title">
-                    정책 정보
-                </div>
+                <span class="information-title">정책 정보</span>
             </div>
 
 
@@ -94,7 +92,7 @@
                         <li>
                             <div class="summary-field">운영기간</div>
                             <div class="summary-field-content"
-                                 th:text="|${foundPolicy.publishedDateTime}~${foundPolicy.closedDateTime}|">2023.01.01~2023.12.31</div>
+                                 th:text="|${foundPolicy.publishedDateTime} ~ ${foundPolicy.closedDateTime}|">2023.01.01~2023.12.31</div>
                         </li>
                         <li>
                             <div class="summary-field">신청기간</div>

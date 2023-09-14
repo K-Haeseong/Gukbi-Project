@@ -1,10 +1,11 @@
 package com.uliieumi.customized.policy.web.controller;
 
 
-import com.uliieumi.customized.policy.domain.entity.Policy;
 import com.uliieumi.customized.policy.domain.service.PolicyService;
 import com.uliieumi.customized.policy.web.dto.*;
 import com.uliieumi.customized.policy.web.dto.ErrorResult;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.uliieumi.customized.policy.domain.data.EducationLevel.UNIVGRAD;
+import static com.uliieumi.customized.policy.domain.data.JobState.JOBLESS;
+import static com.uliieumi.customized.policy.domain.data.PolicyCategory.JOB;
+import static com.uliieumi.customized.policy.domain.data.PolicyRegion.SEOUL;
+import static com.uliieumi.customized.policy.domain.data.SpecificClass.NOLIMIT;
 
 @Slf4j
 @Controller
@@ -36,6 +43,26 @@ public class ListController {
 
         PageDTO paging = policyService.pagingBasicParam(new PolicySearchForm(), 6,1, true);
 
+
+        @Data
+        @AllArgsConstructor
+        class MemberInterest{
+            private int age;
+
+            private String category; //정책분야
+
+            private String region; //지역
+
+            private String jobState; //취업상태
+
+            private String educationLevel; //학력
+
+            private String specificClass; //특정계층
+        }
+
+        MemberInterest memberInterest = new MemberInterest(30, JOB.param, SEOUL.param, JOBLESS.param, UNIVGRAD.param, NOLIMIT.param);
+
+        model.addAttribute("memberInterest", memberInterest);
         model.addAttribute("paging", paging);
         model.addAttribute("policies", policies);
         return "policy/list";
@@ -81,8 +108,11 @@ public class ListController {
     public String detail(@PathVariable("id") Long id, Model model) {
 
         DetailPolicyDto foundPolicy = policyService.findPolicyById(id);
-        model.addAttribute("foundPolicy", foundPolicy);
+        int updateHit = foundPolicy.getHit() + 1;
+        policyService.updateHit(updateHit, id);
 
+
+        model.addAttribute("foundPolicy", foundPolicy);
         return "policy/detail";
     }
 

@@ -39,5 +39,10 @@ public class MyBatisPolicyRepository implements PolicyRepository {
         return policyMapper.findById(id);
     }
 
+    @Override
+    public void updatePolicy(int updateHit, Long id) {
+        policyMapper.updatePolicy(updateHit, id);
+    }
+
 
 }

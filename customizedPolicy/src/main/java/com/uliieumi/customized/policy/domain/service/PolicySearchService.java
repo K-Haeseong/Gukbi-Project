@@ -56,6 +56,7 @@ public class PolicySearchService implements PolicyService{
         pageDTO.setMaxPage(maxPage);
         pageDTO.setStartPage(startPage);
         pageDTO.setEndPage(endPage);
+        pageDTO.setBoardCount(boardCount);
         return pageDTO;
     }
 
@@ -84,6 +85,7 @@ public class PolicySearchService implements PolicyService{
         pageDTO.setMaxPage(maxPage);
         pageDTO.setStartPage(startPage);
         pageDTO.setEndPage(endPage);
+        pageDTO.setBoardCount(boardCount);
         return pageDTO;
     }
 
@@ -92,5 +94,10 @@ public class PolicySearchService implements PolicyService{
         Policy foundPolicy = policyRepository.findById(id);
 
         return new DetailPolicyDto(foundPolicy);
+    }
+
+    @Override
+    public void updateHit(int updateHit, Long id) {
+        policyRepository.updatePolicy(updateHit, id);
     }
 }

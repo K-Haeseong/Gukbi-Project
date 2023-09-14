@@ -36,6 +36,8 @@ public class DetailPolicyDto {
 
     private String content; //에디터컨텐츠
 
+    private Integer hit; // 조회수
+
 
     public DetailPolicyDto(Policy policy) {
         this.id = policy.getId();
@@ -53,5 +55,6 @@ public class DetailPolicyDto {
         this.category = policy.getCategory().text;
         this.deadline = policy.getDeadline();
         this.content = policy.getContent();
+        this.hit = policy.getHit();
     }
 }

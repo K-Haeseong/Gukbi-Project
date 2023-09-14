@@ -18,4 +18,6 @@ public interface PolicyService {
     PageDTO pagingSearchParam(PolicySearchForm form, int size, int page, boolean sort);
 
     DetailPolicyDto findPolicyById(Long id);
+
+    void updateHit(int updateHit, Long id);
 }

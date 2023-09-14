@@ -8,12 +8,15 @@
     margin:auto;
 }
 
+.information-wrap {
+    text-align: center;
+}
+
 .information-title {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: bold;
-    width: 120px;
     margin: auto;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
     border-bottom: 3px solid #1351b8;
     font-family: 'BMDOHYEON';
 }

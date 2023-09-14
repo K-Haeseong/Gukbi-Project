@@ -32,6 +32,8 @@ public class PolicyDto {
     private String category; //정책분야
 
     private String deadline; //신청기간
+    
+    private Integer hit; //조회수
 
 
     public PolicyDto(Policy policy) {
@@ -49,5 +51,6 @@ public class PolicyDto {
         ).collect(Collectors.toList());
         this.category = policy.getCategory().text;
         this.deadline = policy.getDeadline();
+        this.hit = policy.getHit();
     }
 }

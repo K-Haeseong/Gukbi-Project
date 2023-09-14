@@ -16,4 +16,6 @@ public interface PolicyRepository {
     int searchBoardCount(PolicySearchForm form, int size, int startPostNum);
 
     Policy findById(Long id);
+
+    void updatePolicy(int updateHit, Long id);
 }

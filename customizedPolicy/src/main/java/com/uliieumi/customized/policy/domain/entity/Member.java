@@ -8,9 +8,11 @@ import java.util.Date;
 @Getter
 public class Member {
 
-    private Long id;
+//    private Long id;
 
     private String name;
+
+    private int age;
 
     private String loginId;
 
@@ -24,7 +26,7 @@ public class Member {
 
     private Date birth;
 
-    private PolicyRegion region; //지역
+    private PolicyRegion interestCategory; //지역
 
     private PolicyCategory category; //정책분야
 
@@ -35,12 +37,8 @@ public class Member {
     private SpecificClass specificClass; //특정계층
 
 
-    public Member(Long id, String name, String loginId, String password,
-                  String email, String phone, Boolean sex, Date birth,
-                  PolicyRegion region, PolicyCategory category,
-                  JobState jobState, EducationLevel educationLevel, SpecificClass specificClass) {
-
-        this.id = id;
+    public Member(String name, String loginId, String password, String email, String phone, Boolean sex, Date birth, PolicyRegion interestCategory, PolicyCategory category, JobState jobState, EducationLevel educationLevel, SpecificClass specificClass) {
+//        this.id = id;
         this.name = name;
         this.loginId = loginId;
         this.password = password;
@@ -48,14 +46,11 @@ public class Member {
         this.phone = phone;
         this.sex = sex;
         this.birth = birth;
-        this.region = region;
+        this.birth = birth;
+        this.interestCategory = interestCategory;
         this.category = category;
         this.jobState = jobState;
         this.educationLevel = educationLevel;
         this.specificClass = specificClass;
-
     }
-
-
-
 }

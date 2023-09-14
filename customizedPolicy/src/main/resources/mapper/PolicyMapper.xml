@@ -79,6 +79,13 @@
         where id = #{id}
     </select>
 
+    <!-- 정책 업데이트    -->
+    <update id="updatePolicy">
+        UPDATE policy
+        SET hit= #{hit}
+        WHERE id = #{id}
+    </update>
+
 
 
 

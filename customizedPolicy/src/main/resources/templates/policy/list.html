@@ -51,10 +51,11 @@
 
     <!-------------------- 메인 시작 ------------------->
         <main class="search-main">
-            <div class="title">
-                정책 통합검색
-            </div>
-
+            <div class="title-wrap">
+                <span class="title">
+                    정책 통합검색
+                </span>
+            </div>    
             
 
             <div class="policy-search-wrap"> <!---여기 안으로 청년정책 검색 넣었는데도 가운데랑 안 맞음--->
@@ -107,52 +108,52 @@
                                     </div>
                                     <li>
                                         <label>공간</label>
-                                        <input type="checkbox" data-order="1" value="SPACE" hidden>
+                                        <input type="checkbox" data-order="1" value="space" hidden>
                                     </li>
 
                                     <li>
                                         <label>교육</label>
-                                        <input type="checkbox" data-order="2" value="EDUCATION" hidden>
+                                        <input type="checkbox" data-order="2" value="education" hidden>
                                     </li>
 
                                     <li>
                                         <label>금융</label>
-                                        <input type="checkbox" data-order="3" value="FINANCE" hidden>
+                                        <input type="checkbox" data-order="3" value="finance" hidden>
                                     </li>
 
                                     <li>
                                         <label>생활지원</label>
-                                        <input type="checkbox" data-order="4" value="LIVING" hidden>
+                                        <input type="checkbox" data-order="4" value="living" hidden>
                                     </li>
 
                                     <li>
                                         <label>건강</label>
-                                        <input type="checkbox" data-order="5" value="HEALTH" hidden>
+                                        <input type="checkbox" data-order="5" value="health" hidden>
                                     </li>
 
                                     <li>
                                         <label>일자리</label>
-                                        <input type="checkbox" data-order="6" value="JOB" hidden>
+                                        <input type="checkbox" data-order="6" value="job" hidden>
                                     </li>
 
                                     <li>
                                         <label>주거</label>
-                                        <input type="checkbox" data-order="7" value="HOUSE" hidden>
+                                        <input type="checkbox" data-order="7" value="house" hidden>
                                     </li>
 
                                     <li>
                                         <label>진로</label>
-                                        <input type="checkbox" data-order="8" value="CAREER" hidden>
+                                        <input type="checkbox" data-order="8" value="career" hidden>
                                     </li>
 
                                     <li>
                                         <label>창업</label>
-                                        <input type="checkbox" data-order="9" value="STARTUP" hidden>
+                                        <input type="checkbox" data-order="9" value="startup" hidden>
                                     </li>
 
                                     <li>
                                         <label>문화·예술</label>
-                                        <input type="checkbox" data-order="10 " value="CULTURE" hidden>
+                                        <input type="checkbox" data-order="10 " value="culture" hidden>
                                     </li>
                                 </ul>
                             </div>
@@ -435,7 +436,7 @@
                 <div class="button-wrap">
                     <button type="reset" class="reset-btn">초기화</button>
                     <button type="submit" class="search-btn">검색</button>
-                    <button type="button" class="setting-btn" onclick="/member/settings">내 정보 설정</button>
+                    <button type="button" class="setting-btn">내 정보 설정</button>
                 </div>
             </div>
 
@@ -445,6 +446,8 @@
                 <div class="policy-result-header">
                     <div class="sub-title-2">
                         정책 검색결과
+                        <span class="policy-result-count" th:text="${paging.boardCount}">00</span>
+                        건
                     </div>
                     <div class="srchSortOrder-wrap">
                         <input type="radio" id="sort1" name="srchSort" class="srchSortOrder" value="true" checked>
@@ -540,10 +543,8 @@
 
 
 
-    <script>
+<script th:inline="javascript">
     // ---------------------- 일반 검색 조건 -------------------------
-
-
 
     // 정책이름 및 내용
     const policyNameInput = document.querySelector(".policy-name-input");
@@ -641,7 +642,7 @@
     const stateAllCheck = document.querySelector(".state-all-check");
 
     // 제한없음 버튼
-    const noJobStateLimit = document.querySelector(".job-state-list > .no-Limit");
+    const noLimit1 = document.querySelector(".job-state-list > .no-Limit");
 
     
     jobStatebtn.addEventListener("click", () => {
@@ -651,8 +652,8 @@
 
     childStateList.forEach(li => {
         li.addEventListener("click", () => {
-            if(noJobStateLimit.classList.contains("checked")){
-                noJobStateLimit.classList.remove("checked");
+            if(noLimit1.classList.contains("checked")){
+                noLimit1.classList.remove("checked");
                 jobStateMap.clear();
             }
 
@@ -670,9 +671,9 @@
 
 
 
-    noJobStateLimit.addEventListener("click", () => {
-        if(noJobStateLimit.classList.contains("checked")) {
-            noJobStateLimit.classList.remove("checked")
+    noLimit1.addEventListener("click", () => {
+        if(noLimit1.classList.contains("checked")) {
+            noLimit1.classList.remove("checked")
             jobStateMap.clear()
         } else {
             childStateList.forEach(target => {
@@ -680,16 +681,16 @@
             })
             jobStateMap.clear();
 
-            const input = noJobStateLimit.querySelector("input");
+            const input = noLimit1.querySelector("input");
             jobStateMap.set(input.dataset.order, input.value);
-            noJobStateLimit.classList.add("checked")
+            noLimit1.classList.add("checked")
         }
     })
 
 
 
     stateAllCheck.addEventListener("click", () => {
-        noJobStateLimit.classList.remove("checked")
+        noLimit1.classList.remove("checked")
         if (jobStateMap.size === 8) {
             jobStateMap.clear();
             childStateList.forEach(li => {
@@ -723,7 +724,7 @@
     const childLevelList = document.querySelectorAll(".education-level-list li:not(:first-child):not(:last-child)") 
    
     // 제한없음 버튼
-    const noLimit = document.querySelector(".education-level-list > .no-Limit");
+    const noLimit2 = document.querySelector(".education-level-list > .no-Limit");
 
 
 
@@ -737,8 +738,8 @@
     childLevelList.forEach(li => {
         li.addEventListener("click", () => {
             // 하나의 버튼 클릭 할 때, 제한없음 클릭 되어 O -> 제한없음 체크 해제, 제한없음 값 제거
-            if(noLimit.classList.contains("checked")){
-                noLimit.classList.remove("checked");
+            if(noLimit2.classList.contains("checked")){
+                noLimit2.classList.remove("checked");
                 educationLevelMap.clear();
             }
             // 해당 버튼 체크, 해당 값 추가 
@@ -753,10 +754,10 @@
     });
 
 
-    noLimit.addEventListener("click", () => {
+    noLimit2.addEventListener("click", () => {
         // 제한없음 체크 O -> 체크 해제, 값 지움
-        if(noLimit.classList.contains("checked")){
-            noLimit.classList.remove("checked");
+        if(noLimit2.classList.contains("checked")){
+            noLimit2.classList.remove("checked");
             educationLevelMap.clear();
         } else {
             // 제한없음 체크 X -> 체크 표시
@@ -767,16 +768,16 @@
             educationLevelMap.clear();
 
             // 제한없음 체크 되어 있으므로, 제한없음 값 추가
-            const input = noLimit.querySelector("input");
+            const input = noLimit2.querySelector("input");
             educationLevelMap.set(input.dataset.order, input.value);
-            noLimit.classList.add("checked")
+            noLimit2.classList.add("checked")
         }
     })
 
 
     levelAllCheck.addEventListener("click", () => {
         // 제한없음 표시 되어 O -> 제한 없음 표시 제거
-        noLimit.classList.remove("checked");
+        noLimit2.classList.remove("checked");
         if (educationLevelMap.size === 8) {
             educationLevelMap.clear();
             childLevelList.forEach(li => {
@@ -809,7 +810,7 @@
     const specialAreaAllCheck = document.querySelector(".special-all-check")
 
     // 제한없음 버튼
-    const noSpecialAreaLimit = document.querySelector(".special-list > .no-Limit");
+    const noLimit3 = document.querySelector(".special-list > .no-Limit");
 
 
 
@@ -820,8 +821,8 @@
 
     childAreaList.forEach(li => {
         li.addEventListener("click", () => {
-            if(noSpecialAreaLimit.classList.contains("checked")){
-                noSpecialAreaLimit.classList.remove("checked");
+            if(noLimit3.classList.contains("checked")){
+                noLimit3.classList.remove("checked");
                 specialAreaMap.clear();
             }
            li.classList.toggle("checked");
@@ -836,11 +837,9 @@
 
 
 
-
-
-    noSpecialAreaLimit.addEventListener("click", () => {
-        if(noSpecialAreaLimit.classList.contains("checked")) {
-            noSpecialAreaLimit.classList.remove("checked")
+    noLimit3.addEventListener("click", () => {
+        if(noLimit3.classList.contains("checked")) {
+            noLimit3.classList.remove("checked")
             specialAreaMap.clear()
         } else {
             childAreaList.forEach(target => {
@@ -848,16 +847,16 @@
             })
             specialAreaMap.clear();
 
-            const input = noSpecialAreaLimit.querySelector("input");
+            const input = noLimit3.querySelector("input");
             specialAreaMap.set(input.dataset.order, input.value);
-            noSpecialAreaLimit.classList.add("checked")
+            noLimit3.classList.add("checked")
         }
     })
 
 
 
     specialAreaAllCheck.addEventListener("click", () => {
-        noSpecialAreaLimit.classList.remove("checked")
+        noLimit3.classList.remove("checked")
         if (specialAreaMap.size === 5) {
             specialAreaMap.clear();
             childAreaList.forEach(li => {
@@ -896,17 +895,106 @@
 
         // educationLevelMap의 값을 지웠으므로
         // 제한없음 버튼이 클릭 되어 있으면 체크 표시 해제만 시켜 주면 된다.
-        noLimit.classList.remove("checked");
+        noLimit1.classList.remove("checked");
+        noLimit2.classList.remove("checked");
+        noLimit3.classList.remove("checked");
 
         document.querySelector(".policy-age-input").value="";
         document.querySelector(".policy-name-input").value="";
         })
 
 
-     // --------------------Fetch 사용--------------------
-    document.querySelector(".search-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
-    document.querySelector(".sort-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
 
+    //--------------------- 내 정보 설정----------------------
+
+    const member = [[${memberInterest}]]
+
+    function settingButtonClick() {
+    reset(areaList, areaChkMap);
+    reset(regionList, regionChkMap);
+    reset(childStateList, jobStateMap);
+    reset(childLevelList, educationLevelMap);
+    reset(childAreaList, specialAreaMap);
+
+    noLimit1.classList.remove("checked");
+    noLimit2.classList.remove("checked");
+    noLimit3.classList.remove("checked");
+
+    document.querySelector(".policy-name-input").value = "";
+    document.querySelector(".policy-age-input").value = member.age;
+    
+    jobStateList.classList.toggle("open-close");
+    educationLevelList.classList.toggle("open-close");
+    specialAreaList.classList.toggle("open-close");
+
+
+    const AllStateList = document.querySelectorAll(".job-state-list li:not(:first-child)")
+    const AllLevelList = document.querySelectorAll(".education-level-list li:not(:first-child)")
+    const AllAreaList = document.querySelectorAll(".special-list li:not(:first-child)")    
+
+    areaList.forEach(li => {
+        const input = li.querySelector('input');
+        if (input.value == member.category) {
+            li.classList.add("checked");
+            areaChkMap.set(input.dataset.order, input.value);
+            }
+        });
+    
+
+    regionList.forEach(li => {
+        const input = li.querySelector('input');
+        if (input.value == member.region) {
+            li.classList.add("checked");
+            regionChkMap.set(input.dataset.order, input.value);
+            }
+        });
+    
+
+    AllStateList.forEach(li => {
+        const input = li.querySelector('input');
+        if (input.value == member.jobState) {
+            li.classList.add("checked");
+            jobStateMap.set(input.dataset.order, input.value);
+            }
+        });
+    
+
+    AllLevelList.forEach(li => {
+        const input = li.querySelector('input');
+        if (input.value == member.educationLevel) {
+            li.classList.add("checked");
+            educationLevelMap.set(input.dataset.order, input.value);
+            }
+        });
+
+    
+    AllAreaList.forEach(li => {
+        const input = li.querySelector('input');
+        if (input.value == member.specificClass) {
+            li.classList.add("checked");
+            specialAreaMap.set(input.dataset.order, input.value);
+            }
+        });
+    }
+
+    const settingBtn = document.querySelector(".setting-btn");
+    settingBtn.addEventListener("click", settingButtonClick);
+
+
+
+
+
+     // --------------------Fetch 사용--------------------
+    document.querySelector(".search-btn").addEventListener("click", () => {
+        if (/^[0-9]$/.test(policyAgeInput.value) || policyAgeInput.value === "") {
+            sendData(1)}
+        else {
+            alert('연령에는 숫자만 입력 해주세요.')
+        }
+    });
+
+    document.querySelector(".sort-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
+    
 
         function sendData(page) {
 
@@ -977,6 +1065,7 @@
                 // 서버로부터 받은 데이터
                 console.log("서버 응답 데이터:", data);
                 createNewPolicyList(data.policyDTO);
+                createBoardCount(data.pageDTO)
                 createPagingButton(data.pageDTO);
              })
             .catch(error => {
@@ -984,11 +1073,11 @@
                 console.error("에러 발생:", error.message);
             });
         }
-    </script>
+</script>
 
 
 
-    <script>
+<script>
     // ------------------- 정책 리스트 생성 -------------------
         function createNewPolicyList(policies) {
             const policyList = document.querySelector(".policy-list");
@@ -1038,6 +1127,19 @@
             });
         }
 
+        
+        // ------------------- 정책 검색 결과 건수 ----------------------
+        function createBoardCount(data) {
+            const boardResult = document.querySelector(".sub-title-2");
+            boardResult.innerHTML = "";
+            newBoardResultTag = 
+                        `정책 검색결과
+                        <span class="policy-result-count">${data.boardCount}</span>
+                        건`
+            boardResult.innerHTML = newBoardResultTag;
+        }
+
+
 
 
         // ------------------- 페이지 버튼 리스트 생성 -------------------
@@ -1057,7 +1159,7 @@
             newPolicyTag += `<button class="next-btn" onclick="sendData(${data.endPage == data.maxPage ? data.maxPage : data.endPage+1})">&#62;</button>`
             pagingButtonList.innerHTML = newPolicyTag;
         }
-    </script>
+</script>
 
 </body>
 </html>
