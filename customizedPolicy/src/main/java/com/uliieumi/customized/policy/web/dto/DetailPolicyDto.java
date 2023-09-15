@@ -17,8 +17,10 @@ public class DetailPolicyDto {
 
     private String name; //제목
 
-    private String filePath; // 이미지파일경로
+    private String thumbnail; // 이미지파일경로
     // 에디터 컨텐츠 이미지 파일 안 나올 경우 대비
+
+    private String document;
 
     private String shortDescription; //짧은소개
 
@@ -39,10 +41,12 @@ public class DetailPolicyDto {
     private Integer hit; // 조회수
 
 
+
+
     public DetailPolicyDto(Policy policy) {
         this.id = policy.getId();
         this.name = policy.getName();
-        this.filePath = policy.getFilePath();
+        this.thumbnail = policy.getThumbnail();
         this.shortDescription = policy.getShortDescription();
         this.publishedDateTime = policy.getPublishedDateTime();
         this.closedDateTime = policy.getClosedDateTime();
@@ -56,5 +60,6 @@ public class DetailPolicyDto {
         this.deadline = policy.getDeadline();
         this.content = policy.getContent();
         this.hit = policy.getHit();
+        this.document = policy.getDocument();
     }
 }

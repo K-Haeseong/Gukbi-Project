@@ -13,9 +13,9 @@ public class Policy {
 
     private String name; //제목
 
-    private String filePath;//이미지파일경로
-
     private String thumbnail; // 포스터 이미지
+
+    private String document; // 첨부파일
 
     private String shortDescription; //짧은소개
 

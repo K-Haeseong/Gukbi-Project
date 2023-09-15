@@ -10,12 +10,6 @@
 }
 
 
-
-
-
-
-
-
 .logo-box{
     display: flex;
     justify-content: space-between;
@@ -24,9 +18,11 @@
     margin: auto;
 }
 
+
 .logo{
     height: 40px;
 }
+
 
 .main-logo span{
     font-size: 18px;

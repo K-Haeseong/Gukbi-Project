@@ -75,7 +75,7 @@
 }
 
 .page-category {
-    width: 80px;
+    width: 90px;
     height: 34px;
     font-size: 18px;
     margin-left: 10px;
@@ -376,6 +376,7 @@
     justify-content: center;
     background-color: #ffdd83;
     align-items: center;
+    font-weight: bold;
     font-family: 'GmarketSansMedium';
     color: black;
 }

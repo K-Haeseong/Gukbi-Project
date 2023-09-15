@@ -17,7 +17,7 @@ public class PolicyDto {
 
     private String name; //제목
 
-    private String filePath; //파일경로
+    private String thumbnail; //파일경로
 
     private String shortDescription; //짧은소개
 
@@ -39,7 +39,7 @@ public class PolicyDto {
     public PolicyDto(Policy policy) {
         this.id = policy.getId();
         this.name = policy.getName();
-        this.filePath = policy.getFilePath();
+        this.thumbnail = policy.getThumbnail();
         this.shortDescription = policy.getShortDescription();
         this.publishedDateTime = policy.getPublishedDateTime();
         this.closedDateTime = policy.getClosedDateTime();

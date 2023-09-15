@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>정책 리스트</title>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/list.css">
@@ -466,7 +466,7 @@
                 <ul class="policy-list">
                     <li th:each="policy : ${policies}">
                         <!-- 정책 이미지 -->
-                        <a th:href="|/policy/detail/${policy.id}|"><img class="policy-img" th:src="${policy.filePath}"></a>
+                        <a th:href="|/policy/detail/${policy.id}|"><img class="policy-img" th:src="${policy.thumbnail}"></a>
 
                         <!-- 정책 목록 -->
                         <div class="policy-summary">
@@ -981,12 +981,9 @@
     settingBtn.addEventListener("click", settingButtonClick);
 
 
-
-
-
      // --------------------Fetch 사용--------------------
     document.querySelector(".search-btn").addEventListener("click", () => {
-        if (/^[0-9]$/.test(policyAgeInput.value) || policyAgeInput.value === "") {
+        if (/^[0-9]+$/.test(policyAgeInput.value) || policyAgeInput.value === "") {
             sendData(1)}
         else {
             alert('연령에는 숫자만 입력 해주세요.')
