@@ -49,4 +49,30 @@ public class Policy {
 
     private String content; //에디터컨텐츠
 
+    public Policy() {
+    }
+
+    public Policy(Long id, String name, String thumbnail, String document, String shortDescription, LocalDate publishedDateTime, LocalDate closedDateTime, Integer recruitsNumber, Integer minAge, Integer maxAge, String region,
+                  PolicyCategory category, JobState jobState, EducationLevel educationLevel, SpecificClass specificClass, String proposal, Integer hit, String deadline, String createdDate, String content) {
+        this.id = id;
+        this.name = name;
+        this.thumbnail = thumbnail;
+        this.document = document;
+        this.shortDescription = shortDescription;
+        this.publishedDateTime = publishedDateTime;
+        this.closedDateTime = closedDateTime;
+        this.recruitsNumber = recruitsNumber;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
+        this.region = region;
+        this.category = category;
+        this.jobState = jobState;
+        this.educationLevel = educationLevel;
+        this.specificClass = specificClass;
+        this.proposal = proposal;
+        this.hit = hit;
+        this.deadline = deadline;
+        this.createdDate = createdDate;
+        this.content = content;
+    }
 }

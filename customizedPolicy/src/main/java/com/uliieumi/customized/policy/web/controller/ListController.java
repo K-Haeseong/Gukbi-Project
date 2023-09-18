@@ -36,12 +36,12 @@ public class ListController {
 
     @GetMapping("list")
     public String list(Model model) {
-        List<PolicyDto> policies = policyService.searchAllPolicy(new PolicySearchForm(), 6,1, true)
+        List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6,1, true)
                 .stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        PageDTO paging = policyService.pagingBasicParam(new PolicySearchForm(), 6,1, true);
+        PageDTO paging = policyService.pagingSearchParam(new PolicySearchForm(), 6,1, true);
 
 
         @Data
@@ -71,10 +71,10 @@ public class ListController {
 
     @PostMapping("list")
     @ResponseBody
-    public ResponseEntity<Object> specificList(@RequestBody @Validated PolicySearchForm form, BindingResult bindingResult,
-                                               @RequestParam int size, @RequestParam int page, @RequestParam boolean sort) {
+    public ResponseEntity<Object> policyList(@RequestBody @Validated PolicySearchForm form, BindingResult bindingResult,
+                                             @RequestParam int size, @RequestParam int page, @RequestParam boolean sort) {
 
-        log.info("size,page = {} {} {}", form, size, page);
+        log.info("form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
         if(bindingResult.hasErrors()) {
             ArrayList<ErrorResult> errorResults = new ArrayList<>();
@@ -83,26 +83,19 @@ public class ListController {
         }
 
 
-        List<PolicyDto> policies;
-        PageDTO paging;
-        if(form==null) {
-            policies = policyService.searchAllPolicy(form,size,page,sort).stream()
-                    .map(policy -> new PolicyDto(policy))
-                    .collect(Collectors.toList());
-
-            paging= policyService.pagingBasicParam(form,size,page,sort);
-        }
-
-        policies = policyService.searchPolicy(form,size,page,sort).stream()
+        List<PolicyDto> policies = policyService.searchPolicy(form,size,page,sort).stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        paging= policyService.pagingSearchParam(form,size,page,sort);
+        log.info("POST 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", form, size, page, sort);
+
+        PageDTO paging= policyService.pagingSearchParam(form,size,page,sort);
 
         PolicyPageDTO policyPageDTO = new PolicyPageDTO(policies, paging);
 
         return new ResponseEntity<>(policyPageDTO, HttpStatus.OK);
     }
+
 
     @GetMapping("detail/{id}")
     public String detail(@PathVariable("id") Long id, Model model) {

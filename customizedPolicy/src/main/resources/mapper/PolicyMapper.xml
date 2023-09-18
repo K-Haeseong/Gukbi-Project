@@ -3,17 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.uliieumi.customized.policy.domain.repository.mybatis.PolicyMapper">
-    <select id="findAll" resultType="Policy" >
-        SELECT * FROM policy
-        <if test="sort==true">
-            ORDER BY created_date ASC
-        </if>
-        <if test="sort==false">
-            ORDER BY hit DESC
-        </if>
-        LIMIT #{size} OFFSET #{startPostNum}
-    </select>
-
 
     <select id="findByCondition" resultType="Policy">
         SELECT *
@@ -90,9 +79,6 @@
 
 
     <!-- 페이징 관련  -->
-    <select id="basicBoardCount" resultType="Integer">
-        select count(id) from policy;
-    </select>
 
     <select id="searchBoardCount" resultType="Integer">
         SELECT count(id)

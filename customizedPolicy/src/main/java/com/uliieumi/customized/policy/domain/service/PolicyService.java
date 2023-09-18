@@ -9,11 +9,8 @@ import java.util.List;
 
 public interface PolicyService {
 
-    List<Policy> searchAllPolicy(PolicySearchForm form, int size, int page, boolean sort);
 
     List<Policy> searchPolicy(PolicySearchForm form, int size, int page, boolean sort);
-
-    PageDTO pagingBasicParam(PolicySearchForm form, int size, int page, boolean sort);
 
     PageDTO pagingSearchParam(PolicySearchForm form, int size, int page, boolean sort);
 
