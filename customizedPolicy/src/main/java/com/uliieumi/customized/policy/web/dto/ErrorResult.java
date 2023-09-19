@@ -1,17 +1,20 @@
 package com.uliieumi.customized.policy.web.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 
 @Data
 public class ErrorResult {
 
+        private int statusCode;
         private String message;
-        private String code;
+        private String errorCode;
+        private String field;
 
-        public ErrorResult(String message, String code) {
+        public ErrorResult(int statusCode, String message, String errorCode, String field) {
+            this.statusCode = statusCode;
             this.message = message;
-            this.code = code;
+            this.errorCode = errorCode;
+            this.field = field;
         }
-    }
+}

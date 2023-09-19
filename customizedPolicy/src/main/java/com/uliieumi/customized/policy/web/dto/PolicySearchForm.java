@@ -13,7 +13,7 @@ import java.util.List;
 @ToString
 public class PolicySearchForm {
 
-    @Length(max = 10)
+    @Length(max = 20)
     private String name;
 
     @PositiveOrZero

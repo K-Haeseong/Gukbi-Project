@@ -26,7 +26,7 @@ public class PolicySearchService implements PolicyService{
     }
 
     @Override
-    public PageDTO pagingSearchParam(PolicySearchForm form, int size, int page, boolean sort) {
+    public PageDTO pagingSearchParam(PolicySearchForm form, int size, int page) {
 
         // 조회된 게시글 수
         int boardCount = policyRepository.searchBoardCount(form);

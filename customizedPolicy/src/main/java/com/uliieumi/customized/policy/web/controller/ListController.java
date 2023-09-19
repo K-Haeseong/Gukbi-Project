@@ -13,10 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,17 @@ public class ListController {
 
     private final PolicyService policyService;
 
+
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResult> CustomValidationException(CustomValidationException e){
+        log.info("e ={}", e.getErrorResult());
+        return ResponseEntity
+                .badRequest()
+                .body(e.getErrorResult());
+    }
+
+
     @GetMapping("list")
     public String list(Model model) {
         List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6,1, true)
@@ -41,7 +53,7 @@ public class ListController {
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        PageDTO paging = policyService.pagingSearchParam(new PolicySearchForm(), 6,1, true);
+        PageDTO paging = policyService.pagingSearchParam(new PolicySearchForm(), 6,1);
 
 
         @Data
@@ -69,17 +81,17 @@ public class ListController {
     }
 
 
-    @PostMapping("list")
+    @PostMapping(value = "list", produces = {"application/json; charset=UTF-8"})
     @ResponseBody
     public ResponseEntity<Object> policyList(@RequestBody @Validated PolicySearchForm form, BindingResult bindingResult,
                                              @RequestParam int size, @RequestParam int page, @RequestParam boolean sort) {
 
         log.info("form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
-        if(bindingResult.hasErrors()) {
-            ArrayList<ErrorResult> errorResults = new ArrayList<>();
-            bindingResult.getAllErrors().forEach(error -> errorResults.add(new ErrorResult(error.getDefaultMessage(), error.getCode())));
-            return new ResponseEntity<>(errorResults, HttpStatus.BAD_REQUEST);
+        if(bindingResult.hasFieldErrors()) {
+            FieldError error = bindingResult.getFieldErrors().get(0);
+            ErrorResult errorResult = new ErrorResult(HttpServletResponse.SC_BAD_REQUEST, error.getDefaultMessage(), error.getCode(), error.getField());
+            throw new CustomValidationException(errorResult);
         }
 
 
@@ -89,7 +101,7 @@ public class ListController {
 
         log.info("POST 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
-        PageDTO paging= policyService.pagingSearchParam(form,size,page,sort);
+        PageDTO paging= policyService.pagingSearchParam(form,size,page);
 
         PolicyPageDTO policyPageDTO = new PolicyPageDTO(policies, paging);
 

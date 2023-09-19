@@ -16,6 +16,7 @@ public interface PolicyMapper {
 
     int searchBoardCount(@Param("form")PolicySearchForm form);
 
+
     Policy findById(@Param("id") Long id);
 
     void updatePolicy(@Param("hit")Integer hit, @Param("id") Long id);

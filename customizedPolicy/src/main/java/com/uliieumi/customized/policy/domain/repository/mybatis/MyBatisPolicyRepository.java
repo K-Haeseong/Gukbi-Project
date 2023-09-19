@@ -20,7 +20,6 @@ public class MyBatisPolicyRepository implements PolicyRepository {
         return policyMapper.findByCondition(form, size, startPostNum, sort);
     }
 
-
     @Override
     public int searchBoardCount(PolicySearchForm form) {
         return policyMapper.searchBoardCount(form);
@@ -30,6 +29,7 @@ public class MyBatisPolicyRepository implements PolicyRepository {
     public Policy findById(Long id) {
         return policyMapper.findById(id);
     }
+
 
     @Override
     public void updatePolicy(int updateHit, Long id) {

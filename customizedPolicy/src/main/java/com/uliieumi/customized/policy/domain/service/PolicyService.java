@@ -12,7 +12,7 @@ public interface PolicyService {
 
     List<Policy> searchPolicy(PolicySearchForm form, int size, int page, boolean sort);
 
-    PageDTO pagingSearchParam(PolicySearchForm form, int size, int page, boolean sort);
+    PageDTO pagingSearchParam(PolicySearchForm form, int size, int page);
 
     DetailPolicyDto findPolicyById(Long id);
 
