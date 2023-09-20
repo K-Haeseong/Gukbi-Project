@@ -89,7 +89,7 @@
             NAME LIKE CONCAT('%', #{form.name}, '%')
         </if>
 
-        <if test="form.age != null">
+        <if test="form.age != null and form.age !=''">
             AND
             <![CDATA[min_age <= #{form.age} AND #{form.age} <= max_age]]>
         </if>

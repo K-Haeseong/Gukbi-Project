@@ -1,5 +1,6 @@
 package com.uliieumi.customized.policy.web.dto;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,6 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 public class PageDTO {
 
     private int page;       // 현재 페이지

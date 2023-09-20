@@ -159,7 +159,6 @@ class ListControllerTest {
 
         String requestBody = objectMapper.writeValueAsString(errorSearchForm);
 
-//        listController.policyList(errorSearchForm, )
         ResultActions resultActions = mockMvc.perform(
                 MockMvcRequestBuilders.post("/policy/list")
                         .param("size", "6")
@@ -178,7 +177,7 @@ class ListControllerTest {
 
         Exception resolvedException = mvcResult.getResolvedException();
         // 에러 정보를 추출하거나 처리할 수 있음
-            // 여기에서 발생한 에러는 'result.getResolvedException()'으로 가져올 수 있음
+        // 여기에서 발생한 에러는 'result.getResolvedException()'으로 가져올 수 있음
 
         Assertions.assertThat(resolvedException).isInstanceOf(CustomValidationException.class);
     }

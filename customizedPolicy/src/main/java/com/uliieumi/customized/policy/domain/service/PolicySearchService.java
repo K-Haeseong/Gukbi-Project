@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PolicySearchService implements PolicyService{
+public class PolicySearchService implements PolicyService {
 
     private final PolicyRepository policyRepository;
 
