@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+//@EqualsAndHashCode
 public class PageDTO {
 
     private int page;       // 현재 페이지

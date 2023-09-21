@@ -2,8 +2,8 @@ package com.uliieumi.customized.policy.domain.service;
 
 import com.uliieumi.customized.policy.domain.repository.PolicyRepository;
 import com.uliieumi.customized.policy.web.dto.PageDTO;
-import com.uliieumi.customized.policy.web.dto.PolicyDto;
 import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @Slf4j
@@ -50,28 +48,25 @@ class PolicySearchServiceTest {
     @Test
     @DisplayName("페이징 번호 생성 확인")
     void pagingSearchParam() {
+
         //given
         PolicySearchForm policySearchForm = policySearchForm();
 
-        doReturn(new PageDTO().getBoardCount())
-                .when(policyRepository)
-                .searchBoardCount(any(PolicySearchForm.class));
+        int size = 6;
+        int page = 1;
+        int boardCount = 2;
 
-        PageDTO pageDTO = CreatePageDTO();
-//        PageDTO pageDTO = policySearchService.pagingSearchParam(policySearchForm, 6, 1); 이거 사용?
+        doReturn(boardCount).when(policyRepository).searchBoardCount(any(PolicySearchForm.class));
 
         //when
-
-        int boardCount = policyRepository.searchBoardCount(policySearchForm);
-        PageDTO ResultPageDTO = processPaging(boardCount, 6, 1);
-
+        PageDTO ResultPageDTO = policySearchService.pagingSearchParam(policySearchForm, size, page);
 
         //then
-        assertThat(ResultPageDTO).isEqualTo(pageDTO); //PageDTO에 EqualsAndHashCode를 적용해서 해결
-        assertThat(ResultPageDTO).usingRecursiveComparison().isEqualTo(pageDTO);
+//      assertThat(ResultPageDTO).isEqualTo(CreatePageDTO()); //PageDTO에 EqualsAndHashCode를 적용해서 해결도 가능
+        assertThat(ResultPageDTO).usingRecursiveComparison().isEqualTo(CreatePageDTO());
 
-
-//        assertThat(ResultPageDTO).isEqualTo(pageDTO); //이렇게 비교 하는게 맞는건가?
+        // PolicyRepository의 searchBoardCount 메서드가 1번 호출되었는지 검증
+        verify(policyRepository, times(1)).searchBoardCount(any(PolicySearchForm.class));
     }
 
 
@@ -101,31 +96,5 @@ class PolicySearchServiceTest {
         return pageDTO;
     }
 
-
-    private PageDTO processPaging(int boardCount, int size, int  page) {
-
-        int remainder = boardCount % size;
-        int pageCount = boardCount / size;
-
-        // 전체 페이지 개수
-        int maxPage = (remainder==0) ? pageCount : pageCount + 1;
-
-        // 보여줄 페이지 번호의 개수
-        int pageSize = 5;
-
-        // 현재 페이지의 시작 페이지 번호
-        int startPage = page-(page-1) % pageSize;
-
-        // 현재 페이지의 마지막 페이지 번호
-        int endPage =  maxPage <  startPage + (pageSize-1) ? maxPage : startPage + (pageSize-1);
-
-        PageDTO pageDTO = new PageDTO();
-        pageDTO.setPage(page);
-        pageDTO.setMaxPage(maxPage);
-        pageDTO.setStartPage(startPage);
-        pageDTO.setEndPage(endPage);
-        pageDTO.setBoardCount(boardCount);
-        return pageDTO;
-    }
-
 }
+
