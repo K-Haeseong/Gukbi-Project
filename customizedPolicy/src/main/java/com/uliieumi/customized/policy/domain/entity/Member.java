@@ -3,16 +3,21 @@ package com.uliieumi.customized.policy.domain.entity;
 import com.uliieumi.customized.policy.domain.data.*;
 import lombok.Getter;
 
-import java.util.Date;
+import javax.persistence.*;
 
 @Getter
+@Entity
 public class Member {
 
-//    private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String name;
 
-    private int age;
+    private String birth;
+
+    private Boolean sex;
 
     private String loginId;
 
@@ -22,35 +27,44 @@ public class Member {
 
     private String phone;
 
-    private Boolean sex;
+    private String address;
 
-    private Date birth;
+    private Integer age;
 
-    private PolicyRegion interestCategory; //지역
+    @Enumerated(EnumType.STRING)
+    private PolicyRegion region;
 
-    private PolicyCategory category; //정책분야
+    @Enumerated(EnumType.STRING)
+    private EducationLevel educationLevel;
 
-    private JobState jobState; //취업상태
+    @Enumerated(EnumType.STRING)
+    private SpecificClass specificClass;
 
-    private EducationLevel educationLevel; //학력
+    @Enumerated(EnumType.STRING)
+    private JobState jobState;
 
-    private SpecificClass specificClass; //특정계층
+    @Enumerated(EnumType.STRING)
+    private PolicyCategory interestCategory;
 
 
-    public Member(String name, String loginId, String password, String email, String phone, Boolean sex, Date birth, PolicyRegion interestCategory, PolicyCategory category, JobState jobState, EducationLevel educationLevel, SpecificClass specificClass) {
-//        this.id = id;
+    public Member() {
+    }
+
+
+    public Member(String name, String birth, Boolean sex, String loginId, String password, String email, String phone, String address, Integer age, PolicyRegion region, EducationLevel educationLevel, SpecificClass specificClass, JobState jobState, PolicyCategory interestCategory) {
         this.name = name;
+        this.birth = birth;
+        this.sex = sex;
         this.loginId = loginId;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.sex = sex;
-        this.birth = birth;
-        this.birth = birth;
-        this.interestCategory = interestCategory;
-        this.category = category;
-        this.jobState = jobState;
+        this.address = address;
+        this.age = age;
+        this.region = region;
         this.educationLevel = educationLevel;
         this.specificClass = specificClass;
+        this.jobState = jobState;
+        this.interestCategory = interestCategory;
     }
 }

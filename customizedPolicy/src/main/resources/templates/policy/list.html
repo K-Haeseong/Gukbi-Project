@@ -181,7 +181,7 @@
 
                                     <li>
                                         <label>경기</label>
-                                        <input type="checkbox" data-order="8" value="Gyungi" hidden>
+                                        <input type="checkbox" data-order="8" value="Gyunggi" hidden>
                                     </li>
 
                                     <li>
@@ -201,12 +201,12 @@
 
                                     <li>
                                         <label>전북</label>
-                                        <input type="checkbox" data-order="12" value="JeanBuk" hidden>
+                                        <input type="checkbox" data-order="12" value="JeonBuk" hidden>
                                     </li>
 
                                     <li>
                                         <label>전남</label>
-                                        <input type="checkbox" data-order="13" value="JeanNam" hidden>
+                                        <input type="checkbox" data-order="13" value="JeonNam" hidden>
                                     </li>
 
                                     <li>
@@ -868,7 +868,7 @@
 
     //--------------------- 내 정보 설정----------------------
 
-    const member = [[${memberInterest}]]
+    const member = [[${memberInterest}]];
 
     function settingButtonClick() {
     reset(areaList, areaChkMap);
@@ -939,14 +939,19 @@
     }
 
     const settingBtn = document.querySelector(".setting-btn");
-    settingBtn.addEventListener("click", settingButtonClick);
+    settingBtn.addEventListener("click", () => {
+        if(member)
+            settingButtonClick();
+        else
+            alert('로그인 후 이용 가능합니다.')
+    });
 
 
      // --------------------Fetch 사용--------------------
     document.querySelector(".search-btn").addEventListener("click", () => {
         if (!(/^[0-9]+$/.test(policyAgeInput.value) || policyAgeInput.value === "")) {
             alert('연령에는 숫자만 입력 해주세요.')
-        } else if(!(policyNameInput.value.size<20 || policyNameInput.value === "")) {
+        } else if(!(policyNameInput.value.length < 20)) {
             alert('정치이름 및 내용은 20글자 미만으로 입력해주세요.')
         } else {
             sendData(1)
@@ -1017,11 +1022,12 @@
             })
             .then(response => response.json())  // 서버로부터의 JSON 응답 처리
             .then(data => {
+                if (data.statusCode == undefined || data.statusCode == null) {
                 console.log("서버 응답 데이터:", data);  // 서버로부터 받은 데이터
                 createNewPolicyList(data.policyDTO);
                 createBoardCount(data.pageDTO);
                 createPagingButton(data.pageDTO);
-                if (data.statusCode !== undefined && data.statusCode !== null) {
+                } else {
                     if (data.statusCode >= 500) {
                         alert("서버에러입니다.");
                     } else if (data.statusCode === 400) {
@@ -1046,7 +1052,7 @@
             policies.forEach(policy => {
                 const newPolicyTag =
                     `<!-- 정책 이미지 -->
-                    <a href="/policy/detail/${policy.id}"><img class="policy-img" src="${policy.filePath}"></a>
+                    <a href="/policy/detail/${policy.id}"><img class="policy-img" src="${policy.thumbnail}"></a>
 
                     <!-- 정책 목록 -->
                     <div class="policy-summary">

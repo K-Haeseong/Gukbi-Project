@@ -1,9 +1,14 @@
 package com.uliieumi.customized.policy.web.controller;
 
 
+import com.uliieumi.customized.policy.domain.data.Role;
+import com.uliieumi.customized.policy.domain.entity.Member;
+import com.uliieumi.customized.policy.domain.repository.JpaMemberRepository;
 import com.uliieumi.customized.policy.domain.service.PolicyService;
 import com.uliieumi.customized.policy.web.dto.*;
 import com.uliieumi.customized.policy.web.dto.ErrorResult;
+import com.uliieumi.customized.policy.web.security.UserInfo;
+import com.uliieumi.customized.policy.web.security.jwt.AuthUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.uliieumi.customized.policy.domain.data.EducationLevel.UNIVGRAD;
-import static com.uliieumi.customized.policy.domain.data.JobState.JOBLESS;
-import static com.uliieumi.customized.policy.domain.data.PolicyCategory.JOB;
-import static com.uliieumi.customized.policy.domain.data.PolicyRegion.SEOUL;
-import static com.uliieumi.customized.policy.domain.data.SpecificClass.NOLIMIT;
-
 @Slf4j
 @Controller
 @RequestMapping("/policy/")
@@ -34,6 +33,7 @@ import static com.uliieumi.customized.policy.domain.data.SpecificClass.NOLIMIT;
 public class ListController {
 
     private final PolicyService policyService;
+    private final JpaMemberRepository memberRepository;
 
 
 
@@ -47,7 +47,7 @@ public class ListController {
 
 
     @GetMapping("list")
-    public String list(Model model) {
+    public String list(Model model, @AuthUser UserInfo userInfo) {
         List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6,1, true)
                 .stream()
                 .map(policy -> new PolicyDto(policy))
@@ -72,7 +72,23 @@ public class ListController {
             private String specificClass; //특정계층
         }
 
-        MemberInterest memberInterest = new MemberInterest(30, JOB.param, SEOUL.param, JOBLESS.param, UNIVGRAD.param, NOLIMIT.param);
+        log.info("userId = {}", userInfo != null ? userInfo.getId() : "없음");
+
+        MemberInterest memberInterest = null;
+        if(userInfo != null && userInfo.getRole().equals(Role.MEMBER)){
+            Member member = memberRepository.findById(userInfo.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("위조된 데이터"));
+
+            memberInterest = new MemberInterest(
+                    member.getAge(),
+                    member.getInterestCategory().param,
+                    member.getRegion().param,
+                    member.getJobState().param,
+                    member.getEducationLevel().param,
+                    member.getSpecificClass().param
+            );
+        }
+
 
         model.addAttribute("memberInterest", memberInterest);
         model.addAttribute("paging", paging);
@@ -83,10 +99,13 @@ public class ListController {
 
     @PostMapping(value = "list", produces = {"application/json; charset=UTF-8"})
     @ResponseBody
-    public ResponseEntity<Object> policyList(@RequestBody @Validated PolicySearchForm form, BindingResult bindingResult,
-                                             @RequestParam int size, @RequestParam int page, @RequestParam boolean sort) {
+    public ResponseEntity<Object> policyList(@RequestBody @Validated PolicySearchForm form,
+                                             BindingResult bindingResult,
+                                             @RequestParam int size,
+                                             @RequestParam int page,
+                                             @RequestParam boolean sort) {
 
-        log.info("form, size, page, sort = {} {} {} {}", form, size, page, sort);
+        log.info("List 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
         if(bindingResult.hasFieldErrors()) {
             FieldError error = bindingResult.getFieldErrors().get(0);
@@ -113,7 +132,9 @@ public class ListController {
     public String detail(@PathVariable("id") Long id, Model model) {
 
         DetailPolicyDto foundPolicy = policyService.findPolicyById(id);
+
         int updateHit = foundPolicy.getHit() + 1;
+
         policyService.updateHit(updateHit, id);
 
 

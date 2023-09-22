@@ -8,7 +8,7 @@ public enum EducationLevel {
     HSEXP("hsExp", "고졸 예정"),
     HSGRAD("hsGrad", "고교 졸업"),
     UNIVENROLL("univEnroll", "대학 재학"),
-    UNIVEXP("univExp", "대학 예정"),
+    UNIVEXP("univExp", "대졸 예정"),
     UNIVGRAD("univGrad", "대학 졸업"),
     ADVANCED("advanced", "석·박사"),
     NOLIMIT("noLimit", "제한없음");
