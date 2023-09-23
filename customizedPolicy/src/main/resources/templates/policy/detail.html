@@ -35,11 +35,19 @@
                 <!-- 정책 목록 -->
                 <div class="policy-summary">
 
-                    <div class="summary-title"
-                        th:text="${foundPolicy.name}">
-                        청년 주거 길잡이 2기 참여자 모집
+                    <div class="summary-title-wrap">
+                        <div class="summary-title" th:text="${foundPolicy.name}">
+                            정책 이름
+                        </div>
                     </div>
-
+                    
+                    <div class="interest-btn-wrap">
+                        <div>
+                            <label for="star-btn" class="interest-btn">관심목록 추가 ☆</label>
+                            <input type="checkbox" id="star-btn" >
+                        </div>    
+                    </div>    
+                    
                     <ul class="summary-list">
                         <li>
                             <div class="summary-field">정책분야</div>
@@ -144,10 +152,12 @@
 
             </div> <!-- policy-box 끝--> 
         
-
-            <div class="gotop-btn">
-                <a href="#">TOP</a>
-            </div>    
+            <!-- TOP 버튼 -->
+            <a href="#">
+                <div class="gotop-btn">
+                TOP
+                </div>
+            </a>    
 
         </div> <!-- 디테일 전체 끝-->
 
