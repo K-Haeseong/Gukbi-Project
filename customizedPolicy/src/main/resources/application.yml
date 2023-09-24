@@ -44,3 +44,12 @@ logging:
             sql:
               BasicBinder: TRACE
 
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+    thymeleaf:
+      cache: false
+

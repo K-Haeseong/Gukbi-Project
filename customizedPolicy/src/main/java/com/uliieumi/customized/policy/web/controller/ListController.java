@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,9 +37,8 @@ public class ListController {
     private final JpaMemberRepository memberRepository;
 
 
-
     @ExceptionHandler
-    public ResponseEntity<ErrorResult> CustomValidationException(CustomValidationException e){
+    public ResponseEntity<ErrorResult> CustomValidationException(CustomValidationException e) {
         log.info("e ={}", e.getErrorResult());
         return ResponseEntity
                 .badRequest()
@@ -48,17 +48,17 @@ public class ListController {
 
     @GetMapping("list")
     public String list(Model model, @AuthUser UserInfo userInfo) {
-        List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6,1, true)
+        List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6, 1, true)
                 .stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        PageDTO paging = policyService.pagingSearchParam(new PolicySearchForm(), 6,1);
+        PageDTO paging = policyService.pagingSearchParam(new PolicySearchForm(), 6, 1);
 
 
         @Data
         @AllArgsConstructor
-        class MemberInterest{
+        class MemberInterest {
             private int age;
 
             private String category; //정책분야
@@ -75,7 +75,7 @@ public class ListController {
         log.info("userId = {}", userInfo != null ? userInfo.getId() : "없음");
 
         MemberInterest memberInterest = null;
-        if(userInfo != null && userInfo.getRole().equals(Role.MEMBER)){
+        if (userInfo != null && userInfo.getRole().equals(Role.MEMBER)) {
             Member member = memberRepository.findById(userInfo.getId())
                     .orElseThrow(() -> new IllegalArgumentException("위조된 데이터"));
 
@@ -107,20 +107,20 @@ public class ListController {
 
         log.info("List 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
-        if(bindingResult.hasFieldErrors()) {
+        if (bindingResult.hasFieldErrors()) {
             FieldError error = bindingResult.getFieldErrors().get(0);
             ErrorResult errorResult = new ErrorResult(HttpServletResponse.SC_BAD_REQUEST, error.getDefaultMessage(), error.getCode(), error.getField());
             throw new CustomValidationException(errorResult);
         }
 
 
-        List<PolicyDto> policies = policyService.searchPolicy(form,size,page,sort).stream()
+        List<PolicyDto> policies = policyService.searchPolicy(form, size, page, sort).stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
         log.info("POST 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
-        PageDTO paging= policyService.pagingSearchParam(form,size,page);
+        PageDTO paging = policyService.pagingSearchParam(form, size, page);
 
         PolicyPageDTO policyPageDTO = new PolicyPageDTO(policies, paging);
 
@@ -142,4 +142,19 @@ public class ListController {
         return "policy/detail";
     }
 
+    @PostMapping("detail/{id}")
+    public void detail(@PathVariable("id") Long id,
+                         @AuthUser UserInfo userInfo,
+                         @Param("interest") Boolean interest) {
+
+        if (userInfo != null
+            && userInfo.getRole().equals(Role.MEMBER)
+            && interest == true) {
+
+            policyService.addInterestToList
+        } else {
+            policyService.removeInterestFromList
+//          return null;
+        }
+    }
 }
