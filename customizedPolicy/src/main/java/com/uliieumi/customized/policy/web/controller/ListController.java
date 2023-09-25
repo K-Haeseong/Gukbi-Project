@@ -45,6 +45,14 @@ public class ListController {
                 .body(e.getErrorResult());
     }
 
+    @ExceptionHandler
+    public ResponseEntity<String> IllegalArgumentException(IllegalArgumentException e) {
+        log.info("e ={}", e.getMessage());
+        return ResponseEntity
+                .badRequest()
+                .body(e.getMessage());
+    }
+
 
     @GetMapping("list")
     public String list(Model model, @AuthUser UserInfo userInfo) {
@@ -129,32 +137,50 @@ public class ListController {
 
 
     @GetMapping("detail/{id}")
-    public String detail(@PathVariable("id") Long id, Model model) {
+    public String detail(@PathVariable("id") Long policyId,
+                         @AuthUser UserInfo userInfo,
+                         Model model) {
 
-        DetailPolicyDto foundPolicy = policyService.findPolicyById(id);
+        boolean hasInterest = false;
 
+        if (userInfo != null && userInfo.getRole().equals(Role.MEMBER)) {
+            Long memberId = userInfo.getId();
+            Integer result = policyService.existLikeHistory(memberId, policyId);
+            hasInterest = (result == 1) ? true : false;
+        }
+
+
+        DetailPolicyDto foundPolicy = policyService.findPolicyById(policyId);
         int updateHit = foundPolicy.getHit() + 1;
+        policyService.updateHit(updateHit, policyId);
 
-        policyService.updateHit(updateHit, id);
 
-
+        model.addAttribute("hasInterest", hasInterest);
         model.addAttribute("foundPolicy", foundPolicy);
         return "policy/detail";
     }
 
     @PostMapping("detail/{id}")
-    public void detail(@PathVariable("id") Long id,
-                         @AuthUser UserInfo userInfo,
-                         @Param("interest") Boolean interest) {
+    @ResponseBody
+    public ResponseEntity<Object> detail(@PathVariable("id") Long policyId,
+                                         @RequestParam("interest") boolean interestValue,
+                                         @AuthUser UserInfo userInfo) {
 
-        if (userInfo != null
-            && userInfo.getRole().equals(Role.MEMBER)
-            && interest == true) {
+        log.info("interestValue = {}", interestValue);
 
-            policyService.addInterestToList
+        Long memberId = userInfo.getId();
+        if (userInfo != null && userInfo.getRole().equals(Role.MEMBER)) {
+            if (interestValue) {
+                policyService.removeInterestFromList(memberId, policyId);
+            } else {
+                policyService.addInterestToList(memberId, policyId);
+            }
+            return ResponseEntity.ok().build();
         } else {
-            policyService.removeInterestFromList
-//          return null;
+            throw new IllegalArgumentException("위조된 데이터");
         }
     }
-}
+
+
+
+}// controller 끝

@@ -4,6 +4,7 @@
 
 <mapper namespace="com.uliieumi.customized.policy.domain.repository.mybatis.PolicyMapper">
 
+    <!-- 조건 검색 -->
     <select id="findByCondition" resultType="Policy">
         SELECT *
         FROM policy
@@ -62,13 +63,14 @@
         LIMIT #{size} OFFSET #{startPostNum}
     </select>
 
-
+    <!-- 정책 하나 찾기 -->
     <select id="findById" resultType="Policy" >
         SELECT * FROM policy
         where id = #{id}
     </select>
 
-    <!-- 정책 업데이트    -->
+
+    <!-- 정책 조회수 업데이트 -->
     <update id="updatePolicy">
         UPDATE policy
         SET hit= #{hit}
@@ -77,9 +79,7 @@
 
 
 
-
-    <!-- 페이징 관련  -->
-
+    <!-- 페이징 관련 -->
     <select id="searchBoardCount" resultType="Integer">
         SELECT count(id)
         FROM policy
@@ -129,7 +129,6 @@
                 #{specificClass}
             </foreach>
         </if>
-
     </select>
 
 

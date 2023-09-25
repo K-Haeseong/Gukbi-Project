@@ -754,7 +754,7 @@
             })
         } else { 
             educationLevelMap.clear();
-            childLevelList.forEach(li => {
+            childLevelList.forEainlinech(li => {
                 li.classList.add("checked");
                 const input = li.querySelector('input');
                 educationLevelMap.set(input.dataset.order, input.value);
@@ -1102,20 +1102,6 @@
             });
         }
 
-        
-        // ------------------- 정책 검색 결과 건수 ----------------------
-        function createBoardCount(data) {
-            const boardResult = document.querySelector(".sub-title-2");
-            boardResult.innerHTML = "";
-            newBoardResultTag = 
-                        `정책 검색결과
-                        <span class="policy-result-count">${data.boardCount}</span>
-                        건`
-            boardResult.innerHTML = newBoardResultTag;
-        }
-
-
-
 
         // ------------------- 페이지 버튼 리스트 생성 -------------------
        function createPagingButton(data) {
@@ -1133,6 +1119,20 @@
             }
             newPolicyTag += `<button class="next-btn" onclick="sendData(${data.endPage == data.maxPage ? data.maxPage : data.endPage+1})">&#62;</button>`
             pagingButtonList.innerHTML = newPolicyTag;
+        }
+
+
+
+
+         // ------------------- 정책 검색 결과 건수 ----------------------
+         function createBoardCount(data) {
+            const boardResult = document.querySelector(".sub-title-2");
+            boardResult.innerHTML = "";
+            newBoardResultTag = 
+                        `정책 검색결과
+                        <span class="policy-result-count">${data.boardCount}</span>
+                        건`
+            boardResult.innerHTML = newBoardResultTag;
         }
 </script>
 

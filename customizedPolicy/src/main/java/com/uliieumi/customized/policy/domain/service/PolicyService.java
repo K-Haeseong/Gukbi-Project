@@ -17,4 +17,11 @@ public interface PolicyService {
     DetailPolicyDto findPolicyById(Long id);
 
     void updateHit(int updateHit, Long id);
+
+    void addInterestToList(Long memberId, Long policyId);
+
+    void removeInterestFromList(Long memberId, Long policyId);
+
+    Integer existLikeHistory(Long memberId, Long policyId);
+
 }

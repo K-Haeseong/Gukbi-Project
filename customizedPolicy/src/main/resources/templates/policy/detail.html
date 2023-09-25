@@ -44,9 +44,14 @@
                     
                     <div class="interest-btn-wrap">
                         <div class="interest-btn">
-                            <label for="star-btn">관심목록 추가</label>
-                            <label for="star-btn">⭐</label>
-                            <input type="checkbox" id="star-btn" name="rating" value="false">
+                            <div class="interest-result" value="true" th:if="${hasInterest}" >
+                                관심목록 추가
+                                <i class="fa-solid fa-star" style="color: #ffd43b;"></i>
+                            </div>
+                            <div class="interest-result" value="false" th:unless="${hasInterest}" >
+                                관심목록 추가
+                                <i class="fa-regular fa-star"></i>
+                            </div>
                         </div>    
                     </div>    
                     
@@ -102,27 +107,7 @@
                 <div class="policy-content-wrap">
                     <div class="policy-content" th:utext="${foundPolicy.content}">
                         <p>
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
-                            읍면동 주민센터 방문 접수
-                            1.지원신청(주민센터)
-                            - 가구원 중 청년이 신청
-                            2.대상자 결정(시군구)
-                            3.결과통보(시군구>대상자)
-                            4.계좌개설(신청자/가입자)
-                            5.지원금 적립(시군구)
+                           텍스트 에디터 작성 내용
                         </p>
                     </div>
                 </div>
@@ -171,6 +156,59 @@
 <!--    <div th:replace="~{fragment/footer :: footer}"></div>-->
     <!-------------------- 풋터 끝 --------------------->
 </div>
+
+<script th:inline="javascript">
+    // -------------------- 관심 정책 등록 --------------------
+    let interest = [[${hasInterest}]];
+    console.log('interest = ',interest)
+    const interestBtn = document.querySelector(".interest-btn");
+    const id = [[${foundPolicy.id}]];
+    const interestResult = document.querySelector(".interest-result")
+    // kooconsole.log("id",id);
+    // console.log("interest", interest);
+
+
+    interestBtn.addEventListener("click", () => {
+            fetch(`/policy/detail/${id}?interest=${interest}`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"}
+            })
+            .then(response => {
+                //  if (( 200 <= response.statusCode && response.statusCode < 400)) {
+                if ((data.statusCode == undefined || data.statusCode == null)) {
+                     if (data == true) {
+                        console.log('여기1')
+                        alert('관심목록에 추가되었습니다.');
+                        interestResult.innerHTML = "";
+                        interestTag =
+                                    `<div class="interest-result" value="true" >
+                                    관심목록 추가
+                                    <i class="fa-solid fa-star" style="color: #ffd43b;"></i>
+                                     </div>`
+                        interestResult.innerHTML = interestTag;
+                    } else if (data == false) {
+                        console.log('여기2')
+                        alert('관심목록에서 삭제되었습니다.');
+                        interestResult.innerHTML = "";
+                        interestTag =
+                                    `<div class="interest-result" value="false">
+                                    관심목록 추가
+                                     <i class="fa-regular fa-star"></i>
+                                     </div>`
+                        interestResult.innerHTML = interestTag;
+                    } else {
+                        console.log('여기2')
+                        alert('로그인 후 이용 가능합니다.');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error("요청 중 오류 발생:", error);
+            });
+    });
+    
+
+</script>
 
 </body>
 </html>

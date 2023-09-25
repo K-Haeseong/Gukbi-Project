@@ -1,6 +1,7 @@
 package com.uliieumi.customized.policy.domain.service;
 
 import com.uliieumi.customized.policy.domain.entity.Policy;
+import com.uliieumi.customized.policy.domain.repository.InterestRepository;
 import com.uliieumi.customized.policy.domain.repository.PolicyRepository;
 import com.uliieumi.customized.policy.web.dto.DetailPolicyDto;
 import com.uliieumi.customized.policy.web.dto.PageDTO;
@@ -15,6 +16,7 @@ import java.util.List;
 public class PolicySearchService implements PolicyService {
 
     private final PolicyRepository policyRepository;
+    private final InterestRepository interestRepository;
 
     @Override
     public List<Policy> searchPolicy(PolicySearchForm form, int size, int page, boolean sort) {
@@ -67,4 +69,22 @@ public class PolicySearchService implements PolicyService {
     public void updateHit(int updateHit, Long id) {
         policyRepository.updatePolicy(updateHit, id);
     }
+
+    @Override
+    public void addInterestToList(Long memberId, Long policyId) {
+        interestRepository.addInterestList(memberId, policyId);
+    }
+
+    @Override
+    public void removeInterestFromList(Long memberId, Long policyId) {
+        interestRepository.removeInterestList(memberId, policyId);
+    }
+
+    @Override
+    public Integer existLikeHistory(Long memberId, Long policyId) {
+        Integer result = interestRepository.existLikeHistory(memberId, policyId);
+        return result;
+    }
+
+
 }

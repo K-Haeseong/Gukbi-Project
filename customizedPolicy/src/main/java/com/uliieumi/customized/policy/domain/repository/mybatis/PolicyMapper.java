@@ -20,4 +20,6 @@ public interface PolicyMapper {
     Policy findById(@Param("id") Long id);
 
     void updatePolicy(@Param("hit")Integer hit, @Param("id") Long id);
+
+
 }

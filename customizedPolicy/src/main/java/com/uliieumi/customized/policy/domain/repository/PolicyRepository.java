@@ -16,4 +16,5 @@ public interface PolicyRepository {
     Policy findById(Long id);
 
     void updatePolicy(int updateHit, Long id);
+
 }
