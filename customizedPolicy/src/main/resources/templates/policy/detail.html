@@ -160,35 +160,29 @@
 <script th:inline="javascript">
     // -------------------- 관심 정책 등록 --------------------
     let interest = [[${hasInterest}]];
-    console.log('interest = ',interest)
     const interestBtn = document.querySelector(".interest-btn");
     const id = [[${foundPolicy.id}]];
-    const interestResult = document.querySelector(".interest-result")
-    // kooconsole.log("id",id);
+    const interestResult = document.querySelector(".interest-result");
+    
+    
+    // console.log("id",id);
     // console.log("interest", interest);
 
 
     interestBtn.addEventListener("click", () => {
+            console.log('interest = ', interest)
             fetch(`/policy/detail/${id}?interest=${interest}`, {
             method: "POST",
             headers: {"Content-Type": "application/json"}
             })
+            // .then(response => response.json()) // 이걸로 상태코드 봐야되나
             .then(response => {
-                //  if (( 200 <= response.statusCode && response.statusCode < 400)) {
-                if ((data.statusCode == undefined || data.statusCode == null)) {
-                     if (data == true) {
+                console.log('response = ', response)
+                console.log('response.status', response.status)
+                // if ((response.status == undefined || response.status == null)) {
+                if(response.status >= 200 && response.status < 300) {
+                     if (interest == true) {
                         console.log('여기1')
-                        alert('관심목록에 추가되었습니다.');
-                        interestResult.innerHTML = "";
-                        interestTag =
-                                    `<div class="interest-result" value="true" >
-                                    관심목록 추가
-                                    <i class="fa-solid fa-star" style="color: #ffd43b;"></i>
-                                     </div>`
-                        interestResult.innerHTML = interestTag;
-                    } else if (data == false) {
-                        console.log('여기2')
-                        alert('관심목록에서 삭제되었습니다.');
                         interestResult.innerHTML = "";
                         interestTag =
                                     `<div class="interest-result" value="false">
@@ -196,11 +190,23 @@
                                      <i class="fa-regular fa-star"></i>
                                      </div>`
                         interestResult.innerHTML = interestTag;
-                    } else {
+                        alert('관심목록에서 삭제되었습니다.');
+                    } 
+                    if (interest == false) {
                         console.log('여기2')
-                        alert('로그인 후 이용 가능합니다.');
+                        interestResult.innerHTML = "";
+                        interestTag =
+                                    `<div class="interest-result" value="true" >
+                                    관심목록 추가
+                                    <i class="fa-solid fa-star" style="color: #ffd43b;"></i>
+                                     </div>`
+                        interestResult.innerHTML = interestTag;
+                        alert('관심목록에 추가되었습니다.');
                     }
+                } if (response.status >= 400) {
+                    alert('로그인 후 이용 가능합니다.');
                 }
+                interest == true ? interest=false : interest=true; 
             })
             .catch(error => {
                 console.error("요청 중 오류 발생:", error);

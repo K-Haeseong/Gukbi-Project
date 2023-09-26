@@ -1030,16 +1030,16 @@
             })
             .then(response => response.json())  // 서버로부터의 JSON 응답 처리
             .then(data => {
-                if (data.statusCode == undefined || data.statusCode == null) {
+                if (data.status == undefined || data.status == null) {
                 console.log("서버 응답 데이터:", data);  // 서버로부터 받은 데이터
                 createNewPolicyList(data.policyDTO);
                 createBoardCount(data.pageDTO);
                 createPagingButton(data.pageDTO);
                 } else {
-                    if (data.statusCode >= 500) {
+                    if (data.status >= 500) {
                         alert("서버에러입니다.");
-                    } else if (data.statusCode === 400) {
-                        alert(data.statusCode + "에러 발생");
+                    } else if (data.status === 400) {
+                        alert(data.status + "에러 발생");
                         console.log(data.field + "의" + data.errorCode + "에러 입니다.\n" + data.message);
                     } else {
                         console.log(data);
