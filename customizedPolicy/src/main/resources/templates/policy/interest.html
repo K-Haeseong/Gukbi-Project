@@ -6,7 +6,7 @@
     <title>정책 리스트</title>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/interests.css">
+    <link rel="stylesheet" href="/css/interest.css">
     <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -141,7 +141,7 @@
 
 
         // fetch를 사용하여 서버로 데이터 전송
-        fetch(`/policy/interests?size=${size}&page=${page}`, {
+        fetch(`/policy/interest?size=${size}&page=${page}`, {
             method: "POST",
             headers: {
                     "Content-Type": "application/json"  // 전송할 데이터의 형식 설정 (JSON)

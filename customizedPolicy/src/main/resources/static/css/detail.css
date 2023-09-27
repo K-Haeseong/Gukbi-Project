@@ -26,6 +26,7 @@
     padding: 20px;
     border-radius: 18px;
     box-shadow: 0px 2px 10px #b8b8b8;
+    background-color: #f7f7f7;
 }
 
 
@@ -88,32 +89,35 @@
 
 .policy-img-wrap {
     width: 1050px;
-    height: 1200px;
-    border-radius: 30px;
-    border: solid 1px black;
+    margin: auto;
     margin-bottom: 30px;
 }
 
 .policy-img {
-    width: 1050px;
-    height: 1200px;
-    border-radius: 30px;
+    width: 100%;
+    border-radius: 15px;
+    object-fit: contain;
+    object-position: 50% 50%;
 }
 
 .policy-content-wrap {
     width: 1050px;
-    border: solid 1px black;
+    margin: auto;
+    border: solid 1px #afafaf;
+    border-radius: 15px;
+    background-color: #f0f0f0;
 }
 
 .policy-content {
-    padding: 10px;
+    padding: 20px;
 }
 
 .file-zone {
-    background-color: #ccc;
-    border-radius: 20px;
+    border: 1px solid #afafaf;
+    background-color: #f0f0f0;
+    border-radius: 15px;
     padding: 15px 10px;
-    margin: 30px 0;
+    margin: 30px auto;
     font-size: 20px;
     font-weight: bold;
     font-family: 'LINESeedKR-Bd';
@@ -167,7 +171,8 @@
     margin-bottom: 20px;
     font-size: 25px;
     font-weight: bold;
-    font-family: 'LINESeedKR-Bd'
+    font-family: 'LINESeedKR-Bd';
+    cursor: pointer;
 }
 
 
@@ -195,7 +200,7 @@
 
 
 /* 관심 버튼 */
-.interest-btn-wrap  {
+.interest-btn-wrap {
     font-size: 20px;
     font-family: 'BMDOHYEON';
     margin-bottom: 10px;
@@ -207,8 +212,7 @@
     float : right;
 }
 
-#star-btn {
+/* #star-btn {
     color: transparent; /* 기존 이모지 컬러 제거 */
     /* text-shadow: 0 0 0 #f0f0f0; 새 이모지 색상 부여 */
     /* display: none; */
-}

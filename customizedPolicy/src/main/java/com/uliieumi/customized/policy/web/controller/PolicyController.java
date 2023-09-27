@@ -184,7 +184,7 @@ public class PolicyController {
     }
 
 
-    @GetMapping("interests")
+    @GetMapping("interest")
     public String interestList(Model model, @AuthUser UserInfo userInfo) {
 
         Long memberId = userInfo.getId();
@@ -198,11 +198,11 @@ public class PolicyController {
 
         model.addAttribute("paging", paging);
         model.addAttribute("policies", policies);
-        return "policy/interests";
+        return "policy/interest";
     }
 
 
-    @PostMapping("interests")
+    @PostMapping("interest")
     @ResponseBody
     public ResponseEntity<Object> interestList(@AuthUser UserInfo userInfo,
                                                @RequestParam int size,
