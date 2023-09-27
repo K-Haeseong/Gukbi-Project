@@ -24,4 +24,7 @@ public interface PolicyService {
 
     Integer existLikeHistory(Long memberId, Long policyId);
 
+    List<Policy> getInterestList(Long memberId, int size, int page);
+
+    PageDTO interestPaging(Long memberId, int size, int page);
 }

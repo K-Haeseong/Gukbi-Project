@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .antMatchers("/", "/error/**", "/policy/**", "/login/**").permitAll()
+                        .antMatchers("/policy/interests").hasRole("MEMBER")
                         .anyRequest().authenticated()
                 )
                 .formLogin().disable()

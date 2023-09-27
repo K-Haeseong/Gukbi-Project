@@ -1030,8 +1030,10 @@
             })
             .then(response => response.json())  // 서버로부터의 JSON 응답 처리
             .then(data => {
-                if (data.status == undefined || data.status == null) {
                 console.log("서버 응답 데이터:", data);  // 서버로부터 받은 데이터
+                console.log("data.status:", data.status);  
+                console.log("data.ok:", data.ok);
+                if (data.status == undefined || data.status == null) {
                 createNewPolicyList(data.policyDTO);
                 createBoardCount(data.pageDTO);
                 createPagingButton(data.pageDTO);

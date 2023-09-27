@@ -20,7 +20,9 @@ public class DetailPolicyDto {
     private String thumbnail; // 이미지파일경로
     // 에디터 컨텐츠 이미지 파일 안 나올 경우 대비
 
-    private String document;
+    private String document; // 첨부파일서버 경로
+
+    private String fileName;
 
     private String shortDescription; //짧은소개
 
@@ -61,5 +63,6 @@ public class DetailPolicyDto {
         this.content = policy.getContent();
         this.hit = policy.getHit();
         this.document = policy.getDocument();
+        this.fileName = policy.getFileName();
     }
 }

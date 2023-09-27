@@ -86,5 +86,40 @@ public class PolicySearchService implements PolicyService {
         return result;
     }
 
+    @Override
+    public List<Policy> getInterestList(Long memberId, int size, int page) {
+        int startPostNum = size*(page-1);
+        return interestRepository.findByCondition(memberId, size, startPostNum);
+    }
+
+    @Override
+    public PageDTO interestPaging(Long memberId, int size, int page) {
+        // 조회된 게시글 수
+        int boardCount = interestRepository.searchBoardCount(memberId);
+
+        int remainder = boardCount % size;
+        int pageCount = boardCount / size;
+
+        // 전체 페이지 개수
+        int maxPage = (remainder==0) ? pageCount : pageCount + 1;
+
+        // 보여줄 페이지 번호의 개수
+        int pageSize = 5;
+
+        // 현재 페이지의 시작 페이지 번호
+        int startPage = page-(page-1) % pageSize;
+
+        // 현재 페이지의 마지막 페이지 번호
+        int endPage =  maxPage <  startPage + (pageSize-1) ? maxPage : startPage + (pageSize-1);
+
+        PageDTO pageDTO = new PageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setStartPage(startPage);
+        pageDTO.setEndPage(endPage);
+        pageDTO.setBoardCount(boardCount);
+        return pageDTO;
+    }
+
 
 }

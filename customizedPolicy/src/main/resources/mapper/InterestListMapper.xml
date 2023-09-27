@@ -25,4 +25,28 @@
         AND policy_id = #{policyId}
     </delete>
 
+
+    <select id="findByCondition" resultType="Policy">
+        SELECT *
+        FROM policy
+        WHERE id
+        IN
+        (SELECT policy_id
+        FROM interest_list
+        WHERE member_id = #{memberId})
+        LIMIT #{size} OFFSET #{startPostNum}
+    </select>
+
+
+    <!-- 페이징 관련 -->
+    <select id="searchBoardCount" resultType="Integer">
+        SELECT  count(id)
+        FROM policy
+        WHERE id
+        IN
+        (SELECT policy_id
+        FROM interest_list
+        WHERE member_id = #{memberId});
+    </select>
+
 </mapper>

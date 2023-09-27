@@ -17,7 +17,7 @@
     
 <div id="wrapper">
     <!-------------------- 헤더 시작 ------------------->
-<!--    <div th:replace="~{fragment/header :: header}"></div>-->
+   <div th:replace="~{fragment/header :: header}"></div>
     <!-------------------- 헤더 끝 --------------------->
 
 
@@ -120,9 +120,8 @@
                             <span>첨부파일&#09;&#58;</span>
                         </li>
                         <li>
-                            <a href="파일 경로/파일이름.확장자" download
-                               th:src="${foundPolicy.document}">
-                            <span>관련공고문.hwp</span>
+                            <a th:href="|${foundPolicy.document}|" download>
+                            <span th:text="${foundPolicy.fileName}">관련공고문.hwp</span>
                             </a>
                         </li>
                     </ul>
@@ -153,7 +152,7 @@
 
 
     <!-------------------- 풋터 시작 ------------------->
-<!--    <div th:replace="~{fragment/footer :: footer}"></div>-->
+   <div th:replace="~{fragment/footer :: footer}"></div>
     <!-------------------- 풋터 끝 --------------------->
 </div>
 
@@ -175,12 +174,10 @@
             method: "POST",
             headers: {"Content-Type": "application/json"}
             })
-            // .then(response => response.json()) // 이걸로 상태코드 봐야되나
             .then(response => {
                 console.log('response = ', response)
                 console.log('response.status', response.status)
-                // if ((response.status == undefined || response.status == null)) {
-                if(response.status >= 200 && response.status < 300) {
+                if(response.status >= 200 && response.status < 400) {
                      if (interest == true) {
                         console.log('여기1')
                         interestResult.innerHTML = "";

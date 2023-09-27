@@ -15,7 +15,7 @@ public class Policy {
 
     private String thumbnail; // 포스터 이미지
 
-    private String document; // 첨부파일
+    private String document; // 첨부파일서버 경로
 
     private String shortDescription; //짧은소개
 
@@ -49,11 +49,13 @@ public class Policy {
 
     private String content; //에디터컨텐츠
 
+    private String fileName; // 진짜 파일 이름
+
     public Policy() {
     }
 
     public Policy(Long id, String name, String thumbnail, String document, String shortDescription, LocalDate publishedDateTime, LocalDate closedDateTime, Integer recruitsNumber, Integer minAge, Integer maxAge, String region,
-                  PolicyCategory category, JobState jobState, EducationLevel educationLevel, SpecificClass specificClass, String proposal, Integer hit, String deadline, String createdDate, String content) {
+                  PolicyCategory category, JobState jobState, EducationLevel educationLevel, SpecificClass specificClass, String proposal, Integer hit, String deadline, String createdDate, String content, String fileName) {
         this.id = id;
         this.name = name;
         this.thumbnail = thumbnail;
@@ -74,5 +76,6 @@ public class Policy {
         this.deadline = deadline;
         this.createdDate = createdDate;
         this.content = content;
+        this.fileName = fileName;
     }
 }
