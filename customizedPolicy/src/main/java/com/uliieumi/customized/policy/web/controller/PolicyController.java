@@ -216,8 +216,6 @@ public class PolicyController {
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        log.info("POST 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", userInfo, size, page);
-
         PageDTO paging = policyService.interestPaging(memberId, size, page);
 
         PolicyPageDTO policyPageDTO = new PolicyPageDTO(policies, paging);

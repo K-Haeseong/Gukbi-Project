@@ -51,7 +51,10 @@ public class Member {
     }
 
 
-    public Member(String name, String birth, Boolean sex, String loginId, String password, String email, String phone, String address, Integer age, PolicyRegion region, EducationLevel educationLevel, SpecificClass specificClass, JobState jobState, PolicyCategory interestCategory) {
+    public Member(String name, String birth, Boolean sex, String loginId, String password,
+                  String email, String phone, String address, Integer age, PolicyRegion region,
+                  EducationLevel educationLevel, SpecificClass specificClass, JobState jobState, PolicyCategory interestCategory) {
+
         this.name = name;
         this.birth = birth;
         this.sex = sex;

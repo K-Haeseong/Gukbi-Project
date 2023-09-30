@@ -54,8 +54,11 @@ public class Policy {
     public Policy() {
     }
 
-    public Policy(Long id, String name, String thumbnail, String document, String shortDescription, LocalDate publishedDateTime, LocalDate closedDateTime, Integer recruitsNumber, Integer minAge, Integer maxAge, String region,
-                  PolicyCategory category, JobState jobState, EducationLevel educationLevel, SpecificClass specificClass, String proposal, Integer hit, String deadline, String createdDate, String content, String fileName) {
+    public Policy(Long id, String name, String thumbnail, String document, String shortDescription,
+                  LocalDate publishedDateTime, LocalDate closedDateTime, Integer recruitsNumber, Integer minAge,
+                  Integer maxAge, String region, PolicyCategory category, JobState jobState, EducationLevel educationLevel,
+                  SpecificClass specificClass, String proposal, Integer hit, String deadline, String createdDate, String content, String fileName) {
+
         this.id = id;
         this.name = name;
         this.thumbnail = thumbnail;
