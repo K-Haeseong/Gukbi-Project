@@ -18,6 +18,8 @@ public class PolicySearchService implements PolicyService {
     private final PolicyRepository policyRepository;
     private final InterestRepository interestRepository;
 
+
+    // 정책 조건 검색
     @Override
     public List<Policy> searchPolicy(PolicySearchForm form, int size, int page, boolean sort) {
 //        offset  0~5   6~11   12~17
@@ -27,6 +29,7 @@ public class PolicySearchService implements PolicyService {
         return policyRepository.findByCondition(form, size, startPostNum, sort);
     }
 
+    // 기본 정책 리스트 페이징
     @Override
     public PageDTO pagingSearchParam(PolicySearchForm form, int size, int page) {
 
@@ -58,6 +61,7 @@ public class PolicySearchService implements PolicyService {
     }
 
 
+    // 정책 id로 정책 1개 찾기
     @Override
     public DetailPolicyDto findPolicyById(Long id) {
         Policy foundPolicy = policyRepository.findById(id);
@@ -65,33 +69,39 @@ public class PolicySearchService implements PolicyService {
         return new DetailPolicyDto(foundPolicy);
     }
 
+    // 조회수 증가
     @Override
     public void updateHit(int updateHit, Long id) {
         policyRepository.updatePolicy(updateHit, id);
     }
 
+    // 내 관심 정책 리스트에서 추가
     @Override
     public void addInterestToList(Long memberId, Long policyId) {
         interestRepository.addInterestList(memberId, policyId);
     }
 
+    // 내 관심 정책 리스트에서 제거
     @Override
     public void removeInterestFromList(Long memberId, Long policyId) {
         interestRepository.removeInterestList(memberId, policyId);
     }
 
+    // 내 관심 정책에 추가 되어 있는지 확인
     @Override
     public Integer existLikeHistory(Long memberId, Long policyId) {
         Integer result = interestRepository.existLikeHistory(memberId, policyId);
         return result;
     }
 
+    // 내 관심 정책 리스트
     @Override
     public List<Policy> getInterestList(Long memberId, int size, int page) {
         int startPostNum = size*(page-1);
         return interestRepository.findByCondition(memberId, size, startPostNum);
     }
 
+    // 내 관심 정책 페이징
     @Override
     public PageDTO interestPaging(Long memberId, int size, int page) {
         // 조회된 게시글 수
@@ -122,4 +132,4 @@ public class PolicySearchService implements PolicyService {
     }
 
 
-}
+}// service 끝
