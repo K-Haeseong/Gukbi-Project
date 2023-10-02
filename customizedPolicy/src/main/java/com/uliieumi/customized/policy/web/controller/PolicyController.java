@@ -81,6 +81,7 @@ public class PolicyController {
 
         log.info("userId = {}", userInfo != null ? userInfo.getId() : "없음");
 
+        // 로그인 유무 확인
         MemberInterest memberInterest = null;
         if (userInfo != null && userInfo.getRole().equals(Role.MEMBER)) {
             Member member = memberRepository.findById(userInfo.getId())
