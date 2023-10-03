@@ -2,6 +2,7 @@ package com.uliieumi.customized.policy.web.dto;
 
 import lombok.Getter;
 
+// 정상적인 접근이 아닐 때 바인딩 에러가 나는 경우
 @Getter
 public class CustomValidationException extends RuntimeException{
 
