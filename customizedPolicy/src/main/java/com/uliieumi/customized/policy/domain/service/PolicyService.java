@@ -35,8 +35,10 @@ public interface PolicyService {
     // 내 관심 정책에 추가 되어 있는지 확인
     Integer existLikeHistory(Long memberId, Long policyId);
 
+
     // 내 관심 정책 리스트
     List<Policy> getInterestList(Long memberId, int size, int page);
+
 
     // 내 관심 정책 페이징
     PageDTO interestPaging(Long memberId, int size, int page);
