@@ -7,7 +7,7 @@ import com.uliieumi.customized.policy.domain.data.JobState;
 import com.uliieumi.customized.policy.domain.data.SpecificClass;
 import com.uliieumi.customized.policy.domain.entity.Policy;
 import com.uliieumi.customized.policy.domain.service.PolicyService;
-import com.uliieumi.customized.policy.web.dto.CustomValidationException;
+import com.uliieumi.customized.policy.web.exception.CustomValidationException;
 import com.uliieumi.customized.policy.web.dto.PageDTO;
 import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
 import lombok.extern.slf4j.Slf4j;

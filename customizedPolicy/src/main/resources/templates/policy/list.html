@@ -754,13 +754,16 @@
             })
         } else { 
             educationLevelMap.clear();
-            childLevelList.forEainlinech(li => {
+            childLevelList.forEach(li => {
                 li.classList.add("checked");
                 const input = li.querySelector('input');
                 educationLevelMap.set(input.dataset.order, input.value);
             });
         }
     })
+
+
+    
 
 
 
@@ -1089,7 +1092,7 @@
                                 <div class="summary-field-content">${policy.publishedDateTime} ~ ${policy.closedDateTime}</div>
                             </li>
                             <li>
-                                <div class="summary-field">상시모집</div>
+                                <div class="summary-field">신청기간</div>
                                 <div class="summary-field-content">${policy.deadline}</div>
                             </li>
                             <li>

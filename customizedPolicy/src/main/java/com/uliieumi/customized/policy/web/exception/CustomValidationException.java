@@ -1,5 +1,6 @@
-package com.uliieumi.customized.policy.web.dto;
+package com.uliieumi.customized.policy.web.exception;
 
+import com.uliieumi.customized.policy.web.dto.ErrorResult;
 import lombok.Getter;
 
 // 정상적인 접근이 아닐 때 바인딩 에러가 나는 경우

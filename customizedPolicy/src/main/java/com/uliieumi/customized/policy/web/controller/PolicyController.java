@@ -7,6 +7,7 @@ import com.uliieumi.customized.policy.domain.repository.JpaMemberRepository;
 import com.uliieumi.customized.policy.domain.service.PolicyService;
 import com.uliieumi.customized.policy.web.dto.*;
 import com.uliieumi.customized.policy.web.dto.ErrorResult;
+import com.uliieumi.customized.policy.web.exception.CustomValidationException;
 import com.uliieumi.customized.policy.web.security.UserInfo;
 import com.uliieumi.customized.policy.web.security.jwt.AuthUser;
 import lombok.AllArgsConstructor;
@@ -38,7 +39,6 @@ public class PolicyController {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResult> CustomValidationException(CustomValidationException e) {
-        log.info("e ={}", e.getErrorResult());
         return ResponseEntity
                 .badRequest()
                 .body(e.getErrorResult());
@@ -46,7 +46,6 @@ public class PolicyController {
 
     @ExceptionHandler
     public ResponseEntity<String> IllegalArgumentException(IllegalArgumentException e) {
-        log.info("e ={}", e.getMessage());
         return ResponseEntity
                 .badRequest()
                 .body(e.getMessage());
@@ -79,7 +78,6 @@ public class PolicyController {
             private String specificClass; //특정계층
         }
 
-        log.info("userId = {}", userInfo != null ? userInfo.getId() : "없음");
 
         // 로그인 유무 확인
         MemberInterest memberInterest = null;
@@ -113,7 +111,6 @@ public class PolicyController {
                                              @RequestParam int page,
                                              @RequestParam boolean sort) {
 
-        log.info("List 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
         if (bindingResult.hasFieldErrors()) {
             FieldError error = bindingResult.getFieldErrors().get(0);
@@ -126,7 +123,6 @@ public class PolicyController {
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        log.info("POST 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", form, size, page, sort);
 
         PageDTO paging = policyService.pagingSearchParam(form, size, page);
 
@@ -169,7 +165,6 @@ public class PolicyController {
                                          @RequestParam("interest") boolean interestValue,
                                          @AuthUser UserInfo userInfo) {
 
-        log.info("interestValue = {}", interestValue);
 
         Long memberId = userInfo.getId();
         if (userInfo != null && userInfo.getRole().equals(Role.MEMBER)) {
@@ -208,8 +203,6 @@ public class PolicyController {
     public ResponseEntity<Object> interestList(@AuthUser UserInfo userInfo,
                                                @RequestParam int size,
                                                @RequestParam int page) {
-
-        log.info("List 매핑 시 들어오는 데이터 form, size, page, sort = {} {} {} {}", userInfo, size, page);
 
 
         Long memberId = userInfo.getId();
