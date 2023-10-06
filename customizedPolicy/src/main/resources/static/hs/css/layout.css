@@ -10,23 +10,18 @@
 }
 
 
+
+
+
+
+
+
 .logo-box{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 1100px;
     margin: auto;
-}
-
-
-.logo{
-    height: 40px;
-}
-
-
-.main-logo span{
-    font-size: 18px;
-    font-weight: bold;
 }
 
 
@@ -53,7 +48,7 @@
 }
 
 .menu span{
-    text-align: center;    
+    text-align: center;
     color: gray;
     font-weight: bold;
 }
@@ -71,8 +66,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 700px;
-    height: 75px;
+    width: 800px;
+    height: 70px;
     margin: auto;
     color: white;
 }

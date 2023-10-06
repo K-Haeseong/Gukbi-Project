@@ -180,6 +180,8 @@ public class PolicyController {
     }
 
 
+
+
     @GetMapping("interest")
     public String interestList(Model model, @AuthUser UserInfo userInfo) {
 

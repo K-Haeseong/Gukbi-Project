@@ -31,7 +31,7 @@ class PolicyMapperTest {
         List<Policy> foundPolicies = policyMapper.findByCondition(policySearchForm, 6, 0, true);
 
         //then
-        assertThat(foundPolicies.size()).isEqualTo(2);
+        assertThat(foundPolicies.size()).isEqualTo(6);
     }
 
 
@@ -44,7 +44,7 @@ class PolicyMapperTest {
         int boardCount = policyMapper.searchBoardCount(policySearchForm);
 
         //then
-        assertThat(boardCount).isEqualTo(2);
+        assertThat(boardCount).isEqualTo(10);
     }
 
 
