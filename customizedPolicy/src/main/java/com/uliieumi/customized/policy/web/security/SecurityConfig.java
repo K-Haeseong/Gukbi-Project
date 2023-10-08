@@ -40,21 +40,15 @@ public class SecurityConfig {
                 )
                 .addFilterBefore(new JwtAuthorizationFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(request -> request
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .antMatchers("/", "/error/**", "/policy/**", "/login/**").permitAll()
+                        .antMatchers("/", "/error/**", "/policy/**").permitAll()
                         .antMatchers("/policy/interests").hasRole("MEMBER")
                         .anyRequest().authenticated()
                 )
                 .formLogin().disable()
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessHandler(new LogoutSuccessHandler() {
-                            @Override
-                            public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                                return;
-                            }
-                        })
                         .deleteCookies("accessToken")
+                        .logoutSuccessUrl("/")
                         .permitAll()
                 )
                 .getOrBuild();

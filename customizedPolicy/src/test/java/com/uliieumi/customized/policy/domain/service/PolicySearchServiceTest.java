@@ -1,5 +1,6 @@
 package com.uliieumi.customized.policy.domain.service;
 
+import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import com.uliieumi.customized.policy.domain.repository.PolicyRepository;
 import com.uliieumi.customized.policy.web.dto.PageDTO;
 import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
@@ -78,9 +79,9 @@ class PolicySearchServiceTest {
 
     private PolicySearchForm policySearchForm(){
         PolicySearchForm policySearchForm = new PolicySearchForm();
-        List<String> areaList = new ArrayList<>();
-        areaList.add("finance");
-        areaList.add("startup");
+        List<PolicyCategory> areaList = new ArrayList<>();
+        areaList.add(PolicyCategory.FINANCE);
+        areaList.add(PolicyCategory.STARTUP);
         policySearchForm.setArea(areaList);
 
         return policySearchForm;

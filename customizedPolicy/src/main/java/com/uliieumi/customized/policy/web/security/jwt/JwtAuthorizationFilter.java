@@ -2,6 +2,7 @@ package com.uliieumi.customized.policy.web.security.jwt;
 
 import com.uliieumi.customized.policy.BeanUtils;
 import com.uliieumi.customized.policy.domain.data.Role;
+import com.uliieumi.customized.policy.domain.repository.JpaAdminRepository;
 import com.uliieumi.customized.policy.domain.repository.JpaEnterpriseRepository;
 import com.uliieumi.customized.policy.domain.repository.JpaMemberRepository;
 
@@ -34,14 +35,15 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private final JpaMemberRepository memberRepository;
 
-    private final JpaEnterpriseRepository jpaEnterpriseRepository;
+    private final JpaEnterpriseRepository enterpriseRepository;
 
+    private final JpaAdminRepository adminRepository;
 
     public JwtAuthorizationFilter() {
         this.tokenProvider = (TokenProvider) BeanUtils.getBean("tokenProvider");
         this.memberRepository = (JpaMemberRepository) BeanUtils.getBean("jpaMemberRepository");
-        this.jpaEnterpriseRepository = (JpaEnterpriseRepository) BeanUtils.getBean("jpaEnterpriseRepository");
-
+        this.enterpriseRepository = (JpaEnterpriseRepository) BeanUtils.getBean("jpaEnterpriseRepository");
+        this.adminRepository = (JpaAdminRepository) BeanUtils.getBean("jpaAdminRepository");
     }
 
     @Override
@@ -86,11 +88,13 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                         .orElseThrow(() -> new NotFoundException("Invalid AccessToken '" + id + "'"))
                 );
             }else if(Role.ENTERPRISE.equals(role)){
-                return new Account(jpaEnterpriseRepository.findById(id)
+                return new Account(enterpriseRepository.findById(id)
                         .orElseThrow(() -> new NotFoundException("Invalid AccessToken '" + id + "'"))
                 );
             }else if(Role.ADMIN.equals(role)){
-                return new Account("admin", "admin", Role.ADMIN);
+                return new Account(adminRepository.findById(id)
+                        .orElseThrow(() -> new NotFoundException("Invalid AccessToken '" + id + "'"))
+                );
             }else{
                 return null;
             }

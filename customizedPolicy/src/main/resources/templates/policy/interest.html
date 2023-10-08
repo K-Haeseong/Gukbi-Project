@@ -97,14 +97,15 @@
                 </ul>
 
 
-                <div class="paging-wrap">
-                    <button class="prev-btn">&#60;</button>
+                <div class="paging-wrap" th:if="${paging.startPage >= 1}">
+                    <button th:if="${paging.page > 1}" class="prev-btn" th:onclick="|sendData(${(paging.endPage)-1})|">&#60;</button>
                     <button class="paging-btn"
-                            th:each="num : ${#numbers.sequence((paging.startPage)-1, (paging.endPage)-1)}"
-                            th:onclick="|sendData(${(paging.startPage) + num})|"
-                            th:text="${(paging.startPage) + num}">
+                            th:each="num : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+                            th:onclick="|sendData(${num})|"
+                            th:classappend="${paging.page == num ? 'checked' : _}"
+                            th:text="${num}">
                     </button>
-                    <button class="next-btn" th:onclick="|sendData(${(paging.endPage)+1})|">&#62;</button>
+                    <button th:if="${paging.maxPage != paging.page}" class="next-btn" th:onclick="|sendData(${(paging.endPage)+1})|">&#62;</button>
                 </div>
 
             </div><!-------------------- 정책 결과 wrap --------------------->
@@ -227,7 +228,7 @@
             const pagingButtonList = document.querySelector(".paging-wrap");
             pagingButtonList.innerText = "";
             // newPolicyTage -> 이전 버튼 + 페이지 버튼 + 다음 버튼을 담는다.
-            let newPolicyTag = `<button class="prev-btn" onclick="sendData(${data.startPage === 1 ? 1 : data.startPage-1})">&#60;</button>`
+            let newPolicyTag = data.page > 1 ? `<button class="prev-btn" onclick="sendData(${data.endPage > data.size ? data.startPage - 1 : 1})">&#60;</button>` : ``
             for (let i = data.startPage; i <= data.endPage; i++) {
                 let checked = "" ;
                 if(data.page == i) {
@@ -236,7 +237,7 @@
                 newPolicyTag += `<button class="paging-btn ${checked}" onclick="sendData(${i})">${i}</button>`;
 
             }
-            newPolicyTag += `<button class="next-btn" onclick="sendData(${data.endPage == data.maxPage ? data.maxPage : data.endPage+1})">&#62;</button>`
+            newPolicyTag += data.page < data.maxPage ? `<button class="next-btn" onclick="sendData(${data.maxPage - data.page < data.size ? data.maxPage : data.endPage + 1 })">&#62;</button>` : ``;
             pagingButtonList.innerHTML = newPolicyTag;
         }
 

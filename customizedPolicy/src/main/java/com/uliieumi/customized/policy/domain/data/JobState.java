@@ -3,23 +3,26 @@ package com.uliieumi.customized.policy.domain.data;
 
 public enum JobState {
 
-    WORKER("worker", "재직자"),
-    EMPLOYER("employer", "자영업자"),
-    JOBLESS("jobless", "미취업자"),
-    FREELANCER("freelancer", "프리랜서"),
-    DAILY("daily", "일용근로자"),
-    FOUNDER("founder", "(예비)창업자"),
-    SHORT("short", "단기근로자"),
-    OTHER("other", "기타"),
-    NOLIMIT("noLimit", "제한없음");
+    WORKER("재직자"),
+    EMPLOYER("자영업자"),
+    JOBLESS("미취업자"),
+    FREELANCER( "프리랜서"),
+    DAILY("일용근로자"),
+    FOUNDER("(예비)창업자"),
+    SHORT("단기근로자"),
+    OTHER("기타"),
+    NOLIMIT("제한없음");
 
 
-    public String param;
     public String text;
 
 
-    JobState(String param, String text) {
-        this.param = param;
+    JobState(String text) {
         this.text = text;
+    }
+
+
+    public String getName(){
+        return this.name();
     }
 }

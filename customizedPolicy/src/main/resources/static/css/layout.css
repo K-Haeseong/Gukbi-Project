@@ -6,7 +6,7 @@
 
 #header{
     padding-top: 30px;
-    width: 100%;
+    min-width: 1400px;
 }
 
 

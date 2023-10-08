@@ -3,24 +3,27 @@ package com.uliieumi.customized.policy.domain.data;
 
 public enum PolicyCategory {
 
-    SPACE("space", "공간"),
-    EDUCATION("education", "교육"),
-    FINANCE("finance", "금융"),
-    LIVING("living", "생활지원"),
-    HEALTH("health", "건강"),
-    JOB("job", "일자리"),
-    HOUSE("house", "주거"),
-    CAREER("career", "진로"),
-    STARTUP("startup", "창업"),
-    CULTURE("culture", "문화·예술");
+    SPACE("공간"),
+    EDUCATION("교육"),
+    FINANCE("금융"),
+    LIVING("생활지원"),
+    HEALTH("건강"),
+    JOB( "일자리"),
+    HOUSE("주거"),
+    CAREER("진로"),
+    STARTUP("창업"),
+    CULTURE("문화·예술"),
+    NOLIMIT("제한없음");
 
 
-    public String param;
     public String text;
 
 
-    PolicyCategory(String param, String text) {
-        this.param = param;
+    PolicyCategory(String text) {
         this.text = text;
+    }
+
+    public String getName(){
+        return this.name();
     }
 }

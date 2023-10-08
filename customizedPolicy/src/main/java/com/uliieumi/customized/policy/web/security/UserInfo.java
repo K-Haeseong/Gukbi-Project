@@ -2,6 +2,7 @@ package com.uliieumi.customized.policy.web.security;
 
 
 import com.uliieumi.customized.policy.domain.data.Role;
+import com.uliieumi.customized.policy.domain.entity.Admin;
 import com.uliieumi.customized.policy.domain.entity.Enterprise;
 import com.uliieumi.customized.policy.domain.entity.Member;
 
@@ -25,9 +26,10 @@ public class UserInfo {
         this.role = Role.MEMBER;
     }
 
-    public UserInfo(Long id, String name, Role role) {
-        this.id = id;
-        this.name = name;
-        this.role = role;
+    public UserInfo(Admin admin) {
+        this.id = admin.getId();
+        this.name = admin.getName();
+        this.role = Role.ADMIN;
     }
+
 }

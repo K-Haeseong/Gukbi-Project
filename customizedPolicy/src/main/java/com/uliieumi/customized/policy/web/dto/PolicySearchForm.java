@@ -1,10 +1,12 @@
 package com.uliieumi.customized.policy.web.dto;
 
+import com.uliieumi.customized.policy.domain.data.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
@@ -19,14 +21,14 @@ public class PolicySearchForm {
     @PositiveOrZero
     private Integer age;
 
-    private List<String> area;
+    private List<PolicyCategory> area;
 
-    private List<String> educationLevel;
+    private List<EducationLevel> educationLevel;
 
-    private List<String> jobState;
+    private List<JobState> jobState;
 
-    private List<String> region;
+    private List<PolicyRegion> region;
 
-    private List<String> specificClass;
+    private List<SpecificClass> specificClass;
 
 }

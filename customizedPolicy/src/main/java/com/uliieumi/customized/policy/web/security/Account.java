@@ -2,6 +2,7 @@ package com.uliieumi.customized.policy.web.security;
 
 
 import com.uliieumi.customized.policy.domain.data.Role;
+import com.uliieumi.customized.policy.domain.entity.Admin;
 import com.uliieumi.customized.policy.domain.entity.Enterprise;
 import com.uliieumi.customized.policy.domain.entity.Member;
 
@@ -16,16 +17,13 @@ import java.util.List;
 public class Account extends User {
 
 
-    private UserInfo userInfo;
 
-    public Account(String loginId, String password, Role role) {
-        super(loginId, password, List.of(new SimpleGrantedAuthority(role.getRole())));
-        this.userInfo = new UserInfo(0L, "admin", Role.ADMIN);
-    }
+    private final UserInfo userInfo;
 
-    public Account(Long id, String name, Role role) {
-        super("1234", "1234", List.of(new SimpleGrantedAuthority(role.getRole())));
-        this.userInfo = new UserInfo(id, name, role);
+
+    public Account(Admin admin) {
+        super(admin.getLoginId(), admin.getPassword(), List.of(new SimpleGrantedAuthority(Role.ADMIN.getRole())));
+        this.userInfo = new UserInfo(admin);
     }
 
     public Account(Member member) {

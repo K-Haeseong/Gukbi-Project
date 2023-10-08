@@ -9,49 +9,48 @@
         SELECT *
         FROM policy
         WHERE 1=1
-        <if test="form.name != null and form.name !=''" >
+        <if test="form.name != null" >
         AND
         NAME LIKE CONCAT('%', #{form.name}, '%')
         </if>
 
-        <if test="form.age != null and form.age !=''">
-        AND
-        <![CDATA[min_age <= #{form.age} AND #{form.age} <= max_age]]>
+        <if test="form.age != null">
+            AND
+            <![CDATA[min_age <= #{form.age} AND #{form.age} <= max_age]]>
         </if>
 
-        <if test="form.area != null and form.area.size() > 0">
+        <if test="form.area != null">
             AND category IN
             <foreach collection="form.area" item="area" open="(" separator="," close=")">
-                #{area}
+                #{area.name}
             </foreach>
         </if>
 
-        <if test="form.region != null and form.region.size() > 0">
-            AND (
-            <foreach collection="form.region" item="region" open="" separator=" OR " close="">
-                region LIKE CONCAT('%', #{region}, '%')
+        <if test="form.region != null">
+            AND
+            <foreach collection="form.region" item="region" open="(" separator=" OR " close=")">
+                region LIKE CONCAT('%', #{region.name}, '%')
             </foreach>
-            )
         </if>
 
-        <if test="form.educationLevel != null and form.educationLevel.size() > 0">
+        <if test="form.educationLevel != null">
             AND education_level IN
             <foreach collection="form.educationLevel" item="educationLevel" open="(" separator="," close=")">
-                #{educationLevel}
+                #{educationLevel.name}
             </foreach>
         </if>
 
-        <if test="form.jobState != null and form.jobState.size() > 0">
+        <if test="form.jobState != null">
             AND job_state IN
             <foreach collection="form.jobState" item="jobState" open="(" separator="," close=")">
-                #{jobState}
+                #{jobState.name}
             </foreach>
         </if>
 
-        <if test="form.specificClass != null and form.specificClass.size() > 0">
+        <if test="form.specificClass != null">
             AND specific_class IN
             <foreach collection="form.specificClass" item="specificClass" open="(" separator="," close=")">
-                #{specificClass}
+                #{specificClass.name}
             </foreach>
         </if>
         <if test="sort==true">
@@ -84,49 +83,49 @@
         SELECT count(id)
         FROM policy
         WHERE 1=1
-        <if test="form.name != null and form.name !=''" >
+        <if test="form.name != null" >
             AND
             NAME LIKE CONCAT('%', #{form.name}, '%')
         </if>
 
-        <if test="form.age != null and form.age !=''">
+        <if test="form.age != null">
             AND
             <![CDATA[min_age <= #{form.age} AND #{form.age} <= max_age]]>
         </if>
 
-        <if test="form.area != null and form.area.size() > 0">
+        <if test="form.area != null">
             AND category IN
             <foreach collection="form.area" item="area" open="(" separator="," close=")">
-                #{area}
+                #{area.name}
             </foreach>
         </if>
 
-        <if test="form.region != null and form.region.size() > 0">
-            AND (
-            <foreach collection="form.region" item="region" open="" separator=" OR " close="">
-                region LIKE CONCAT('%', #{region}, '%')
+        <if test="form.region != null">
+            AND
+            <foreach collection="form.region" item="region" open="(" separator=" OR " close=")">
+                region LIKE CONCAT('%', #{region.name}, '%')
             </foreach>
-            )
+
         </if>
 
-        <if test="form.educationLevel != null and form.educationLevel.size() > 0">
+        <if test="form.educationLevel != null">
             AND education_level IN
             <foreach collection="form.educationLevel" item="educationLevel" open="(" separator="," close=")">
-                #{educationLevel}
+                #{educationLevel.name}
             </foreach>
         </if>
 
-        <if test="form.jobState != null and form.jobState.size() > 0">
+        <if test="form.jobState != null">
             AND job_state IN
             <foreach collection="form.jobState" item="jobState" open="(" separator="," close=")">
-                #{jobState}
+                #{jobState.name}
             </foreach>
         </if>
 
-        <if test="form.specificClass != null and form.specificClass.size() > 0">
+        <if test="form.specificClass != null">
             AND specific_class IN
             <foreach collection="form.specificClass" item="specificClass" open="(" separator="," close=")">
-                #{specificClass}
+                #{specificClass.name}
             </foreach>
         </if>
     </select>

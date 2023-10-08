@@ -1,7 +1,7 @@
 package com.uliieumi.customized.policy.web.controller;
 
 
-import com.uliieumi.customized.policy.domain.data.Role;
+import com.uliieumi.customized.policy.domain.data.*;
 import com.uliieumi.customized.policy.domain.entity.Member;
 import com.uliieumi.customized.policy.domain.repository.JpaMemberRepository;
 import com.uliieumi.customized.policy.domain.service.PolicyService;
@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -53,13 +54,16 @@ public class PolicyController {
 
 
     @GetMapping("list")
-    public String list(Model model, @AuthUser UserInfo userInfo) {
-        List<PolicyDto> policies = policyService.searchPolicy(new PolicySearchForm(), 6, 1, true)
+    public String list(Model model, @AuthUser UserInfo userInfo, @ModelAttribute("form") PolicySearchForm form) {
+
+        // 기존의 SearchForm은 Data가 유지된 채로 model에 담겨야 하기 때문에 기존의 데이터를 유지하는 새 객체 생성
+
+        List<PolicyDto> policies = policyService.searchPolicy(form, 6, 1, true)
                 .stream()
                 .map(policy -> new PolicyDto(policy))
                 .collect(Collectors.toList());
 
-        PageDTO paging = policyService.pagingSearchParam(new PolicySearchForm(), 6, 1);
+        PageDTO paging = policyService.pagingSearchParam(form, 6, 1);
 
 
         @Data
@@ -67,15 +71,15 @@ public class PolicyController {
         class MemberInterest {
             private int age;
 
-            private String category; //정책분야
+            private PolicyCategory category; //정책분야
 
-            private String region; //지역
+            private PolicyRegion region; //지역
 
-            private String jobState; //취업상태
+            private JobState jobState; //취업상태
 
-            private String educationLevel; //학력
+            private EducationLevel educationLevel; //학력
 
-            private String specificClass; //특정계층
+            private SpecificClass specificClass; //특정계층
         }
 
 
@@ -87,11 +91,11 @@ public class PolicyController {
 
             memberInterest = new MemberInterest(
                     member.getAge(),
-                    member.getInterestCategory().param,
-                    member.getRegion().param,
-                    member.getJobState().param,
-                    member.getEducationLevel().param,
-                    member.getSpecificClass().param
+                    member.getInterestCategory(),
+                    member.getRegion(),
+                    member.getJobState(),
+                    member.getEducationLevel(),
+                    member.getSpecificClass()
             );
         }
 
@@ -103,6 +107,8 @@ public class PolicyController {
     }
 
 
+
+
     @PostMapping(value = "list", produces = {"application/json; charset=UTF-8"})
     @ResponseBody
     public ResponseEntity<Object> policyList(@RequestBody @Validated PolicySearchForm form,
@@ -111,13 +117,11 @@ public class PolicyController {
                                              @RequestParam int page,
                                              @RequestParam boolean sort) {
 
-
         if (bindingResult.hasFieldErrors()) {
             FieldError error = bindingResult.getFieldErrors().get(0);
             ErrorResult errorResult = new ErrorResult(HttpServletResponse.SC_BAD_REQUEST, error.getDefaultMessage(), error.getCode(), error.getField());
             throw new CustomValidationException(errorResult);
         }
-
 
         List<PolicyDto> policies = policyService.searchPolicy(form, size, page, sort).stream()
                 .map(policy -> new PolicyDto(policy))

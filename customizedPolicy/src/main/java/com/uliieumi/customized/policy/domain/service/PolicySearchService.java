@@ -1,5 +1,6 @@
 package com.uliieumi.customized.policy.domain.service;
 
+import com.uliieumi.customized.policy.domain.data.*;
 import com.uliieumi.customized.policy.domain.entity.Policy;
 import com.uliieumi.customized.policy.domain.repository.InterestRepository;
 import com.uliieumi.customized.policy.domain.repository.PolicyRepository;
@@ -7,10 +8,13 @@ import com.uliieumi.customized.policy.web.dto.DetailPolicyDto;
 import com.uliieumi.customized.policy.web.dto.PageDTO;
 import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PolicySearchService implements PolicyService {
@@ -26,15 +30,45 @@ public class PolicySearchService implements PolicyService {
 //        page     1      2      3
 //        size     6 or 12
         int startPostNum = size*(page-1);
-        return policyRepository.findByCondition(form, size, startPostNum, sort);
+        PolicySearchForm newPolicySearchForm = generateNewPolicySearchForm(form);
+        return policyRepository.findByCondition(newPolicySearchForm, size, startPostNum, sort);
+    }
+
+    private PolicySearchForm generateNewPolicySearchForm(PolicySearchForm form){
+        PolicySearchForm newSearchForm = new PolicySearchForm();
+        if(StringUtils.hasText(form.getName())) newSearchForm.setName(form.getName());
+
+        List<PolicyRegion> region = form.getRegion();
+        if(region != null && !region.contains(PolicyRegion.NOLIMIT) && region.size() > 0)
+            newSearchForm.setRegion(region);
+
+        List<PolicyCategory> area = form.getArea();
+        if(area != null && !area.contains(PolicyCategory.NOLIMIT) && area.size() > 0)
+            newSearchForm.setArea(area);
+
+        List<JobState> jobState = form.getJobState();
+        if(jobState != null && !jobState.contains(JobState.NOLIMIT) && jobState.size() > 0)
+            newSearchForm.setJobState(jobState);
+
+        List<EducationLevel> educationLevel = form.getEducationLevel();
+        if(educationLevel != null && !educationLevel.contains(EducationLevel.NOLIMIT) && educationLevel.size() > 0)
+            newSearchForm.setEducationLevel(educationLevel);
+
+        List<SpecificClass> specificClass = form.getSpecificClass();
+        if(specificClass != null && !specificClass.contains(SpecificClass.NOLIMIT) && specificClass.size() > 0)
+            newSearchForm.setSpecificClass(specificClass);
+
+        return newSearchForm;
     }
 
     // 기본 정책 리스트 페이징
     @Override
     public PageDTO pagingSearchParam(PolicySearchForm form, int size, int page) {
 
+        PolicySearchForm newPolicySearchForm = generateNewPolicySearchForm(form);
+
         // 조회된 게시글 수
-        int boardCount = policyRepository.searchBoardCount(form);
+        int boardCount = policyRepository.searchBoardCount(newPolicySearchForm);
 
         int remainder = boardCount % size;
         int pageCount = boardCount / size;
@@ -46,13 +80,14 @@ public class PolicySearchService implements PolicyService {
         int pageSize = 5;
 
         // 현재 페이지의 시작 페이지 번호
-        int startPage = page-(page-1) % pageSize;
+        int startPage = boardCount > 0 ? page - ( (page-1) % pageSize ) : 0;
 
         // 현재 페이지의 마지막 페이지 번호
-        int endPage =  maxPage <  startPage + (pageSize-1) ? maxPage : startPage + (pageSize-1);
+        int endPage = maxPage <  startPage + (pageSize-1) ? maxPage : startPage + (pageSize-1);
 
         PageDTO pageDTO = new PageDTO();
         pageDTO.setPage(page);
+        pageDTO.setSize(size);
         pageDTO.setMaxPage(maxPage);
         pageDTO.setStartPage(startPage);
         pageDTO.setEndPage(endPage);
@@ -117,13 +152,14 @@ public class PolicySearchService implements PolicyService {
         int pageSize = 5;
 
         // 현재 페이지의 시작 페이지 번호
-        int startPage = page-(page-1) % pageSize;
+        int startPage = boardCount > 0 ? page - ( (page-1) % pageSize ) : 0;
 
         // 현재 페이지의 마지막 페이지 번호
-        int endPage =  maxPage <  startPage + (pageSize-1) ? maxPage : startPage + (pageSize-1);
+        int endPage = maxPage <  startPage + (pageSize-1) ? maxPage : startPage + (pageSize-1);
 
         PageDTO pageDTO = new PageDTO();
         pageDTO.setPage(page);
+        pageDTO.setSize(size);
         pageDTO.setMaxPage(maxPage);
         pageDTO.setStartPage(startPage);
         pageDTO.setEndPage(endPage);

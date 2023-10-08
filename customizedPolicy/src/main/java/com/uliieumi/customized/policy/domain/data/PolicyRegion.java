@@ -5,26 +5,26 @@ import java.util.Arrays;
 
 public enum PolicyRegion {
 
-    SEOUL("Seoul", "서울"),
-    GYUNGGI("Gyunggi", "경기"),
-    INCHEON("Incheon", "인천"),
-    BUSAN("Busan", "부산"),
-    DAEGU("Daegu", "대구"),
-    GWANGJU("Gwangju", "광주"),
-    DAEJUN("Daejun", "대전"),
-    ULSAN("Ulsan", "울산"),
-    GANGWON("Gangwon", "강원"),
-    CHUNGBUK("ChungBuk", "충북"),
-    CHUNGNAM("ChungNam", "충남"),
-    JEONBUK("JeonBuk", "전북"),
-    JEONNAM("JeonNam", "전남"),
-    GYUNGBUK("GyungBuk", "경북"),
-    GYUNGNAM("GyungNam", "경남"),
-    JEJU("Jeju", "제주"),
-    SEJONG("Sejong", "세종");
+    SEOUL("서울"),
+    GYUNGGI("경기"),
+    INCHEON("인천"),
+    BUSAN("부산"),
+    DAEGU("대구"),
+    GWANGJU("광주"),
+    DAEJUN("대전"),
+    ULSAN("울산"),
+    GANGWON("강원"),
+    CHUNGBUK("충북"),
+    CHUNGNAM("충남"),
+    JEONBUK("전북"),
+    JEONNAM("전남"),
+    GYUNGBUK("경북"),
+    GYUNGNAM("경남"),
+    JEJU("제주"),
+    SEJONG("세종"),
+    NOLIMIT("제한없음");
 
 
-    public String param;
     public String text;
 
     public static PolicyRegion findByName(String name){
@@ -34,8 +34,12 @@ public enum PolicyRegion {
                 .orElseThrow(() -> new IllegalArgumentException("잘못 저장된 파라미터입니다."));
     }
 
-    PolicyRegion(String param, String text) {
-        this.param = param;
+    PolicyRegion(String text) {
         this.text = text;
+    }
+
+
+    public String getName(){
+        return this.name();
     }
 }

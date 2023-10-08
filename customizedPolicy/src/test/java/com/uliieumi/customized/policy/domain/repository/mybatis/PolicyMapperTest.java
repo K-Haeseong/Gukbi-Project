@@ -1,5 +1,6 @@
 package com.uliieumi.customized.policy.domain.repository.mybatis;
 
+import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import com.uliieumi.customized.policy.domain.entity.Policy;
 import com.uliieumi.customized.policy.web.dto.PolicySearchForm;
 import org.junit.jupiter.api.Test;
@@ -78,11 +79,10 @@ class PolicyMapperTest {
 
     private PolicySearchForm policySearchForm(){
         PolicySearchForm policySearchForm = new PolicySearchForm();
-        List<String> areaList = new ArrayList<>();
-        areaList.add("finance");
-        areaList.add("startup");
+        List<PolicyCategory> areaList = new ArrayList<>();
+        areaList.add(PolicyCategory.FINANCE);
+        areaList.add(PolicyCategory.STARTUP);
         policySearchForm.setArea(areaList);
-
         return policySearchForm;
     }
 }

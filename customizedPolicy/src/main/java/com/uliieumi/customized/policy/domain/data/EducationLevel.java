@@ -3,23 +3,25 @@ package com.uliieumi.customized.policy.domain.data;
 
 public enum EducationLevel {
 
-    PREHS("preHS", "고졸 미만"),
-    HSENROLL("hsEnroll", "고졸 재학"),
-    HSEXP("hsExp", "고졸 예정"),
-    HSGRAD("hsGrad", "고교 졸업"),
-    UNIVENROLL("univEnroll", "대학 재학"),
-    UNIVEXP("univExp", "대졸 예정"),
-    UNIVGRAD("univGrad", "대학 졸업"),
-    ADVANCED("advanced", "석·박사"),
-    NOLIMIT("noLimit", "제한없음");
+    PREHS("고졸 미만"),
+    HSENROLL("고졸 재학"),
+    HSEXP( "고졸 예정"),
+    HSGRAD("고교 졸업"),
+    UNIVENROLL("대학 재학"),
+    UNIVEXP("대졸 예정"),
+    UNIVGRAD("대학 졸업"),
+    ADVANCED( "석·박사"),
+    NOLIMIT("제한없음");
 
 
-    public String param;
     public String text;
 
 
-    EducationLevel(String param, String text) {
-        this.param = param;
+    EducationLevel(String text) {
         this.text = text;
+    }
+
+    public String getName(){
+        return this.name();
     }
 }

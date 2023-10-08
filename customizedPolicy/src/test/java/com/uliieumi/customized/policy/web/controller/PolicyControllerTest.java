@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.uliieumi.customized.policy.domain.data.JobState;
+import com.uliieumi.customized.policy.domain.data.PolicyCategory;
 import com.uliieumi.customized.policy.domain.data.SpecificClass;
 import com.uliieumi.customized.policy.domain.entity.Policy;
 import com.uliieumi.customized.policy.domain.service.PolicyService;
@@ -225,9 +226,9 @@ class PolicyControllerTest {
 
     private PolicySearchForm policySearchForm(){
         PolicySearchForm policySearchForm = new PolicySearchForm();
-        List<String> areaList = new ArrayList<>();
-        areaList.add("finance");
-        areaList.add("startup");
+        List<PolicyCategory> areaList = new ArrayList<>();
+        areaList.add(PolicyCategory.FINANCE);
+        areaList.add(PolicyCategory.STARTUP);
         policySearchForm.setArea(areaList);
 
         return policySearchForm;
@@ -236,9 +237,9 @@ class PolicyControllerTest {
 
     private PolicySearchForm ErrorSearchForm(){
         PolicySearchForm errorSearchForm = new PolicySearchForm();
-        List<String> areaList = new ArrayList<>();
-        areaList.add("finance");
-        areaList.add("startup");
+        List<PolicyCategory> areaList = new ArrayList<>();
+        areaList.add(PolicyCategory.FINANCE);
+        areaList.add(PolicyCategory.STARTUP);
         errorSearchForm.setAge(-2);
         errorSearchForm.setArea(areaList);
 
