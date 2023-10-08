@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관심 정책 리스트</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/interest.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+<div id="wrapper">
+    <!-------------------- 헤더 시작 ------------------->
+    <div th:replace="~{fragment/header :: header}"></div>
+    <!-------------------- 헤더 끝 --------------------->
+
+
+    <!-------------------- 메인 시작 ------------------->
+        <main class="search-main">
+            <div class="title-wrap">
+                <span class="title">
+                    나의 관심정책 목록
+                </span>
+            </div>    
+            
+
+            <!-- 정책 검색 결과 wrap -->
+            <div class="policy-result-wrap">
+
+                <div class="policy-result-header">
+                    <div class="sub-title-2">
+                        정책 검색결과
+                        <span class="policy-result-count" th:text="${paging.boardCount}">00</span>
+                        건
+                    </div>
+                    <div class="srchSortOrder-wrap">
+                        <select class="page-category">
+                            <option value="6" selected="">6개</option>
+                            <option value="12">12개</option>
+                        </select>
+                        <button type="button" class="sort-btn" onclick="">정렬</button>
+                    </div>
+                </div>
+
+
+
+                <ul class="policy-list">
+                    <li th:each="policy : ${policies}">
+                        <!-- 정책 이미지 -->
+                        <a th:href="|/policy/detail/${policy.id}|"><img class="policy-img" th:src="${policy.thumbnail}"></a>
+
+                        <!-- 정책 목록 -->
+                        <div class="policy-summary">
+
+                            <div class="summary-title">
+                                <a th:href="|/policy/detail/${policy.id}|" th:text="${policy.name}">정책이름</a>
+                            </div>
+
+                            <ul class="summary-list">
+                                <li>
+                                    <div class="summary-field">정책분야</div>
+                                    <div class="summary-field-content" th:text="${policy.category}">주거</div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">지역</div>
+                                    <div class="summary-field-content">
+                                        <span th:each="region, iterStat : ${policy.region}">
+                                            <span th:text="|${region}|"></span>
+                                            <span th:if="${!iterStat.last}">,&#32;</span>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">지원내용</div>
+                                    <div class="summary-field-content" th:text="${policy.shortDescription}">지원내용</div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">운영기간</div>
+                                    <div class="summary-field-content" th:text="|${policy.publishedDateTime}~${policy.closedDateTime}|">2023.01.01~2023.12.31</div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">신청기간</div>
+                                    <div class="summary-field-content" th:text="${policy.deadline}">상시 모집</div>
+                                </li>
+                                <li>
+                                    <div class="summary-field">모집인원</div>
+                                    <div class="summary-field-content" th:text="${policy.recruitsNumber}">00명</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+
+                <div class="paging-wrap" th:if="${paging.startPage >= 1}">
+                    <button th:if="${paging.page > 1}" class="prev-btn" th:onclick="|sendData(${(paging.endPage)-1})|">&#60;</button>
+                    <button class="paging-btn"
+                            th:each="num : ${#numbers.sequence(paging.startPage, paging.endPage)}"
+                            th:onclick="|sendData(${num})|"
+                            th:classappend="${paging.page == num ? 'checked' : _}"
+                            th:text="${num}">
+                    </button>
+                    <button th:if="${paging.maxPage != paging.page}" class="next-btn" th:onclick="|sendData(${(paging.endPage)+1})|">&#62;</button>
+                </div>
+
+            </div><!-------------------- 정책 결과 wrap --------------------->
+
+            <!-- TOP 버튼 -->
+            <a href="#">
+                <div class="gotop-btn">
+                TOP
+                </div>
+            </a>    
+
+        </main>
+    <!-------------------- 메인 끝 --------------------->    
+
+
+    <!-------------------- 풋터 시작 ------------------->
+    <div th:replace="~{fragment/footer :: footer}"></div>
+    <!-------------------- 풋터 끝 --------------------->
+</div>
+
+
+
+
+
+
+<script>
+    document.querySelector(".sort-btn").addEventListener("click", () => sendData(1)); // 꼭 1?
+    
+
+        function sendData(page) {
+
+            const sizeSelector = document.querySelector('.page-category');
+            const size = sizeSelector.options[sizeSelector.selectedIndex].value;
+
+
+        // fetch를 사용하여 서버로 데이터 전송
+        fetch(`/policy/interest?size=${size}&page=${page}`, {
+            method: "POST",
+            headers: {
+                    "Content-Type": "application/json"  // 전송할 데이터의 형식 설정 (JSON)
+            },
+        })
+        .then(response => response.json())  // 서버로부터의 JSON 응답 처리
+        .then(data => {
+            console.log("서버 응답 데이터:", data);  // 서버로부터 받은 데이터
+            console.log("response.status:", data.status);  // 서버로부터 받은 데이터
+            if (data.status == undefined || data.status == null) {
+            createNewPolicyList(data.policyDTO);
+            createBoardCount(data.pageDTO);
+            createPagingButton(data.pageDTO);
+            } else {
+                if (data.status >= 500) {
+                    alert("서버에러입니다.");
+                } else if (data.status === 400) {
+                    alert(data.status + "에러 발생");
+                } else {
+                    console.log(data);
+                    alert("알 수 없는 에러입니다.");
+                }
+            }
+        })
+    }
+</script>
+
+
+
+<script>
+    // ------------------- 정책 리스트 생성 -------------------
+        function createNewPolicyList(policies) {
+            const policyList = document.querySelector(".policy-list");
+            policyList.innerText = "";
+            policies.forEach(policy => {
+                const newPolicyTag =
+                    `<!-- 정책 이미지 -->
+                    <a href="/policy/detail/${policy.id}"><img class="policy-img" src="${policy.thumbnail}"></a>
+
+                    <!-- 정책 목록 -->
+                    <div class="policy-summary">
+
+                        <div class="summary-title">
+                            <a href="/policy/detail/${policy.id}">${policy.name}</a>
+                        </div>
+
+                        <ul class="summary-list">
+                            <li>
+                                <div class="summary-field">정책분야</div>
+                                <div class="summary-field-content">${policy.category}</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">지역</div>
+                                <div class="summary-field-content">${policy.region}</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">지원내용</div>
+                                <div class="summary-field-content">${policy.shortDescription}</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">운영기간</div>
+                                <div class="summary-field-content">${policy.publishedDateTime} ~ ${policy.closedDateTime}</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">상시모집</div>
+                                <div class="summary-field-content">${policy.deadline}</div>
+                            </li>
+                            <li>
+                                <div class="summary-field">모집인원</div>
+                                <div class="summary-field-content">${policy.recruitsNumber}</div>
+                            </li>
+                        </ul>
+                    </div>`
+                    const li = document.createElement("li");
+                    policyList.appendChild(li)
+                    li.innerHTML = newPolicyTag;
+            });
+        }
+
+
+        // ------------------- 페이지 버튼 리스트 생성 -------------------
+       function createPagingButton(data) {
+            const pagingButtonList = document.querySelector(".paging-wrap");
+            pagingButtonList.innerText = "";
+            // newPolicyTage -> 이전 버튼 + 페이지 버튼 + 다음 버튼을 담는다.
+            let newPolicyTag = data.page > 1 ? `<button class="prev-btn" onclick="sendData(${data.endPage > data.size ? data.startPage - 1 : 1})">&#60;</button>` : ``
+            for (let i = data.startPage; i <= data.endPage; i++) {
+                let checked = "" ;
+                if(data.page == i) {
+                    checked = "checked"
+                }
+                newPolicyTag += `<button class="paging-btn ${checked}" onclick="sendData(${i})">${i}</button>`;
+
+            }
+            newPolicyTag += data.page < data.maxPage ? `<button class="next-btn" onclick="sendData(${data.maxPage - data.page < data.size ? data.maxPage : data.endPage + 1 })">&#62;</button>` : ``;
+            pagingButtonList.innerHTML = newPolicyTag;
+        }
+
+
+
+
+         // ------------------- 정책 검색 결과 건수 ----------------------
+         function createBoardCount(data) {
+            const boardResult = document.querySelector(".sub-title-2");
+            boardResult.innerHTML = "";
+            newBoardResultTag = 
+                        `정책 검색결과
+                        <span class="policy-result-count">${data.boardCount}</span>
+                        건`
+            boardResult.innerHTML = newBoardResultTag;
+        }
+</script>
+
+</body>
+</html>

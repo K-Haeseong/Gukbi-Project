@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.uliieumi.customized.policy.domain.repository.mybatis.PolicyMapper">
+
+    <!-- 조건 검색 -->
+    <select id="findByCondition" resultType="Policy">
+        SELECT *
+        FROM policy
+        WHERE 1=1
+        <if test="form.name != null" >
+        AND
+        NAME LIKE CONCAT('%', #{form.name}, '%')
+        </if>
+
+        <if test="form.age != null">
+            AND
+            <![CDATA[min_age <= #{form.age} AND #{form.age} <= max_age]]>
+        </if>
+
+        <if test="form.area != null">
+            AND category IN
+            <foreach collection="form.area" item="area" open="(" separator="," close=")">
+                #{area.name}
+            </foreach>
+        </if>
+
+        <if test="form.region != null">
+            AND
+            <foreach collection="form.region" item="region" open="(" separator=" OR " close=")">
+                region LIKE CONCAT('%', #{region.name}, '%')
+            </foreach>
+        </if>
+
+        <if test="form.educationLevel != null">
+            AND education_level IN
+            <foreach collection="form.educationLevel" item="educationLevel" open="(" separator="," close=")">
+                #{educationLevel.name}
+            </foreach>
+        </if>
+
+        <if test="form.jobState != null">
+            AND job_state IN
+            <foreach collection="form.jobState" item="jobState" open="(" separator="," close=")">
+                #{jobState.name}
+            </foreach>
+        </if>
+
+        <if test="form.specificClass != null">
+            AND specific_class IN
+            <foreach collection="form.specificClass" item="specificClass" open="(" separator="," close=")">
+                #{specificClass.name}
+            </foreach>
+        </if>
+        <if test="sort==true">
+            ORDER BY created_date ASC
+        </if>
+        <if test="sort==false">
+            ORDER BY hit DESC
+        </if>
+        LIMIT #{size} OFFSET #{startPostNum}
+    </select>
+
+    <!-- 정책 하나 찾기 -->
+    <select id="findById" resultType="Policy" >
+        SELECT * FROM policy
+        where id = #{id}
+    </select>
+
+
+    <!-- 정책 조회수 업데이트 -->
+    <update id="updatePolicy">
+        UPDATE policy
+        SET hit= #{hit}
+        WHERE id = #{id}
+    </update>
+
+
+
+    <!-- 페이징 관련 -->
+    <select id="searchBoardCount" resultType="Integer">
+        SELECT count(id)
+        FROM policy
+        WHERE 1=1
+        <if test="form.name != null" >
+            AND
+            NAME LIKE CONCAT('%', #{form.name}, '%')
+        </if>
+
+        <if test="form.age != null">
+            AND
+            <![CDATA[min_age <= #{form.age} AND #{form.age} <= max_age]]>
+        </if>
+
+        <if test="form.area != null">
+            AND category IN
+            <foreach collection="form.area" item="area" open="(" separator="," close=")">
+                #{area.name}
+            </foreach>
+        </if>
+
+        <if test="form.region != null">
+            AND
+            <foreach collection="form.region" item="region" open="(" separator=" OR " close=")">
+                region LIKE CONCAT('%', #{region.name}, '%')
+            </foreach>
+
+        </if>
+
+        <if test="form.educationLevel != null">
+            AND education_level IN
+            <foreach collection="form.educationLevel" item="educationLevel" open="(" separator="," close=")">
+                #{educationLevel.name}
+            </foreach>
+        </if>
+
+        <if test="form.jobState != null">
+            AND job_state IN
+            <foreach collection="form.jobState" item="jobState" open="(" separator="," close=")">
+                #{jobState.name}
+            </foreach>
+        </if>
+
+        <if test="form.specificClass != null">
+            AND specific_class IN
+            <foreach collection="form.specificClass" item="specificClass" open="(" separator="," close=")">
+                #{specificClass.name}
+            </foreach>
+        </if>
+    </select>
+
+
+</mapper>
