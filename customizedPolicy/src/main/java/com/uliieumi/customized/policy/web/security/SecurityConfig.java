@@ -67,7 +67,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return web -> {
             web.ignoring()
-                    .antMatchers("/img/**", "/js/**", "/css/**", "/font/**", "/file/**");
+                    .antMatchers("/HS/**");
         };
     }
 }

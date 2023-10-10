@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관심 정책 리스트</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/interest.css">
-    <link rel="stylesheet" href="/css/font.css">
+    <link rel="icon" href="/HS/img/favicon.ico">
+    <link rel="stylesheet" href="/HS/css/reset.css">
+    <link rel="stylesheet" href="/HS/css/layout.css">
+    <link rel="stylesheet" href="/HS/css/interest.css">
+    <link rel="stylesheet" href="/HS/css/font.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -70,8 +71,8 @@
                                     <div class="summary-field">지역</div>
                                     <div class="summary-field-content">
                                         <span th:each="region, iterStat : ${policy.region}">
-                                            <span th:text="|${region}|"></span>
-                                            <span th:if="${!iterStat.last}">,&#32;</span>
+                                            <span th:text="|${region}|"></span
+                                            ><span th:if="${!iterStat.last}">,</span>
                                         </span>
                                     </div>
                                 </li>
@@ -81,7 +82,7 @@
                                 </li>
                                 <li>
                                     <div class="summary-field">운영기간</div>
-                                    <div class="summary-field-content" th:text="|${policy.publishedDateTime}~${policy.closedDateTime}|">2023.01.01~2023.12.31</div>
+                                    <div class="summary-field-content" th:text="|${policy.publishedDateTime} ~ ${policy.closedDateTime}|">2023.01.01~2023.12.31</div>
                                 </li>
                                 <li>
                                     <div class="summary-field">신청기간</div>
@@ -150,8 +151,6 @@
         })
         .then(response => response.json())  // 서버로부터의 JSON 응답 처리
         .then(data => {
-            console.log("서버 응답 데이터:", data);  // 서버로부터 받은 데이터
-            console.log("response.status:", data.status);  // 서버로부터 받은 데이터
             if (data.status == undefined || data.status == null) {
             createNewPolicyList(data.policyDTO);
             createBoardCount(data.pageDTO);
@@ -162,7 +161,6 @@
                 } else if (data.status === 400) {
                     alert(data.status + "에러 발생");
                 } else {
-                    console.log(data);
                     alert("알 수 없는 에러입니다.");
                 }
             }
@@ -207,7 +205,7 @@
                                 <div class="summary-field-content">${policy.publishedDateTime} ~ ${policy.closedDateTime}</div>
                             </li>
                             <li>
-                                <div class="summary-field">상시모집</div>
+                                <div class="summary-field">신청기간</div>
                                 <div class="summary-field-content">${policy.deadline}</div>
                             </li>
                             <li>

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정책 리스트</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/list.css">
-    <link rel="stylesheet" href="/css/font.css">
+    <link rel="icon" href="/HS/img/favicon.ico">
+    <link rel="stylesheet" href="/HS/css/reset.css">
+    <link rel="stylesheet" href="/HS/css/layout.css">
+    <link rel="stylesheet" href="/HS/css/list.css">
+    <link rel="stylesheet" href="/HS/css/font.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -463,8 +464,8 @@
                                 <div class="summary-field">지역</div>
                                 <div class="summary-field-content">
                                         <span th:each="region, iterStat : ${policy.region}">
-                                            <span th:text="|${region}|"></span>
-                                            <span th:if="${!iterStat.last}">,&#32;</span>
+                                            <span th:text="|${region}|"></span
+                                            ><span th:if="${!iterStat.last}">,</span>
                                         </span>
                                 </div>
                             </li>
@@ -675,7 +676,6 @@
                 regionChkMap.set(input.value, input.value);
             });
         }
-        console.log(regionChkMap.size)
     })
     // -------------------- 상세 조건 검색 ---------------------------
 
@@ -1040,7 +1040,7 @@
         if(member)
             settingButtonClick();
         else
-            alert('로그인 후 이용 가능합니다.')
+            alert('일반 회원 로그인 후 이용 가능합니다.')
     });
 
 
@@ -1119,9 +1119,6 @@
             })
             .then(response => response.json())  // 서버로부터의 JSON 응답 처리
             .then(data => {
-                console.log("서버 응답 데이터:", data);  // 서버로부터 받은 데이터
-                console.log("data.status:", data.status);
-                console.log("data.ok:", data.ok);
                 if (data.status == undefined || data.status == null) {
                 createNewPolicyList(data.policyDTO);
                 createBoardCount(data.pageDTO);
@@ -1131,9 +1128,7 @@
                         alert("서버에러입니다.");
                     } else if (data.status === 400) {
                         alert(data.status + "에러 발생");
-                        console.log(data.field + "의" + data.errorCode + "에러 입니다.\n" + data.message);
                     } else {
-                        console.log(data);
                         alert("알 수 없는 에러입니다.");
                     }
                 }
