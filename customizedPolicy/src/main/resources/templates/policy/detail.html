@@ -66,8 +66,8 @@
                             <div class="summary-field">지역</div>
                             <div class="summary-field-content">
                                         <span th:each="region, iterStat : ${foundPolicy.region}">
-                                            <span th:text="|${region}|"></span>
-                                            <span th:if="${!iterStat.last}">,&#32;</span>
+                                            <span th:text="|${region}|"></span
+                                            ><span th:if="${!iterStat.last}">,</span>
                                         </span>
                             </div>
                         </li>
@@ -84,7 +84,7 @@
                         <li>
                             <div class="summary-field">신청기간</div>
                             <div class="summary-field-content"
-                                 th:text="${foundPolicy.deadline}">상시 모집</div>
+                                 th:text="${foundPolicy.deadline}">상시모집</div>
                         </li>
                         <li>
                             <div class="summary-field">모집인원</div>
