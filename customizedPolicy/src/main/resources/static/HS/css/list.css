@@ -453,11 +453,5 @@ button{
     color: white !important;
 }
 
-area-select-box,
-region-select-box,
-job-state-list,
-education-level-list,
-special-list > label{
-    cursor: pointer;
-}
+
 
