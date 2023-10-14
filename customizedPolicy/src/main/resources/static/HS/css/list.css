@@ -453,5 +453,10 @@ button{
     color: white !important;
 }
 
+input[type="checkbox"],
+input[type="checkbox"]+label{
+  cursor:pointer;
+  }
+
 
 
