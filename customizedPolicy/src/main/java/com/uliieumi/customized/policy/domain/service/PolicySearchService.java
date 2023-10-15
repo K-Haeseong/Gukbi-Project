@@ -34,32 +34,7 @@ public class PolicySearchService implements PolicyService {
         return policyRepository.findByCondition(newPolicySearchForm, size, startPostNum, sort);
     }
 
-    private PolicySearchForm generateNewPolicySearchForm(PolicySearchForm form){
-        PolicySearchForm newSearchForm = new PolicySearchForm();
-        if(StringUtils.hasText(form.getName())) newSearchForm.setName(form.getName());
 
-        List<PolicyRegion> region = form.getRegion();
-        if(region != null && !region.contains(PolicyRegion.NOLIMIT) && region.size() > 0)
-            newSearchForm.setRegion(region);
-
-        List<PolicyCategory> area = form.getArea();
-        if(area != null && !area.contains(PolicyCategory.NOLIMIT) && area.size() > 0)
-            newSearchForm.setArea(area);
-
-        List<JobState> jobState = form.getJobState();
-        if(jobState != null && !jobState.contains(JobState.NOLIMIT) && jobState.size() > 0)
-            newSearchForm.setJobState(jobState);
-
-        List<EducationLevel> educationLevel = form.getEducationLevel();
-        if(educationLevel != null && !educationLevel.contains(EducationLevel.NOLIMIT) && educationLevel.size() > 0)
-            newSearchForm.setEducationLevel(educationLevel);
-
-        List<SpecificClass> specificClass = form.getSpecificClass();
-        if(specificClass != null && !specificClass.contains(SpecificClass.NOLIMIT) && specificClass.size() > 0)
-            newSearchForm.setSpecificClass(specificClass);
-
-        return newSearchForm;
-    }
 
     // 기본 정책 리스트 페이징
     @Override
@@ -165,6 +140,36 @@ public class PolicySearchService implements PolicyService {
         pageDTO.setEndPage(endPage);
         pageDTO.setBoardCount(boardCount);
         return pageDTO;
+    }
+
+
+
+
+    private PolicySearchForm generateNewPolicySearchForm(PolicySearchForm form){
+        PolicySearchForm newSearchForm = new PolicySearchForm();
+        if(StringUtils.hasText(form.getName())) newSearchForm.setName(form.getName());
+
+        List<PolicyRegion> region = form.getRegion();
+        if(region != null && !region.contains(PolicyRegion.NOLIMIT) && region.size() > 0)
+            newSearchForm.setRegion(region);
+
+        List<PolicyCategory> area = form.getArea();
+        if(area != null && !area.contains(PolicyCategory.NOLIMIT) && area.size() > 0)
+            newSearchForm.setArea(area);
+
+        List<JobState> jobState = form.getJobState();
+        if(jobState != null && !jobState.contains(JobState.NOLIMIT) && jobState.size() > 0)
+            newSearchForm.setJobState(jobState);
+
+        List<EducationLevel> educationLevel = form.getEducationLevel();
+        if(educationLevel != null && !educationLevel.contains(EducationLevel.NOLIMIT) && educationLevel.size() > 0)
+            newSearchForm.setEducationLevel(educationLevel);
+
+        List<SpecificClass> specificClass = form.getSpecificClass();
+        if(specificClass != null && !specificClass.contains(SpecificClass.NOLIMIT) && specificClass.size() > 0)
+            newSearchForm.setSpecificClass(specificClass);
+
+        return newSearchForm;
     }
 
 
