@@ -144,7 +144,7 @@ public class PolicySearchService implements PolicyService {
 
 
 
-
+    // 제한없음, null이면 해당 조건에 대한 쿼리문 실행하지 않기 위해서 -> 필터링 되지 않는다.
     private PolicySearchForm generateNewPolicySearchForm(PolicySearchForm form){
         PolicySearchForm newSearchForm = new PolicySearchForm();
         if(StringUtils.hasText(form.getName())) newSearchForm.setName(form.getName());
