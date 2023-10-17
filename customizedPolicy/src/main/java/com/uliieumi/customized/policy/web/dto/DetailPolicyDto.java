@@ -18,11 +18,10 @@ public class DetailPolicyDto {
     private String name; //제목
 
     private String thumbnail; // 이미지파일경로
-    // 에디터 컨텐츠 이미지 파일 안 나올 경우 대비
 
     private String document; // 첨부파일서버 경로
 
-    private String fileName;
+    private String fileName; // 페이지에 나올 파일 이름
 
     private String shortDescription; //짧은소개
 

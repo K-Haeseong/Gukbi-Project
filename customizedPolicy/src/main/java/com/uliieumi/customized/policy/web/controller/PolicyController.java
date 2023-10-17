@@ -69,7 +69,7 @@ public class PolicyController {
         @Data
         @AllArgsConstructor
         class MemberInterest {
-            private int age;
+            private int age; // 나이
 
             private PolicyCategory category; //정책분야
 
