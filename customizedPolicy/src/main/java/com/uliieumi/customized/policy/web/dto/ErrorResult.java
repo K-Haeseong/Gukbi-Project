@@ -11,6 +11,7 @@ public class ErrorResult {
         private String errorCode;
         private String field;
 
+
         public ErrorResult(int statusCode, String message, String errorCode, String field) {
             this.statusCode = statusCode;
             this.message = message;

@@ -16,9 +16,11 @@ import java.util.List;
 public class PolicySearchForm {
 
     @Length(max = 20)
+    // 글자 수 제한
     private String name;
 
     @PositiveOrZero
+    // 0과 양수만 가능하도록 제한
     private Integer age;
 
     private List<PolicyCategory> area;
