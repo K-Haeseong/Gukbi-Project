@@ -1,4 +1,4 @@
-# Gukbi-Project
+# 개인 맞춤 정책 추천 사이트
 🔗 URL
 https://www.uliieumi.com/
 
