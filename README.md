@@ -61,5 +61,3 @@ WAS	        : Apache Tomcat 9.0
 배포         : AWS / Docker
 
 사용기술      : JAVA, HTML, CSS, JavaScript, JSP, Thymeleaf, Spring, XML, JSON
-
-프로젝트 주소 : www.uliieumi.com
