@@ -4,7 +4,7 @@ https://www.uliieumi.com/
 
 
 📌 Summary
-여러 기관이나 기업에서 정책을 자유롭게 등록하고, 사용자가 자신에게 필요한 맞춤 정책을 한 눈에 검색하고 찾아볼 수 있는 사이트
+여러 기관이나 기업에서 정책을 자유롭게 등록하고, 사용자가 자신에게 필요한 정책을 한 눈에 검색하고 찾아볼 수 있는 사이트
 
 
 - 주요 기능
@@ -29,17 +29,31 @@ https://www.uliieumi.com/
 
 
 🔨 Technology Stack(s)
+
 운영체제	    : Windows 10 64bit
+
 개발언어	    : Java / SQL / HTML / Javascript / CSS / JSON
+
 개발도구	    : IntelliJ / Gradle / HeidiSQL
+
 프레임워크	  : Spring Framework Boot 2.7.1 / MyBatis / JPA
+
 데이터베이스	: MySQL
+
 WAS	        : Apache Tomcat 9.0
+
 웹 브라우저	: Chrome
+
 버전 관리	  : Git / Github
+
 라이브러리	  : JSP/ JSTL / Thymeleaf / Lombok / Mock / Junit5 / Spring Security / JWT / Bootstrap
+
 오픈소스	    : CKEditor5 / CoolSMS
+
 서버         : AWS EC2 / AWS Cloud Front / AWS Load Balancer / AWS S3
+
 배포         : AWS / Docker
+
 사용기술      : JAVA, HTML, CSS, JavaScript, JSP, Thymeleaf, Spring, XML, JSON
+
 프로젝트 주소 : www.uliieumi.com
