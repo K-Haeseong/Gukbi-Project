@@ -19,6 +19,7 @@
 🤔 Troubleshooting
 
 - 프로젝트 진행 과정 중 조원들 간에 기술 스택이 맞지 않아 하나의 웹 프로젝트로 개발하기 어려운 상황
+- 
 : 프로젝트를 독립적인 모듈 단위로 분리하여 개발할 수 있다는 MSA의 장점에서 영감을 받아 각 프로젝트의 포트 번호를 다르게 하여 동시에 앱을 실행하는 형태로 개발
 
 - Linux 서버로 배포 이후 MySQL의 SQL 문법 오류
@@ -46,17 +47,11 @@
 
 데이터베이스	: MySQL
 
-WAS	        : Apache Tomcat 9.0
-
 웹 브라우저	: Chrome
-
-버전 관리	  : Git / Github
 
 라이브러리	  : JSP/ JSTL / Thymeleaf / Lombok / Mock / Junit5 / Spring Security / JWT / Bootstrap
 
-오픈소스	    : CKEditor5 / CoolSMS
-
-서버         : AWS EC2 / AWS Cloud Front / AWS Load Balancer / AWS S3
+인프라         : AWS EC2 / AWS Cloud Front / AWS Load Balancer / AWS S3
 
 배포         : AWS / Docker
 
